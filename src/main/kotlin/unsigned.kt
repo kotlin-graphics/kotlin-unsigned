@@ -5,40 +5,40 @@ import java.math.BigInteger
  */
 
 infix fun Byte.udiv(b: Byte) = (toUInt() / b.toUInt()).toByte()
-infix fun Byte.umod(b: Byte) = (toUInt() % b.toUInt()).toByte()
+infix fun Byte.urem(b: Byte) = (toUInt() % b.toUInt()).toByte()
 infix fun Byte.ucmp(b: Byte) = toUInt().compareTo(b.toUInt())
 infix fun Byte.ushr(b: Byte) = (toUInt() ushr b.toUInt()).toByte()
 
 infix fun Byte.udiv(b: Int) = (toUInt() / b).toByte()
-infix fun Byte.umod(b: Int) = (toUInt() % b).toByte()
+infix fun Byte.urem(b: Int) = (toUInt() % b).toByte()
 infix fun Byte.ucmp(b: Int) = toUInt().compareTo(b)
 infix fun Byte.ushr(b: Int) = (toUInt() ushr b).toByte()
 
 infix fun Short.udiv(b: Short) = (toUInt() / b.toUInt()).toShort()
-infix fun Short.umod(b: Short) = (toUInt() % b.toUInt()).toShort()
+infix fun Short.urem(b: Short) = (toUInt() % b.toUInt()).toShort()
 infix fun Short.ucmp(b: Short) = toUInt().compareTo(b.toUInt())
 infix fun Short.ushr(b: Short) = (toUInt() ushr b.toUInt()).toShort()
 
 infix fun Short.udiv(b: Int) = (toUInt() / b).toShort()
-infix fun Short.umod(b: Int) = (toUInt() % b).toShort()
+infix fun Short.urem(b: Int) = (toUInt() % b).toShort()
 infix fun Short.ucmp(b: Int) = toUInt().compareTo(b)
 infix fun Short.ushr(b: Int) = (toUInt() ushr b).toShort()
 
 infix fun Int.udiv(b: Byte) = Integer.divideUnsigned(this, b.toUInt())
-infix fun Int.umod(b: Byte) = Integer.remainderUnsigned(this, b.toUInt())
+infix fun Int.urem(b: Byte) = Integer.remainderUnsigned(this, b.toUInt())
 infix fun Int.ucmp(b: Byte) = Integer.compareUnsigned(this, b.toUInt())
 // Int.ushl(b: Int) is already provided by Kotlin lib
 infix fun Int.udiv(b: Short) = Integer.divideUnsigned(this, b.toUInt())
-infix fun Int.umod(b: Short) = Integer.remainderUnsigned(this, b.toUInt())
+infix fun Int.urem(b: Short) = Integer.remainderUnsigned(this, b.toUInt())
 infix fun Int.ucmp(b: Short) = Integer.compareUnsigned(this, b.toUInt())
 // Int.ushl(b: Int) is already provided by Kotlin lib
 infix fun Int.udiv(b: Int) = Integer.divideUnsigned(this, b)
-infix fun Int.umod(b: Int) = Integer.remainderUnsigned(this, b)
+infix fun Int.urem(b: Int) = Integer.remainderUnsigned(this, b)
 infix fun Int.ucmp(b: Int) = Integer.compareUnsigned(this, b)
 // Int.ushl(b: Int) is already provided by Kotlin lib
 
 infix fun Long.udiv(b: Long) = java.lang.Long.divideUnsigned(this, b)
-infix fun Long.umod(b: Long) = java.lang.Long.remainderUnsigned(this, b)
+infix fun Long.urem(b: Long) = java.lang.Long.remainderUnsigned(this, b)
 infix fun Long.ucmp(b: Long) = java.lang.Long.compareUnsigned(this, b)
 // Long.ushl(b: Long) is already provided by Kotlin lib
 

@@ -42,24 +42,24 @@ class unsigned : StringSpec() {
         "primitive" {
 
             250.b udiv 50.b shouldBe 5.b
-            250.b umod 200.b shouldBe 50.b
+            250.b urem 200.b shouldBe 50.b
             250.b ucmp 251.b should be lt 1
             (250.b ucmp 250.b) shouldBe 0
             0b1010_1010.b ushr 4 shouldBe 0b1010.b
 
             65500.s udiv 500.s shouldBe 131.s
-            65500.s umod 65000.s shouldBe 500.s
+            65500.s urem 65000.s shouldBe 500.s
             65500.s ucmp 65501.s should be lt 1
             65500.s ucmp 65500.s shouldBe 0
             0b0100_1100_0011_1101.s ushr 8 shouldBe 0b100_1100.s
 
             4_000_000_000.i udiv 2 shouldBe 2_000_000_000
-            2_750_000_000.i umod 2_000_000_000 shouldBe 750_000_000
+            2_750_000_000.i urem 2_000_000_000 shouldBe 750_000_000
             4_000_000_000.i ucmp 4_000_000_001.i should be lt 1
             4_000_000_000.i ucmp 4_000_000_000.i shouldBe 0
 
             "18_000_000_000_000_000_000".L udiv 2L shouldBe "9'000'000'000'000'000'000".L
-            "17'000'000'000'000'000'000".L umod "9'000'000'000'000'000'000".L shouldBe "8'000'000'000'000'000'000".L
+            "17'000'000'000'000'000'000".L urem "9'000'000'000'000'000'000".L shouldBe "8'000'000'000'000'000'000".L
             "18'000'000'000'000'000'000".L ucmp "18'000'000'000'000'000'001".L should be lt 1
             "18'000'000'000'000'000'001".L ucmp "18'000'000'000'000'000'001".L shouldBe 0
         }
