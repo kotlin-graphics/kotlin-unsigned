@@ -1,12 +1,14 @@
+import org.gradle.api.JavaVersion
+
 group = "groupId"
 version = "1.0-SNAPSHOT"
 
 buildscript {
 
     repositories {
+        gradleScriptKotlin()
         maven { setUrl("http://dl.bintray.com/kotlin/kotlin-eap-1.1") }
         mavenCentral()
-        gradleScriptKotlin()
     }
 
     dependencies {
@@ -26,9 +28,14 @@ apply {
 //    mainClassName = "samples.HelloWorldKt"
 //}
 
+//configure<JavaPluginConvention> {
+//    sourceCompatibility = JavaVersion.VERSION_1_7
+//    targetCompatibility = JavaVersion.VERSION_1_7
+//}
+
 repositories {
-    maven { setUrl("http://dl.bintray.com/kotlin/kotlin-eap-1.1") }
     gradleScriptKotlin()
+    maven { setUrl("http://dl.bintray.com/kotlin/kotlin-eap-1.1") }
 }
 
 dependencies {
