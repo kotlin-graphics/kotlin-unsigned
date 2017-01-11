@@ -12,15 +12,7 @@
               <K2JSCompilerArguments />
             </option>
             <option name="_commonCompilerArguments">
-              <DummyImpl>
-                <option name="pluginClasspaths">
-                  <array />
-                </option>
-                <option name="coroutinesWarn" value="true" />
-                <option name="pluginOptions">
-                  <array />
-                </option>
-              </DummyImpl>
+              <DummyImpl />
             </option>
           </KotlinCompilerInfo>
         </option>
