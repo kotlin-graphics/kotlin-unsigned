@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
-      <module name="unsigned_main" target="1.8" />
-      <module name="unsigned_test" target="1.8" />
+      <module name="kotlin-unsigned_main" target="1.8" />
+      <module name="kotlin-unsigned_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
