@@ -18,6 +18,7 @@ buildscript {
 
 apply {
     plugin("kotlin")
+    plugin("maven")
 }
 
 //configure<ApplicationPluginConvention> {
