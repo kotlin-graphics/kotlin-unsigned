@@ -1,4 +1,4 @@
-val kotlinVersion = "1.1-M04"
+// Gradle 3.3
 
 buildscript {
 
@@ -23,9 +23,4 @@ repositories {
 dependencies {
     compile(kotlinModule("stdlib", "1.1-M04"))
     testCompile("io.kotlintest:kotlintest:1.3.5")
-}
-
-
-task("embeddedKotlinVersion") {
-    println("$embeddedKotlinVersion")
 }
