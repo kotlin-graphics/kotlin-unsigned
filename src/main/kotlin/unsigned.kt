@@ -4,15 +4,7 @@ import java.math.BigInteger
  * Created by GBarbieri on 06.10.2016.
  */
 
-infix fun Byte.udiv(b: Byte) = (toUInt() / b.toUInt()).toByte()
-infix fun Byte.urem(b: Byte) = (toUInt() % b.toUInt()).toByte()
-infix fun Byte.ucmp(b: Byte) = toUInt().compareTo(b.toUInt())
-infix fun Byte.ushr(b: Byte) = (toUInt() ushr b.toUInt()).toByte()
 
-infix fun Byte.udiv(b: Int) = (toUInt() / b).toByte()
-infix fun Byte.urem(b: Int) = (toUInt() % b).toByte()
-infix fun Byte.ucmp(b: Int) = toUInt().compareTo(b)
-infix fun Byte.ushr(b: Int) = (toUInt() ushr b).toByte()
 
 infix fun Short.udiv(b: Short) = (toUInt() / b.toUInt()).toShort()
 infix fun Short.urem(b: Short) = (toUInt() % b.toUInt()).toShort()
@@ -44,7 +36,7 @@ infix fun Long.ucmp(b: Long) = java.lang.Long.compareUnsigned(this, b)
 
 // TODO if == Ubyte?
 fun Number.toUbyte() = Ubyte(toByte())
-fun Number.toUint() = Uint(toInt())
+fun Number.toUint() = Uint(this)
 fun Number.toUlong() = Ulong(toLong())
 fun Number.toUshort() = Ushort(toShort())
 

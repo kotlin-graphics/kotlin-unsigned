@@ -1,5 +1,4 @@
 import io.kotlintest.KTestJUnitRunner
-import io.kotlintest.matchers.Matchers
 import io.kotlintest.matchers.be
 import io.kotlintest.specs.StringSpec
 import org.junit.runner.RunWith
@@ -12,18 +11,19 @@ import java.math.BigInteger
 @RunWith(KTestJUnitRunner::class)
 class unsigned : StringSpec() {
 
-    val Int.b: Byte
-        get() = this.toByte()
-    val Int.s: Short
-        get() = this.toShort()
-    val Long.b: Byte
-        get() = this.toByte()
-    val Long.s: Short
-        get() = this.toShort()
-    val Long.i: Int
-        get() = this.toInt()
-    val BigInteger.L: Long
-        get() = this.toLong()
+    val Int.b
+        get() = toByte()
+    val Int.s
+        get() = toShort()
+    val Long.b
+        get() = toByte()
+    val Long.s
+        get() = toShort()
+    val Long.i
+        get() = toInt()
+    val BigInteger.L
+        get() = toLong()
+
     /**
      * BUG, 0xffffffffffffffff is outside Long range
      * https://youtrack.jetbrains.com/issue/KT-4749

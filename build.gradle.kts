@@ -1,5 +1,3 @@
-val kotlinVersion = "1.1-M04"
-
 buildscript {
 
     repositories {
@@ -7,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlinModule("gradle-plugin", "1.1-M04"))
+        classpath(kotlinModule("gradle-plugin", "1.1.0-beta-17"))
     }
 }
 
@@ -21,11 +19,6 @@ repositories {
 }
 
 dependencies {
-    compile(kotlinModule("stdlib", "1.1-M04"))
+    compile(kotlinModule("stdlib", "1.1.0-beta-17"))
     testCompile("io.kotlintest:kotlintest:1.3.5")
-}
-
-
-task("embeddedKotlinVersion") {
-    println("$embeddedKotlinVersion")
 }
