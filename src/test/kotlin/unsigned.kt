@@ -9,7 +9,7 @@ import java.math.BigInteger
  */
 
 @RunWith(KTestJUnitRunner::class)
-class unsigned : StringSpec() {
+class UnsignedTest : StringSpec() {
 
     val Int.b
         get() = toByte()
