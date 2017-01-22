@@ -11,3 +11,7 @@ val p = project {
         compile("io.kotlintest:kotlintest:1.3.5")
     }
 }
+
+test {         
+    include("**/*.class")     
+}
