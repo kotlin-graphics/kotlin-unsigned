@@ -10,8 +10,8 @@ val p = project {
     dependenciesTest {
         compile("io.kotlintest:kotlintest:1.3.5")
     }
-}
-
-test {         
-    include("**/*.class")     
+    
+    test {         
+        include("**/*.class")     
+    }
 }
