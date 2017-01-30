@@ -1,3 +1,5 @@
+package unsigned
+
 import java.math.BigInteger
 
 /**
@@ -34,7 +36,7 @@ infix fun Long.urem(b: Long) = java.lang.Long.remainderUnsigned(this, b)
 infix fun Long.ucmp(b: Long) = java.lang.Long.compareUnsigned(this, b)
 // Long.ushl(b: Long) is already provided by Kotlin lib
 
-// TODO if == Ubyte?
+// TODO if == unsigned.Ubyte?
 fun Number.toUbyte() = Ubyte(toByte())
 fun Number.toUint() = Uint(this)
 fun Number.toUlong() = Ulong(toLong())
@@ -407,7 +409,7 @@ infix fun Int.or(b: Ubyte) = this or b.toInt()
 infix fun Int.xor(b: Ubyte) = this xor b.toInt()
 infix fun Int.shl(b: Ubyte) = this shl b.toInt()
 infix fun Int.shr(b: Ubyte) = this shr b.toInt()
-// Int.inv() is already provided by Kotlin lib
+// Int.unsigned.inv() is already provided by Kotlin lib
 infix operator fun Int.compareTo(b: Ubyte) = Integer.compareUnsigned(this, b.toInt())
 
 
@@ -421,7 +423,7 @@ infix fun Int.or(b: Uint) = this or b.toInt()
 infix fun Int.xor(b: Uint) = this xor b.toInt()
 infix fun Int.shl(b: Uint) = this shl b.toInt()
 infix fun Int.shr(b: Uint) = this shr b.toInt()
-// Int.inv() is already provided by Kotlin lib
+// Int.unsigned.inv() is already provided by Kotlin lib
 infix operator fun Int.compareTo(b: Uint) = Integer.compareUnsigned(this, b.toInt())
 
 
@@ -433,7 +435,7 @@ operator fun Long.rem(b: Ulong) = java.lang.Long.remainderUnsigned(this, b.toLon
 infix fun Long.and(b: Ulong) = this and b.toLong()
 infix fun Long.or(b: Ulong) = this or b.toLong()
 infix fun Long.xor(b: Ulong) = this xor b.toLong()
-// no main.shl, main.shr, since they need int
+// no main.unsigned.shl, main.unsigned.shr, since they need int
 infix operator fun Long.compareTo(b: Ulong) = java.lang.Long.compareUnsigned(this, b.toLong())
 
 
@@ -461,5 +463,5 @@ infix fun Int.or(b: Ushort) = this or b.toInt()
 infix fun Int.xor(b: Ushort) = this xor b.toInt()
 infix fun Int.shl(b: Ushort) = this shl b.toInt()
 infix fun Int.shr(b: Ushort) = this shr b.toInt()
-// Int.inv() is already provided by Kotlin lib
+// Int.unsigned.inv() is already provided by Kotlin lib
 infix operator fun Int.compareTo(b: Ushort) = Integer.compareUnsigned(this, b.toInt())

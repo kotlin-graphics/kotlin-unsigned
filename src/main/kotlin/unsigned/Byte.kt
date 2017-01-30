@@ -1,3 +1,7 @@
+package unsigned
+
+import unsigned.toUInt
+
 /**
  * Created by elect on 19/01/2017.
  */

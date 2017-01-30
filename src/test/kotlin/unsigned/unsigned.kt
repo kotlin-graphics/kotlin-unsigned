@@ -1,3 +1,5 @@
+package unsigned
+
 import io.kotlintest.KTestJUnitRunner
 import io.kotlintest.matchers.be
 import io.kotlintest.specs.StringSpec
@@ -316,10 +318,10 @@ class unsigned : StringSpec() {
 
             val max = "ffff_ffff__ffff_ffff".hL
 
-            Ulong(Ulong.MAX_VALUE).v shouldBe max
+            Ulong(Ulong.Companion.MAX_VALUE).v shouldBe max
             Ulong("18446744073709551615").v shouldBe max
 
-            var a = Ulong(Ulong.MAX_VALUE)
+            var a = Ulong(Ulong.Companion.MAX_VALUE)
 
             a.toBigInteger() shouldBe max.toUBigInt()
             a.toDouble() shouldBe max.toUBigInt().toDouble()
