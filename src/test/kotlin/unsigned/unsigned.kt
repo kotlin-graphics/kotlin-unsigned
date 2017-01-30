@@ -11,7 +11,7 @@ import java.math.BigInteger
  */
 
 @RunWith(KTestJUnitRunner::class)
-class unsigned : StringSpec() {
+class Unsigned : StringSpec() {
 
     val Int.b
         get() = toByte()

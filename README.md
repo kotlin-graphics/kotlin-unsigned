@@ -1,3 +1,3 @@
-# kotlin-unsigned.unsigned
+# kotlin-unsigned
 
-unsigned.unsigned support for Kotlin via boxed types
+unsigned support for Kotlin via boxed types and simply primitives
