@@ -1,35 +1,13 @@
 package unsigned
 
 import java.math.BigInteger
+import kotlin.experimental.and
+import kotlin.experimental.or
+import kotlin.experimental.xor
 
 /**
  * Created by GBarbieri on 06.10.2016.
  */
-
-
-
-infix fun Short.udiv(b: Short) = (toUInt() / b.toUInt()).toShort()
-infix fun Short.urem(b: Short) = (toUInt() % b.toUInt()).toShort()
-infix fun Short.ucmp(b: Short) = toUInt().compareTo(b.toUInt())
-infix fun Short.ushr(b: Short) = (toUInt() ushr b.toUInt()).toShort()
-
-infix fun Short.udiv(b: Int) = (toUInt() / b).toShort()
-infix fun Short.urem(b: Int) = (toUInt() % b).toShort()
-infix fun Short.ucmp(b: Int) = toUInt().compareTo(b)
-infix fun Short.ushr(b: Int) = (toUInt() ushr b).toShort()
-
-infix fun Int.udiv(b: Byte) = Integer.divideUnsigned(this, b.toUInt())
-infix fun Int.urem(b: Byte) = Integer.remainderUnsigned(this, b.toUInt())
-infix fun Int.ucmp(b: Byte) = Integer.compareUnsigned(this, b.toUInt())
-// Int.ushl(b: Int) is already provided by Kotlin lib
-infix fun Int.udiv(b: Short) = Integer.divideUnsigned(this, b.toUInt())
-infix fun Int.urem(b: Short) = Integer.remainderUnsigned(this, b.toUInt())
-infix fun Int.ucmp(b: Short) = Integer.compareUnsigned(this, b.toUInt())
-// Int.ushl(b: Int) is already provided by Kotlin lib
-infix fun Int.udiv(b: Int) = Integer.divideUnsigned(this, b)
-infix fun Int.urem(b: Int) = Integer.remainderUnsigned(this, b)
-infix fun Int.ucmp(b: Int) = Integer.compareUnsigned(this, b)
-// Int.ushl(b: Int) is already provided by Kotlin lib
 
 infix fun Long.udiv(b: Long) = java.lang.Long.divideUnsigned(this, b)
 infix fun Long.urem(b: Long) = java.lang.Long.remainderUnsigned(this, b)
@@ -47,9 +25,6 @@ fun Char.toUint() = Uint(toInt())
 fun Char.toUlong() = Ulong(toLong())
 fun Char.toUshort() = Ushort(toShort())
 
-fun Byte.toUInt() = toInt() and 0xff
-fun Short.toUInt() = toInt() and 0xffff
-fun Int.toULong() = toLong() and 0xffffffffL
 fun Long.toUBigInt() = if (this < 0) BigInteger.valueOf(this) + Ulong.MAX_VALUE + BigInteger.ONE else BigInteger.valueOf(this)
 
 
@@ -73,7 +48,7 @@ data class Ubyte(var v: Byte = 0) : Number() {
     constructor(string: String) : this(Integer.parseUnsignedInt(string).toByte())
 
 
-    fun toBigInteger() = BigInteger.valueOf(toLong())
+    fun toBigInt() = BigInteger.valueOf(toLong())
     override fun toDouble() = toInt().toDouble()
     override fun toFloat() = toInt().toFloat()
     override fun toLong() = toInt().toLong()
@@ -158,7 +133,7 @@ data class Uint(var v: Int = 0) : Number() {
     constructor(string: String, base: Int = 10) : this(Integer.parseUnsignedInt(string.filter { it != '_' && it != '\'' },  base))
 
 
-    fun toBigInteger() = BigInteger.valueOf(toLong())
+    fun toBigInt() = BigInteger.valueOf(toLong())
     override fun toDouble() = toLong().toDouble()
     override fun toFloat() = toLong().toFloat()
     override fun toLong() = v.toULong()
@@ -230,9 +205,9 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
     constructor(number: Number) : this(number.toLong())
     constructor(string: String, base: Int = 10) : this(java.lang.Long.parseUnsignedLong(string.filter { it != '_' && it != '\'' }, base))
 
-    fun toBigInteger() = if (v < 0) BigInteger.valueOf(v) + MAX_VALUE + BigInteger.ONE else BigInteger.valueOf(v)
-    override fun toDouble() = toBigInteger().toDouble()
-    override fun toFloat() = toBigInteger().toFloat()
+    fun toBigInt() = if (v < 0) BigInteger.valueOf(v) + MAX_VALUE + BigInteger.ONE else BigInteger.valueOf(v)
+    override fun toDouble() = toBigInt().toDouble()
+    override fun toFloat() = toBigInt().toFloat()
     override fun toLong() = v
     override fun toInt() = v.toInt()
     override fun toChar() = v.toChar()
@@ -321,7 +296,7 @@ data class Ushort(var v: Short = 0) : Number() {
     constructor(string: String, base:Int = 10) : this(Integer.parseUnsignedInt(string.filter { it != '_' && it != '\'' }, base).toShort())
 
 
-    fun toBigInteger() = BigInteger.valueOf(toLong())
+    fun toBigInt() = BigInteger.valueOf(toLong())
     override fun toDouble() = toInt().toDouble()
     override fun toFloat() = toInt().toFloat()
     override fun toLong() = toInt().toLong()
@@ -361,7 +336,7 @@ data class Ushort(var v: Short = 0) : Number() {
     infix fun and(b: Short) = Ushort(v and b)
     infix fun and(b: Int) = Ushort(toInt() and b)
 
-    infix fun or(b: Ushort) = Ushort(v or b.v)
+    infix fun or(b: Ushort) = Ushort(v or  b.v)
     infix fun or(b: Short) = Ushort(v or b)
     infix fun or(b: Int) = Ushort(toInt() or b)
 
@@ -385,46 +360,10 @@ data class Ushort(var v: Short = 0) : Number() {
 }
 
 
-operator fun Byte.plus(b: Ubyte): Byte = (toUInt() + b.toInt()).toByte()
-operator fun Byte.minus(b: Ubyte) = (toUInt() - b.toInt()).toByte()
-operator fun Byte.times(b: Ubyte) = (toUInt() * b.toInt()).toByte()
-operator fun Byte.div(b: Ubyte) = (toUInt() / b.toInt()).toByte()
-operator fun Byte.rem(b: Ubyte) = (toUInt() % b.toInt()).toByte()
-infix fun Byte.and(b: Ubyte) = (this and b.v).toByte()
-infix fun Byte.or(b: Ubyte) = (this or b.v).toByte()
-infix fun Byte.xor(b: Ubyte) = (this xor b.v).toByte()
-infix fun Byte.shl(b: Ubyte) = (toUInt() shl b.toInt()).toByte()
-infix fun Byte.shr(b: Ubyte) = (toUInt() shr b.toInt()).toByte()
-fun Byte.inv() = toUInt().inv().toByte()
-infix operator fun Byte.compareTo(b: Ubyte) = Integer.compareUnsigned(toUInt(), b.toInt())
 
 
-operator fun Int.plus(b: Ubyte) = this + b.toInt()
-operator fun Int.minus(b: Ubyte) = this - b.toInt()
-operator fun Int.times(b: Ubyte) = this * b.toInt()
-operator fun Int.div(b: Ubyte) = Integer.divideUnsigned(this, b.toInt())
-operator fun Int.rem(b: Ubyte) = Integer.remainderUnsigned(this, b.toInt())
-infix fun Int.and(b: Ubyte) = this and b.toInt()
-infix fun Int.or(b: Ubyte) = this or b.toInt()
-infix fun Int.xor(b: Ubyte) = this xor b.toInt()
-infix fun Int.shl(b: Ubyte) = this shl b.toInt()
-infix fun Int.shr(b: Ubyte) = this shr b.toInt()
-// Int.unsigned.inv() is already provided by Kotlin lib
-infix operator fun Int.compareTo(b: Ubyte) = Integer.compareUnsigned(this, b.toInt())
 
 
-operator fun Int.plus(b: Uint) = this + b.toInt()
-operator fun Int.minus(b: Uint) = this - b.toInt()
-operator fun Int.times(b: Uint) = this * b.toInt()
-operator fun Int.div(b: Uint) = Integer.divideUnsigned(this, b.toInt())
-operator fun Int.rem(b: Uint) = Integer.remainderUnsigned(this, b.toInt())
-infix fun Int.and(b: Uint) = this and b.toInt()
-infix fun Int.or(b: Uint) = this or b.toInt()
-infix fun Int.xor(b: Uint) = this xor b.toInt()
-infix fun Int.shl(b: Uint) = this shl b.toInt()
-infix fun Int.shr(b: Uint) = this shr b.toInt()
-// Int.unsigned.inv() is already provided by Kotlin lib
-infix operator fun Int.compareTo(b: Uint) = Integer.compareUnsigned(this, b.toInt())
 
 
 operator fun Long.plus(b: Ulong) = this + b.toLong()
@@ -438,30 +377,3 @@ infix fun Long.xor(b: Ulong) = this xor b.toLong()
 // no main.unsigned.shl, main.unsigned.shr, since they need int
 infix operator fun Long.compareTo(b: Ulong) = java.lang.Long.compareUnsigned(this, b.toLong())
 
-
-operator fun Short.plus(b: Ushort) = (toInt() + b.toInt()).toShort()
-operator fun Short.minus(b: Ushort) = (toInt() - b.toInt()).toShort()
-operator fun Short.times(b: Ushort) = (toInt() * b.toInt()).toShort()
-operator fun Short.div(b: Ushort) = (toUInt() / b.toInt()).toShort()
-operator fun Short.rem(b: Ushort) = (toUInt() % b.toInt()).toShort()
-infix fun Short.and(b: Ushort) = (this and b.v).toShort()
-infix fun Short.or(b: Ushort) = (this or b.v).toShort()
-infix fun Short.xor(b: Ushort) = (this xor b.v).toShort()
-infix fun Short.shl(b: Ushort) = (toInt() shl b.toInt()).toShort()
-infix fun Short.shr(b: Ushort) = (toInt() shr b.toInt()).toShort()
-fun Short.inv() = toUInt().inv().toShort()
-infix operator fun Short.compareTo(b: Ushort) = Integer.compareUnsigned(toUInt(), b.toInt())
-
-
-operator fun Int.plus(b: Ushort) = this + b.toInt()
-operator fun Int.minus(b: Ushort) = this - b.toInt()
-operator fun Int.times(b: Ushort) = this * b.toInt()
-operator fun Int.div(b: Ushort) = Integer.divideUnsigned(this, b.toInt())
-operator fun Int.rem(b: Ushort) = Integer.remainderUnsigned(this, b.toInt())
-infix fun Int.and(b: Ushort) = this and b.toInt()
-infix fun Int.or(b: Ushort) = this or b.toInt()
-infix fun Int.xor(b: Ushort) = this xor b.toInt()
-infix fun Int.shl(b: Ushort) = this shl b.toInt()
-infix fun Int.shr(b: Ushort) = this shr b.toInt()
-// Int.unsigned.inv() is already provided by Kotlin lib
-infix operator fun Int.compareTo(b: Ushort) = Integer.compareUnsigned(this, b.toInt())

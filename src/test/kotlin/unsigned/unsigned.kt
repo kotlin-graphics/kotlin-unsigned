@@ -5,6 +5,7 @@ import io.kotlintest.matchers.be
 import io.kotlintest.specs.StringSpec
 import org.junit.runner.RunWith
 import java.math.BigInteger
+import kotlin.experimental.inv
 
 /**
  * Created by elect on 15/10/16.
@@ -74,7 +75,7 @@ class Unsigned : StringSpec() {
 
             var a = Ubyte(0xff)
 
-            a.toBigInteger() shouldBe BigInteger.valueOf(0xff)
+            a.toBigInt() shouldBe BigInteger.valueOf(0xff)
             a.toDouble() shouldBe 0xff.toDouble()
             a.toFloat() shouldBe 0xff.toFloat()
             a.toLong() shouldBe 0xff.toLong()
@@ -168,29 +169,29 @@ class Unsigned : StringSpec() {
             0xff.b + Ubyte(1) shouldBe 0.b
             0xff.b - Ubyte(1) shouldBe 0xfe.b
             100.b * Ubyte(2) shouldBe 200.b
-            200.b / Ubyte(2) shouldBe 100.b
-            175.b % Ubyte(100) shouldBe 75.b
+            200.b udiv Ubyte(2) shouldBe 100.b
+            175.b urem Ubyte(100) shouldBe 75.b
             0b1010_1010.b and Ubyte(0b0000_1111) shouldBe 0b1010.b
             0b1010_1010.b or Ubyte(0b0000_1111) shouldBe 0b1010_1111.b
             0b1010_1010.b xor Ubyte(0b0000_1111) shouldBe 0b1010_0101.b
             0b1010_1010.b shl Ubyte(4) shouldBe 0b1010_0000.b
-            0b1010_1010.b shr Ubyte(4) shouldBe 0b1010.b
+            0b1010_1010.b ushr Ubyte(4) shouldBe 0b1010.b
             0b1010_1010.b.inv() shouldBe 0b0101_0101.b
-            200.b > Ubyte(199)
-            200.b >= Ubyte(200)
+            ((200.b ucmp Ubyte(199)) > 0) shouldBe true
+            (200.b ucmp Ubyte(200)) shouldBe 0
 
             0xff + Ubyte(1) shouldBe 0b1_0000_0000
             0xff - Ubyte(1) shouldBe 0xfe
             100 * Ubyte(2) shouldBe 200
-            200 / Ubyte(2) shouldBe 100
-            175 % Ubyte(100) shouldBe 75
+            200 udiv Ubyte(2) shouldBe 100
+            175 urem Ubyte(100) shouldBe 75
             0b1010_1010 and Ubyte(0b0000_1111) shouldBe 0b1010
             0b1010_1010 or Ubyte(0b0000_1111) shouldBe 0b1010_1111
             0b1010_1010 xor Ubyte(0b0000_1111) shouldBe 0b1010_0101
             0b1010_1010 shl Ubyte(4) shouldBe 0b1010_1010_0000
-            0b1010_1010 shr Ubyte(4) shouldBe 0b1010
-            200 > Ubyte(199)
-            200 >= Ubyte(200)
+            0b1010_1010 ushr Ubyte(4) shouldBe 0b1010
+            ((200.b ucmp Ubyte(199)) > 0) shouldBe true
+            ((200.b ucmp Ubyte(200)) == 0) shouldBe true
         }
 
         "uint" {
@@ -206,7 +207,7 @@ class Unsigned : StringSpec() {
 
             var a = Uint(0xffff_ffff)
 
-            a.toBigInteger() shouldBe BigInteger.valueOf(0xffff_ffff)
+            a.toBigInt() shouldBe BigInteger.valueOf(0xffff_ffff)
             a.toDouble() shouldBe 0xffff_ffff.toDouble()
             a.toFloat() shouldBe 0xffff_ffff.toFloat()
             a.toLong() shouldBe 0xffff_ffff.toLong()
@@ -291,8 +292,8 @@ class Unsigned : StringSpec() {
             0xffff_ffff.i + Uint(1) shouldBe 0
             0xffff_ffff.i - Uint(1) shouldBe 0xffff_fffe.i
             2_000_000_000 * Uint(2) shouldBe 4_000_000_000.i
-            4_000_000_000.i / Uint(2) shouldBe 2_000_000_000
-            3_750_000_000.i % Uint(1000000000) shouldBe 750_000_000
+            4_000_000_000.i udiv Uint(2) shouldBe 2_000_000_000
+            3_750_000_000.i urem Uint(1000000000) shouldBe 750_000_000
 
             var d = 0b0100_1100__0111_0000__1111_0000__0111_1101
             var e = 0b0101_0101__0101_0101__0101_0101__0101_0101
@@ -309,9 +310,9 @@ class Unsigned : StringSpec() {
             // 0b00011001001001011010010100101000
             d xor Uint(e) shouldBe 0b0001_1001__0010_0101__1010_0101__0010_1000
             d shl Uint(16) shouldBe 0b1111_0000__0111_1101__0000_0000__0000_0000.i
-            d shr Uint(16) shouldBe 0b0000_0000__0000_0000__0100_1100__0111_0000
-            (d > Uint(d - 1)) shouldBe true
-            (d >= Uint(d)) shouldBe true
+            d ushr Uint(16) shouldBe 0b0000_0000__0000_0000__0100_1100__0111_0000
+            ((d ucmp Uint(d - 1) > 0)) shouldBe true
+            (d ucmp Uint(d)) shouldBe 0
         }
 
         "ulong" {
@@ -323,7 +324,7 @@ class Unsigned : StringSpec() {
 
             var a = Ulong(Ulong.Companion.MAX_VALUE)
 
-            a.toBigInteger() shouldBe max.toUBigInt()
+            a.toBigInt() shouldBe max.toUBigInt()
             a.toDouble() shouldBe max.toUBigInt().toDouble()
             a.toFloat() shouldBe max.toUBigInt().toFloat()
             a.toLong() shouldBe max.toLong()
@@ -435,7 +436,7 @@ class Unsigned : StringSpec() {
 
             var a = Ushort(0xffff)
 
-            a.toBigInteger() shouldBe BigInteger.valueOf(0xffff)
+            a.toBigInt() shouldBe BigInteger.valueOf(0xffff)
             a.toDouble() shouldBe 0xffff.toDouble()
             a.toFloat() shouldBe 0xffff.toFloat()
             a.toLong() shouldBe 0xffff.toLong()
@@ -530,29 +531,29 @@ class Unsigned : StringSpec() {
             0xffff.s + Ushort(1) shouldBe 0.s
             0xffff.s - Ushort(1) shouldBe 0xfffe.s
             30_000.s * Ushort(2) shouldBe 60_000.s
-            60_000.s / Ushort(2) shouldBe 30_000.s
-            65_000.s % Ushort(10_000) shouldBe 5_000.s
+            60_000.s udiv Ushort(2) shouldBe 30_000.s
+            65_000.s urem Ushort(10_000) shouldBe 5_000.s
             0b1010_1010__1010_1010.s and Ushort(0b0000_1111__0000_1111) shouldBe 0b0000_1010__0000_1010.s
             0b1010_1010__1010_1010.s or Ushort(0b0000_1111__0000_1111) shouldBe 0b1010_1111__1010_1111.s
             0b1010_1010__1010_1010.s xor Ushort(0b0000_1111__0000_1111) shouldBe 0b1010_0101_1010_0101.s
             0b0100_1100__0011_1101.s shl Ushort(8) shouldBe 0b0011_1101__0000_0000.s
-            0b0100_1100__0011_1101.s shr Ushort(8) shouldBe 0b0000_0000__0100_1100.s
+            0b0100_1100__0011_1101.s ushr Ushort(8) shouldBe 0b0000_0000__0100_1100.s
             0b0100_1100__0011_1101.s.inv() shouldBe 0b1011_0011__1100_0010.s
-            (65_500.s > Ushort(65_499)) shouldBe true
-            (65_500.s >= Ushort(65_500)) shouldBe true
+            ((65_500.s ucmp Ushort(65_499)) > 0) shouldBe true
+            (65_500.s ucmp Ushort(65_500)) shouldBe 0
 
             0xffff + Ushort(1) shouldBe 0b1000_0000__0000_00000
             0xffff - Ushort(1) shouldBe 0xfffe
             30_000 * Ushort(2) shouldBe 60_000
-            60_000 / Ushort(2) shouldBe 30_000
-            65_000 % Ushort(10_000) shouldBe 5_000
+            60_000 udiv Ushort(2) shouldBe 30_000
+            65_000 urem Ushort(10_000) shouldBe 5_000
             0b1010_1010__1010_1010 and Ushort(0b0000_1111__0000_1111) shouldBe 0b0000_1010__0000_1010
             0b1010_1010__1010_1010 or Ushort(0b0000_1111__0000_1111) shouldBe 0b1010_1111__1010_1111
             0b1010_1010__1010_1010 xor Ushort(0b0000_1111__0000_1111) shouldBe 0b1010_0101__1010_0101
             0b0100_1100__0011_1101 shl Ushort(8) shouldBe 0b0100_1100__0011_1101__0000_0000
-            0b0100_1100__0011_1101 shr Ushort(8) shouldBe 0b100_1100
-            (65_500 > Ushort(65_499)) shouldBe true
-            (65_500 >= Ushort(65_500)) shouldBe true
+            0b0100_1100__0011_1101 ushr Ushort(8) shouldBe 0b100_1100
+            ((65_500 ucmp Ushort(65_499)) > 0) shouldBe true
+            (65_500 ucmp Ushort(65_500)) shouldBe 0
         }
     }
 }
