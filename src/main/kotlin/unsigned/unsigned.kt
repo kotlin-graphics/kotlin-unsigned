@@ -2,6 +2,7 @@ package unsigned
 
 import java.math.BigInteger
 import kotlin.experimental.and
+import kotlin.experimental.inv
 import kotlin.experimental.or
 import kotlin.experimental.xor
 
@@ -106,7 +107,7 @@ data class Ubyte(var v: Byte = 0) : Number() {
     infix fun shr(b: Byte) = Ubyte(toInt() ushr b.toUInt())
     infix fun shr(b: Int) = Ubyte(toInt() ushr b)
 
-    fun inv() = Ubyte(toInt().inv())
+    fun inv() = Ubyte(v.inv())
 
     operator fun compareTo(b: Ubyte) = Integer.compareUnsigned(toInt(), b.toInt())
     operator fun compareTo(b: Byte) = Integer.compareUnsigned(toInt(), b.toUInt())
@@ -352,7 +353,7 @@ data class Ushort(var v: Short = 0) : Number() {
     infix fun shr(b: Short) = Ushort(toInt() ushr b.toUInt())
     infix fun shr(b: Int) = Ushort(toInt() ushr b)
 
-    fun inv() = Ushort(toInt().inv())
+    fun inv() = Ushort(v.inv())
 
     operator fun compareTo(b: Ushort) = Integer.compareUnsigned(toInt(), b.toInt())
     operator fun compareTo(b: Short) = Integer.compareUnsigned(toInt(), b.toUInt())
