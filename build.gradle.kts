@@ -20,5 +20,5 @@ repositories {
 
 dependencies {
     compile(kotlinModule("stdlib", "1.1.0-rc-91"))
-    testCompile("io.kotlintest:kotlintest:1.3.5")
+    testCompile("io.kotlintest:kotlintest:1.3.6")
 }
