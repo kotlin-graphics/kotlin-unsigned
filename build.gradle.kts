@@ -25,7 +25,13 @@ repositories {
 
 dependencies {
     compile(kotlinModule("stdlib", "1.1.0-rc-91"))
-    testCompile("io.kotlintest:kotlintest:1.3.6")
+    testCompile("com.github.elect86:kotlintest:c4b7b397a0d182d1adaf61f71a9423c228dc0106")
+}
+
+allprojects {
+    repositories {
+        maven { setUrl("https://jitpack.io") }
+    }
 }
 
 //val shadowJar: ShadowJar by tasks
