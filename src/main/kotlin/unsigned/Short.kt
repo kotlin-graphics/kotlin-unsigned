@@ -12,7 +12,7 @@ import kotlin.experimental.xor
 
 
 fun Short.toUByte() = toByte()
-fun Short.toUInt() = toInt() and 0xff
+fun Short.toUInt() = toInt() and 0xffff
 fun Short.toULong() = toUInt().toLong()
 fun Short.toBigInt() = BigInteger.valueOf(toULong())
 
