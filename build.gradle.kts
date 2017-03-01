@@ -7,7 +7,7 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlinModule("gradle-plugin", "1.1.0-rc-91"))
+        classpath(kotlinModule("gradle-plugin", "1.1.0"))
 //        classpath("com.github.jengelman.gradle.plugins:shadow:1.2.3")
     }
 }
@@ -24,14 +24,12 @@ repositories {
 }
 
 dependencies {
-    compile(kotlinModule("stdlib", "1.1.0-rc-91"))
-    testCompile("com.github.elect86:kotlintest:c4b7b397a0d182d1adaf61f71a9423c228dc0106")
+    compile(kotlinModule("stdlib", "1.1.0"))
+    testCompile("com.github.elect86:kotlintest:d8878d6da0944ec6bcbcdad6a1540bba021d768d")
 }
 
-allprojects {
-    repositories {
-        maven { setUrl("https://jitpack.io") }
-    }
+repositories {
+    maven { setUrl("https://jitpack.io") }
 }
 
 //val shadowJar: ShadowJar by tasks
