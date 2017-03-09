@@ -1,11 +1,9 @@
 //import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 buildscript {
-
     repositories {
         gradleScriptKotlin()
     }
-
     dependencies {
         classpath(kotlinModule("gradle-plugin", "1.1.0"))
 //        classpath("com.github.jengelman.gradle.plugins:shadow:1.2.3")
@@ -35,8 +33,8 @@ repositories {
 //val shadowJar: ShadowJar by tasks
 //shadowJar.apply {
 //    manifest.attributes.apply {
-//        put("Implementation-Title", "Gradle Jar File Example")
-//        put("Implementation-Version" version)
+//        put("Implementation-Title", "Kotlin Unsigned")
+//        put("Implementation-Version" "v2.0")
 //        put("Main-Class", "com.mkyong.DateUtils")
 //    }
 //
