@@ -37,7 +37,7 @@ infix fun Long.ushr(b: Short) = (toBigInt() ushr b.toUInt()).toLong()
 infix fun Long.udiv(b: Int) = (toBigInt() / b.toBigInt()).toLong()
 infix fun Long.urem(b: Int) = (toBigInt() % b.toBigInt()).toLong()
 infix fun Long.ucmp(b: Int) = toBigInt().compareTo(b.toBigInt())
-infix fun Long.ushr(b: Int) = (toBigInt() ushr b).toLong()
+// Long.ushr(b: Int) offered by Kotlin lib
 
 infix fun Long.udiv(b: Long) = (toBigInt() / b.toBigInt()).toLong()
 infix fun Long.urem(b: Long) = (toBigInt() % b.toBigInt()).toLong()
