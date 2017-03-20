@@ -5,7 +5,7 @@ buildscript {
         gradleScriptKotlin()
     }
     dependencies {
-        classpath(kotlinModule("gradle-plugin", "1.1.0"))
+        classpath(kotlinModule("gradle-plugin", "1.1.1"))
 //        classpath("com.github.jengelman.gradle.plugins:shadow:1.2.3")
     }
 }
@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    compile(kotlinModule("stdlib", "1.1.0"))
+    compile(kotlinModule("stdlib", "1.1.1"))
     testCompile("com.github.elect86:kotlintest:d8878d6da0944ec6bcbcdad6a1540bba021d768d")
 }
 

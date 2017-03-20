@@ -11,12 +11,14 @@ import java.math.BigInteger
 fun Int.toUByte() = toByte()
 fun Int.toUShort() = toShort()
 fun Int.toULong() = toLong() and 0xffffffffL
-fun Int.toBigInt() = BigInteger.valueOf(toULong())
 
 fun Int.toUbyte() = Ubyte(this)
 fun Int.toUshort() = Ushort(this)
 fun Int.toUint() = Uint(this)
 fun Int.toUlong() = Ulong(toULong())
+
+fun Int.toBigInt(): BigInteger = BigInteger.valueOf(toLong())
+fun Int.toUBigInt(): BigInteger = BigInteger.valueOf(toULong())
 
 val Int.ub
     get() = toUbyte()
@@ -40,7 +42,7 @@ infix fun Int.ushr(b: Short) = (toULong() ushr b.toUInt()).toInt()
 infix fun Int.udiv(b: Int) = (toULong() / b.toULong()).toInt()
 infix fun Int.urem(b: Int) = (toULong() % b.toULong()).toInt()
 infix fun Int.ucmp(b: Int) = toULong().compareTo(b.toULong())
-infix fun Int.ushr(b: Int) = (toULong() ushr b).toInt()
+// Int.ushr is already offered by the Kotlin lib
 
 infix fun Int.udiv(b: Long) = (toBigInt() / b.toBigInt()).toInt()
 infix fun Int.urem(b: Long) = (toBigInt() % b.toBigInt()).toInt()

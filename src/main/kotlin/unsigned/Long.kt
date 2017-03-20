@@ -8,12 +8,14 @@ import java.math.BigInteger
 fun Long.toUByte() = toByte()
 fun Long.toUShort() = toShort()
 fun Long.toUInt() = toInt()
-fun Long.toBigInt() = BigInteger(java.lang.Long.toUnsignedString(this))
 
 fun Long.toUbyte() = Ubyte(this)
 fun Long.toUshort() = Ushort(this)
 fun Long.toUint() = Uint(this)
 fun Long.toUlong() = Ulong(this)
+
+fun Long.toBigInt(): BigInteger = BigInteger.valueOf(this)
+fun Long.toUBigInt(): BigInteger = BigInteger(java.lang.Long.toUnsignedString(this))
 
 val Long.ub
     get() = toUbyte()
@@ -24,24 +26,24 @@ val Long.ul
 val Long.us
     get() = toUshort()
 
-infix fun Long.udiv(b: Byte) = (toBigInt() / b.toBigInt()).toLong()
-infix fun Long.urem(b: Byte) = (toBigInt() % b.toBigInt()).toLong()
-infix fun Long.ucmp(b: Byte) = toBigInt().compareTo(b.toBigInt())
-infix fun Long.ushr(b: Byte) = (toBigInt() ushr b.toUInt()).toLong()
+infix fun Long.udiv(b: Byte) = (toUBigInt() / b.toUBigInt()).toLong()
+infix fun Long.urem(b: Byte) = (toUBigInt() % b.toUBigInt()).toLong()
+infix fun Long.ucmp(b: Byte) = toUBigInt().compareTo(b.toUBigInt())
+infix fun Long.ushr(b: Byte) = (toUBigInt() ushr b.toUInt()).toLong()
 
-infix fun Long.udiv(b: Short) = (toBigInt() / b.toBigInt()).toLong()
-infix fun Long.urem(b: Short) = (toBigInt() % b.toBigInt()).toLong()
-infix fun Long.ucmp(b: Short) = toBigInt().compareTo(b.toBigInt())
-infix fun Long.ushr(b: Short) = (toBigInt() ushr b.toUInt()).toLong()
+infix fun Long.udiv(b: Short) = (toUBigInt() / b.toUBigInt()).toLong()
+infix fun Long.urem(b: Short) = (toUBigInt() % b.toUBigInt()).toLong()
+infix fun Long.ucmp(b: Short) = toUBigInt().compareTo(b.toUBigInt())
+infix fun Long.ushr(b: Short) = (toUBigInt() ushr b.toUInt()).toLong()
 
-infix fun Long.udiv(b: Int) = (toBigInt() / b.toBigInt()).toLong()
-infix fun Long.urem(b: Int) = (toBigInt() % b.toBigInt()).toLong()
-infix fun Long.ucmp(b: Int) = toBigInt().compareTo(b.toBigInt())
+infix fun Long.udiv(b: Int) = (toUBigInt() / b.toUBigInt()).toLong()
+infix fun Long.urem(b: Int) = (toUBigInt() % b.toUBigInt()).toLong()
+infix fun Long.ucmp(b: Int) = toUBigInt().compareTo(b.toUBigInt())
 // Long.ushr(b: Int) offered by Kotlin lib
 
-infix fun Long.udiv(b: Long) = (toBigInt() / b.toBigInt()).toLong()
-infix fun Long.urem(b: Long) = (toBigInt() % b.toBigInt()).toLong()
-infix fun Long.ucmp(b: Long) = toBigInt().compareTo(b.toBigInt())
+infix fun Long.udiv(b: Long) = (toUBigInt() / b.toUBigInt()).toLong()
+infix fun Long.urem(b: Long) = (toUBigInt() % b.toUBigInt()).toLong()
+infix fun Long.ucmp(b: Long) = toUBigInt().compareTo(b.toUBigInt())
 // no Long ushr Long
 
 
@@ -53,9 +55,9 @@ infix fun Long.or(b: Ubyte) = this or b.toLong()
 infix fun Long.xor(b: Ubyte) = this xor b.toLong()
 infix fun Long.shl(b: Ubyte) = this shl b.toInt()
 
-infix fun Long.udiv(b: Ubyte) = (toBigInt() / b.toBigInt()).toLong()
-infix fun Long.urem(b: Ubyte) = (toBigInt() % b.toBigInt()).toLong()
-infix fun Long.ucmp(b: Ubyte) = toBigInt().compareTo(b.toBigInt())
+infix fun Long.udiv(b: Ubyte) = (toUBigInt() / b.toBigInt()).toLong()
+infix fun Long.urem(b: Ubyte) = (toUBigInt() % b.toBigInt()).toLong()
+infix fun Long.ucmp(b: Ubyte) = toUBigInt().compareTo(b.toBigInt())
 infix fun Long.ushr(b: Ubyte) = this ushr b.toInt()
 
 
@@ -67,10 +69,10 @@ infix fun Long.or(b: Ushort) = this or b.toLong()
 infix fun Long.xor(b: Ushort) = this xor b.toLong()
 infix fun Long.shl(b: Ushort) = this shl b.toInt()
 
-infix fun Long.udiv(b: Ushort) = (toBigInt() / b.toBigInt()).toLong()
-infix fun Long.urem(b: Ushort) = (toBigInt() % b.toBigInt()).toLong()
-infix fun Long.ucmp(b: Ushort) = toBigInt().compareTo(b.toBigInt())
-infix fun Long.ushr(b: Ushort) = (toBigInt() ushr b.toInt()).toLong()
+infix fun Long.udiv(b: Ushort) = (toUBigInt() / b.toBigInt()).toLong()
+infix fun Long.urem(b: Ushort) = (toUBigInt() % b.toBigInt()).toLong()
+infix fun Long.ucmp(b: Ushort) = toUBigInt().compareTo(b.toBigInt())
+infix fun Long.ushr(b: Ushort) = (toUBigInt() ushr b.toInt()).toLong()
 
 
 operator fun Long.plus(b: Uint) = this + b.v
@@ -81,10 +83,10 @@ infix fun Long.or(b: Uint) = this or b.toLong()
 infix fun Long.xor(b: Uint) = this xor b.toLong()
 infix fun Long.shl(b: Uint) = this shl b.v
 
-infix fun Long.udiv(b: Uint) = (toBigInt() / b.toBigInt()).toLong()
-infix fun Long.urem(b: Uint) = (toBigInt() % b.toBigInt()).toLong()
-infix fun Long.ucmp(b: Uint) = toBigInt().compareTo(b.toBigInt())
-infix fun Long.ushr(b: Uint) = (toBigInt() ushr b.toInt()).toLong()
+infix fun Long.udiv(b: Uint) = (toUBigInt() / b.toBigInt()).toLong()
+infix fun Long.urem(b: Uint) = (toUBigInt() % b.toBigInt()).toLong()
+infix fun Long.ucmp(b: Uint) = toUBigInt().compareTo(b.toBigInt())
+infix fun Long.ushr(b: Uint) = (toUBigInt() ushr b.toInt()).toLong()
 
 
 operator fun Long.plus(b: Ulong) = this + b.v
@@ -95,7 +97,7 @@ infix fun Long.or(b: Ulong) = this or b.toLong()
 infix fun Long.xor(b: Ulong) = this xor b.toLong()
 infix fun Long.shl(b: Ulong) = this shl b.toInt()
 
-infix fun Long.udiv(b: Ulong) = (toBigInt() / b.toBigInt()).toLong()
-infix fun Long.urem(b: Ulong) = (toBigInt() % b.toBigInt()).toLong()
-infix fun Long.ucmp(b: Ulong) = toBigInt().compareTo(b.toBigInt())
+infix fun Long.udiv(b: Ulong) = (toUBigInt() / b.toBigInt()).toLong()
+infix fun Long.urem(b: Ulong) = (toUBigInt() % b.toBigInt()).toLong()
+infix fun Long.ucmp(b: Ulong) = toUBigInt().compareTo(b.toBigInt())
 // no Int ushr Ulong

@@ -7,4 +7,4 @@ package unsigned
 import java.math.BigInteger
 
 
-infix fun BigInteger.ushr(bitCount: Int) = shiftRight(bitCount)
+infix fun BigInteger.ushr(bitCount: Int): BigInteger = shiftRight(bitCount)

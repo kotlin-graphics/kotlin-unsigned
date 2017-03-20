@@ -14,12 +14,14 @@ import kotlin.experimental.xor
 fun Byte.toUShort() = toUInt().toShort()
 fun Byte.toUInt() = toInt() and 0xff
 fun Byte.toULong() = toUInt().toLong()
-fun Byte.toBigInt() = BigInteger.valueOf(toULong())
 
 fun Byte.toUbyte() = Ubyte(this)
 fun Byte.toUshort() = Ushort(toUInt())
 fun Byte.toUint() = Uint(toUInt())
 fun Byte.toUlong() = Ulong(toUInt())
+
+fun Byte.toBigInt(): BigInteger = BigInteger.valueOf(toLong())
+fun Byte.toUBigInt(): BigInteger = BigInteger.valueOf(toULong())
 
 val Byte.ub
     get() = toUbyte()
