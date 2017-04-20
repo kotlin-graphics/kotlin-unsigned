@@ -1,21 +1,23 @@
 package unsigned
 
 import and
-import or
-import xor
 import io.kotlintest.KTestJUnitRunner
-import io.kotlintest.matchers.be
+import io.kotlintest.matchers.beLessThan
+import io.kotlintest.matchers.should
+import io.kotlintest.matchers.shouldBe
 import io.kotlintest.specs.StringSpec
+import minus
+import or
 import org.junit.runner.RunWith
+import plus
+import times
 import toUBigInt
 import ucmp
 import udiv
 import urem
+import xor
 import java.math.BigInteger
 import kotlin.experimental.inv
-import plus
-import minus
-import times
 
 /**
  * Created by elect on 15/10/16.
@@ -56,24 +58,24 @@ class Unsigned : StringSpec() {
 
             250.b udiv 50.b shouldBe 5.b
             250.b urem 200.b shouldBe 50.b
-            250.b ucmp 251.b should be lt 1
+            250.b ucmp 251.b should beLessThan(1)
             (250.b ucmp 250.b) shouldBe 0
             0b1010_1010.b ushr 4 shouldBe 0b1010.b
 
             65500.s udiv 500.s shouldBe 131.s
             65500.s urem 65000.s shouldBe 500.s
-            65500.s ucmp 65501.s should be lt 1
+            65500.s ucmp 65501.s should beLessThan(1)
             65500.s ucmp 65500.s shouldBe 0
             0b0100_1100_0011_1101.s ushr 8 shouldBe 0b100_1100.s
 
             4_000_000_000.i udiv 2 shouldBe 2_000_000_000
             2_750_000_000.i urem 2_000_000_000 shouldBe 750_000_000
-            4_000_000_000.i ucmp 4_000_000_001.i should be lt 1
+            4_000_000_000.i ucmp 4_000_000_001.i should beLessThan(1)
             4_000_000_000.i ucmp 4_000_000_000.i shouldBe 0
 
             "18_000_000_000_000_000_000".L udiv 2L shouldBe "9'000'000'000'000'000'000".L
             "17'000'000'000'000'000'000".L urem "9'000'000'000'000'000'000".L shouldBe "8'000'000'000'000'000'000".L
-            "18'000'000'000'000'000'000".L ucmp "18'000'000'000'000'000'001".L should be lt 1
+            "18'000'000'000'000'000'000".L ucmp "18'000'000'000'000'000'001".L should beLessThan(1)
             "18'000'000'000'000'000'001".L ucmp "18'000'000'000'000'000'001".L shouldBe 0
         }
 
@@ -434,7 +436,7 @@ class Unsigned : StringSpec() {
             d = "0100_1100__0111_0000__1111_0000__0111_1100__0000_1111__1100_0000__0111_1111__0000_0000".bL
             d shl Ulong(32).toInt() shouldBe "0000_1111__1100_0000__0111_1111__0000_0000__0000_0000__0000_0000__0000_0000__0000_0000".bL
             d shr Ulong(32).toInt() shouldBe "0000_0000__0000_0000__0000_0000__0000_0000__0100_1100__0111_0000__1111_0000__0111_1100".bL
-            (d ucmp Ulong("1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1011", 2)) should be lt 0
+            (d ucmp Ulong("1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1011", 2)) should beLessThan(0)
             (d ucmp Ulong(d)) shouldBe 0
         }
 
