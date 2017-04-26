@@ -26,3 +26,10 @@ repositories {
     maven { url "https://jitpack.io" }
     maven { url "https://dl.bintray.com/kotlin/kotlin-dev" }
 }
+
+task packageSources(type: Jar, dependsOn: 'classes') {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+artifacts { archives packageSources }
