@@ -1,6 +1,6 @@
 # kotlin-unsigned
 
-Unsigned operators and boxed types for unsigned support
+Unsigned operators and boxed types (Ubyte, Uint, Ulong and Ushort) for unsigned support.
 
 [Gradle, Maven, Sbt, Leiningen](https://jitpack.io/#elect86/kotlin-unsigned/v2.0)
 
