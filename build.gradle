@@ -27,6 +27,12 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+
+allprojects {
+    sourceCompatibility = 1.7
+    targetCompatibility = 1.7
+}
+
 task packageSources(type: Jar, dependsOn: 'classes') {
     from sourceSets.main.allSource
     classifier = 'sources'
