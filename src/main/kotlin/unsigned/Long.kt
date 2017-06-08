@@ -15,7 +15,7 @@ fun Long.toUint() = Uint(this)
 fun Long.toUlong() = Ulong(this)
 
 fun Long.toBigInt(): BigInteger = BigInteger.valueOf(this)
-fun Long.toUBigInt(): BigInteger = BigInteger(java.lang.Long.toUnsignedString(this))
+fun Long.toUBigInt(): BigInteger = BigInteger(toUnsignedString())
 
 val Long.ub
     get() = toUbyte()
