@@ -1,13 +1,12 @@
-package unsigned
+package unsigned.java_1_7
 
 import java.math.BigInteger
 
 
-fun Long.toUnsignedString(radix: Int = 10): String =
-    if (this >= 0)
-        toString(radix)
-    else
-        when (radix) {
+fun Long.toUnsignedString(radix: Int = 10): String {
+    return when {
+        this >= 0 -> toString(radix)
+        else -> when (radix) {
             2 -> toBinaryString()
 
             4 -> toUnsignedString0(2)
@@ -34,6 +33,8 @@ fun Long.toUnsignedString(radix: Int = 10): String =
 
             else -> toUnsignedBigInteger().toString(radix)
         }
+    }
+}
 
 fun Long.toString(radix: Int): String {
     var i = this
