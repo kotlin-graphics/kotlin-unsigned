@@ -2,6 +2,8 @@
 
 Unsigned operators and boxed types (`Ubyte`, `Uint`, `Ulong` and `Ushort`) for unsigned support.
 
+To have a quick idea what this library offers, take a look at the [tests](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/src/test/kotlin/unsigned/unsigned.kt)
+
 ### How to get it:
 
 [Gradle](https://jitpack.io/#kotlin-graphics/kotlin-unsigned/v2.1)
@@ -23,8 +25,6 @@ Unsigned operators and boxed types (`Ubyte`, `Uint`, `Ulong` and `Ushort`) for u
 
 [Maven, Sbt, Leiningen](https://jitpack.io/#kotlin-graphics/kotlin-unsigned/v2.1)
 
-
-To have a quick idea what this library offers, take a look at the [tests](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/src/test/kotlin/unsigned/unsigned.kt)
 
 ### Hightlights:
 
