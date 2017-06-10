@@ -39,6 +39,6 @@ These are offered directly on the corresponding [`Int`](https://github.com/kotli
 Don't hesitate to contribute to the project by submitting [issues](https://github.com/kotlin-graphics/kotlin-unsigned/issues) or [pull requests](https://github.com/kotlin-graphics/kotlin-unsigned/pulls) for bugs and features. Any feedback is welcome at [elect86@gmail.com](mailto://elect86@gmail.com).
 
 
-Credits:
+### Credits:
 
 - inspired by [jOOU](https://github.com/jOOQ/jOOU)
