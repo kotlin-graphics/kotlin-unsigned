@@ -205,6 +205,73 @@ private fun Long.toUnsignedBigInteger(): BigInteger {
         val lower = this.toInt()
 
         // return (upper << 32) + lower
-        return BigInteger.valueOf(Integer.toUnsignedLong(upper)).shiftLeft(32).add(BigInteger.valueOf(Integer.toUnsignedLong(lower)))
+        return BigInteger.valueOf(upper.toUnsignedLong()).shiftLeft(32).add(BigInteger.valueOf(lower.toUnsignedLong()))
     }
+}
+
+@Throws(NumberFormatException::class)
+fun String.parseUnsignedLong(radix: Int = 10): Long {
+
+    if (length > 0) {
+        val firstChar = this[0]
+        if (firstChar == '-')
+            throw NumberFormatException(String.format("Illegal leading minus sign on unsigned string $this."))
+        else {
+            if (length <= 12 || // Long.MAX_VALUE in Character.MAX_RADIX is 13 digits
+                    radix == 10 && length <= 18) // Long.MAX_VALUE in base 10 is 19 digits
+                return this.toLong(radix)
+
+            // No need for range checks on len due to testing above.
+            val first = substring(0, length - 1).toLong(radix)
+            val second = Character.digit(this[length - 1], radix)
+            if (second < 0)
+                throw NumberFormatException("Bad digit at end of $this")
+            val result = first * radix + second
+            if (result compareUnsigned first < 0) {
+                /*  The maximum unsigned value, (2^64)-1, takes at most one more digit to represent than the maximum
+                    signed value, (2^63)-1.  Therefore, parsing (len - 1) digits will be appropriately in-range of the
+                    signed parsing.  In other words, if parsing (len -1) digits overflows signed parsing, parsing len
+                    digits will certainly overflow unsigned parsing.
+
+                    The compareUnsigned check above catches situations where an unsigned overflow occurs incorporating
+                    the contribution of the final digit.    */
+                throw NumberFormatException(String.format("String value $this exceeds range of unsigned long."))
+            }
+            return result
+        }
+    } else throw NumberFormatException("For input string: $this")
+}
+
+infix fun Long.compareUnsigned(b: Long) = compare(this + Long.MIN_VALUE, b + Long.MIN_VALUE)
+
+fun compare(a: Long, b: Long) = if (a < b) -1 else if (a == b) 0 else 1
+
+infix fun Long.divideUnsigned(divisor: Long): Long {
+    if (divisor < 0L) // signed comparison
+    // Answer must be 0 or 1 depending on relative magnitude
+    // of dividend and divisor.
+        return if (compareUnsigned(divisor) < 0) 0L else 1L
+
+    if (this > 0)
+    //  Both inputs non-negative
+        return this / divisor
+    else
+    /*
+         * For simple code, leveraging BigInteger.  Longer and faster
+         * code written directly in terms of operations on longs is
+         * possible; see "Hacker's Delight" for divide and remainder
+         * algorithms.
+         */
+        return toUnsignedBigInteger().divide(divisor.toUnsignedBigInteger()).toLong()
+}
+
+infix fun Long.remainderUnsigned(divisor: Long): Long {
+    if (this > 0 && divisor > 0) // signed comparisons
+        return this % divisor
+    else
+        if (compareUnsigned(divisor) < 0)
+        // Avoid explicit check for 0 divisor
+            return this
+        else
+            return toUnsignedBigInteger().remainder(divisor.toUnsignedBigInteger()).toLong()
 }

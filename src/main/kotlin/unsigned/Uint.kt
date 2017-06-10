@@ -1,5 +1,9 @@
 package unsigned
 
+import unsigned.java_1_7.compareUnsigned
+import unsigned.java_1_7.divideUnsigned
+import unsigned.java_1_7.parseUnsignedInt
+import unsigned.java_1_7.remainderUnsigned
 import java.math.BigInteger
 
 /**
@@ -21,7 +25,7 @@ data class Uint(var v: Int = 0) : Number() {
 
 
     constructor(number: Number) : this(number.toInt())
-    @JvmOverloads constructor(string: String, base: Int = 10) : this(Integer.parseUnsignedInt(string.filter { it != '_' && it != '\'' }, base))
+    @JvmOverloads constructor(string: String, base: Int = 10) : this(string.filter { it != '_' && it != '\'' }.parseUnsignedInt(base))
 
     override fun toByte() = v.toByte()
     override fun toShort() = v.toShort()
@@ -47,11 +51,11 @@ data class Uint(var v: Int = 0) : Number() {
     infix operator fun times(b: Uint) = Uint(v * b.v)
     infix operator fun times(b: Int) = Uint(v * b)
 
-    infix operator fun div(b: Uint) = Uint(Integer.divideUnsigned(v, b.toInt()))
-    infix operator fun div(b: Int) = Uint(Integer.divideUnsigned(v, b))
+    infix operator fun div(b: Uint) = Uint(v divideUnsigned b.toInt())
+    infix operator fun div(b: Int) = Uint(v divideUnsigned b)
 
-    infix operator fun rem(b: Uint) = Uint(Integer.remainderUnsigned(v, b.toInt()))
-    infix operator fun rem(b: Int) = Uint(Integer.remainderUnsigned(v, b))
+    infix operator fun rem(b: Uint) = Uint(v remainderUnsigned b.toInt())
+    infix operator fun rem(b: Int) = Uint(v remainderUnsigned b)
 
     infix fun and(b: Uint) = Uint(v and b.toInt())
     infix fun and(b: Int) = Uint(v and b)
@@ -70,8 +74,8 @@ data class Uint(var v: Int = 0) : Number() {
 
     fun inv() = Uint(v.inv())
 
-    operator fun compareTo(b: Uint) = Integer.compareUnsigned(v, b.toInt())
-    operator fun compareTo(b: Int) = Integer.compareUnsigned(v, b)
+    operator fun compareTo(b: Uint) = v compareUnsigned b.toInt()
+    operator fun compareTo(b: Int) = v compareUnsigned b
 
     // TODO long?
 }

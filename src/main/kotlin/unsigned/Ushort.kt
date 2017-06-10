@@ -1,5 +1,9 @@
 package unsigned
 
+import unsigned.java_1_7.compareUnsigned
+import unsigned.java_1_7.divideUnsigned
+import unsigned.java_1_7.parseUnsignedInt
+import unsigned.java_1_7.remainderUnsigned
 import java.math.BigInteger
 import kotlin.experimental.and
 import kotlin.experimental.inv
@@ -25,7 +29,7 @@ data class Ushort(var v: Short = 0) : Number() {
 
     constructor(number: Number) : this(number.toShort())
     @JvmOverloads constructor(string: String, base: Int = 10) :
-            this(Integer.parseUnsignedInt(string.filter { it != '_' && it != '\'' }, base).toShort())
+            this(string.filter { it != '_' && it != '\'' }.parseUnsignedInt(base).toShort())
 
     override fun toByte() = v.toByte()
     override fun toShort() = v
@@ -56,11 +60,11 @@ data class Ushort(var v: Short = 0) : Number() {
 
     infix operator fun div(b: Ushort) = Ushort(toInt() / b.toInt())
     infix operator fun div(b: Short) = Ushort(toInt() / b.toUInt())
-    infix operator fun div(b: Int) = Ushort(Integer.divideUnsigned(toInt(), b))
+    infix operator fun div(b: Int) = Ushort(toInt() divideUnsigned b)
 
     infix operator fun rem(b: Ushort) = Ushort(toInt() % b.toInt())
     infix operator fun rem(b: Short) = Ushort(toInt() % b.toUInt())
-    infix operator fun rem(b: Int) = Ushort(Integer.remainderUnsigned(toInt(), b))
+    infix operator fun rem(b: Int) = Ushort(toInt() remainderUnsigned b)
 
     infix fun and(b: Ushort) = Ushort(v and b.v)
     infix fun and(b: Short) = Ushort(v and b)
@@ -84,7 +88,7 @@ data class Ushort(var v: Short = 0) : Number() {
 
     fun inv() = Ushort(v.inv())
 
-    operator fun compareTo(b: Ushort) = Integer.compareUnsigned(toInt(), b.toInt())
-    operator fun compareTo(b: Short) = Integer.compareUnsigned(toInt(), b.toUInt())
-    operator fun compareTo(b: Int) = Integer.compareUnsigned(toInt(), b)
+    operator fun compareTo(b: Ushort) = toInt() compareUnsigned b.toInt()
+    operator fun compareTo(b: Short) = toInt() compareUnsigned b.toUInt()
+    operator fun compareTo(b: Int) = toInt() compareUnsigned b
 }

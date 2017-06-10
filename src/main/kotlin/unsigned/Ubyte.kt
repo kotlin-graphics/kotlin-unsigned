@@ -2,6 +2,7 @@ package unsigned
 
 import unsigned.java_1_7.compareUnsigned
 import unsigned.java_1_7.divideUnsigned
+import unsigned.java_1_7.parseUnsignedInt
 import unsigned.java_1_7.remainderUnsigned
 import java.math.BigInteger
 import kotlin.experimental.and
@@ -24,7 +25,7 @@ data class Ubyte(var v: Byte = 0) : Number() {
     }
 
     constructor(number: Number) : this(number.toByte())
-    @JvmOverloads constructor(string: String, base: Int = 10) : this(Integer.parseUnsignedInt(string.filter { it != '_' && it != '\'' }, base).toByte())
+    @JvmOverloads constructor(string: String, base: Int = 10) : this(string.filter { it != '_' && it != '\'' }.parseUnsignedInt(base).toByte())
 
     override fun toByte() = v
     override fun toShort() = v.toUInt().toShort()
@@ -60,11 +61,11 @@ data class Ubyte(var v: Byte = 0) : Number() {
 
     infix operator fun div(b: Ubyte) = Ubyte(toInt() / b.toInt())
     infix operator fun div(b: Byte) = Ubyte(toInt() / b.toUInt())
-    infix operator fun div(b: Int) = Ubyte(toInt().divideUnsigned(b))
+    infix operator fun div(b: Int) = Ubyte(toInt() divideUnsigned b)
 
     infix operator fun rem(b: Ubyte) = Ubyte(toInt() % b.toInt())
     infix operator fun rem(b: Byte) = Ubyte(toInt() % b.toUInt())
-    infix operator fun rem(b: Int) = Ubyte(toInt().remainderUnsigned(b))
+    infix operator fun rem(b: Int) = Ubyte(toInt() remainderUnsigned b)
 
     // TODO add counterparts with res
 
@@ -90,7 +91,7 @@ data class Ubyte(var v: Byte = 0) : Number() {
 
     fun inv() = Ubyte(v.inv())
 
-    operator fun compareTo(b: Ubyte) = toInt().compareUnsigned(b.toInt())
-    operator fun compareTo(b: Byte) = toInt().compareUnsigned(b.toUInt())
-    operator fun compareTo(b: Int) = toInt().compareUnsigned(b)
+    operator fun compareTo(b: Ubyte) = toInt() compareUnsigned b.toInt()
+    operator fun compareTo(b: Byte) = toInt() compareUnsigned b.toUInt()
+    operator fun compareTo(b: Int) = toInt() compareUnsigned b
 }

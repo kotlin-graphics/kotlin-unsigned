@@ -1,5 +1,6 @@
 package unsigned
 
+import unsigned.java_1_7.*
 import java.math.BigInteger
 
 /**
@@ -20,14 +21,14 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
     }
 
     constructor(number: Number) : this(number.toLong())
-    constructor(string: String, base: Int = 10) : this(java.lang.Long.parseUnsignedLong(string.filter { it != '_' && it != '\'' }, base))
+    constructor(string: String, base: Int = 10) : this(string.filter { it != '_' && it != '\'' }.parseUnsignedLong(base))
 
     override fun toByte() = v.toByte()
     override fun toShort() = v.toShort()
     override fun toInt() = v.toInt()
     override fun toLong() = v
 
-    fun toBigInt(): BigInteger = BigInteger(java.lang.Long.toUnsignedString(v))
+    fun toBigInt(): BigInteger = BigInteger(v.toUnsignedString())
 
     override fun toDouble() = toBigInt().toDouble()
     override fun toFloat() = toBigInt().toFloat()
@@ -46,11 +47,11 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
     infix operator fun times(b: Ulong) = Ulong(v * b.v)
     infix operator fun times(b: Long) = Ulong(v * b)
 
-    infix operator fun div(b: Ulong) = Ulong(java.lang.Long.divideUnsigned(v, b.toLong()))
-    infix operator fun div(b: Long) = Ulong(java.lang.Long.divideUnsigned(v, b))
+    infix operator fun div(b: Ulong) = Ulong(v divideUnsigned b.toLong())
+    infix operator fun div(b: Long) = Ulong(v divideUnsigned b)
 
-    infix operator fun rem(b: Ulong) = Ulong(java.lang.Long.remainderUnsigned(v, b.toLong()))
-    infix operator fun rem(b: Long) = Ulong(java.lang.Long.remainderUnsigned(v, b))
+    infix operator fun rem(b: Ulong) = Ulong(v remainderUnsigned b.toLong())
+    infix operator fun rem(b: Long) = Ulong(v remainderUnsigned b)
 
     infix fun and(b: Ulong) = Ulong(v and b.toLong())
     infix fun and(b: Long) = Ulong(v and b)
@@ -67,8 +68,8 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
 
     fun inv() = Ulong(v.inv())
 
-    override operator fun compareTo(other: Ulong) = java.lang.Long.compareUnsigned(v, other.toLong())
-    operator fun compareTo(other: Long) = java.lang.Long.compareUnsigned(v, other)
+    override operator fun compareTo(other: Ulong) = v compareUnsigned other.toLong()
+    operator fun compareTo(other: Long) = v compareUnsigned other
 
     // TODO others
 
@@ -78,7 +79,7 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
 
         override fun iterator(): Iterator<Ulong> = UlongIterator(this)
 
-        override fun contains(value: Ulong) = start <= value && value <= endInclusive
+        override fun contains(value: Ulong): Boolean = value in start..endInclusive
     }
 
     class UlongIterator(val ulongRange: UlongRange) : Iterator<Ulong> {
