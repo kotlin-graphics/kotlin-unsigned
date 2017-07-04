@@ -18,7 +18,7 @@ dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
-    testCompile("io.kotlintest:kotlintest:2.0.0")
+    compile 'com.github.elect86:kotlintest:43281b7e1b'
 }
 
 repositories {
