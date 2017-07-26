@@ -94,4 +94,6 @@ data class Ubyte(var v: Byte = 0) : Number() {
     operator fun compareTo(b: Ubyte) = toInt() compareUnsigned b.toInt()
     operator fun compareTo(b: Byte) = toInt() compareUnsigned b.toUInt()
     operator fun compareTo(b: Int) = toInt() compareUnsigned b
+
+    override fun toString() = toInt().toString()
 }

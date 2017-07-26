@@ -567,5 +567,16 @@ class Unsigned : StringSpec() {
             ((65_500 ucmp Ushort(65_499)) > 0) shouldBe true
             (65_500 ucmp Ushort(65_500)) shouldBe 0
         }
+
+        "string format" {
+            Ubyte(0xff).v.toString() shouldBe "-1"
+            Ubyte(0xff).toString() shouldBe "255"
+            Ushort(0xffff).v.toString() shouldBe "-1"
+            Ushort(0xffff).toString() shouldBe "65535"
+            Uint(0xffff_ffff).v.toString() shouldBe "-1"
+            Uint(0xffff_ffff).toString() shouldBe "4294967295"
+            Ulong(Ulong.MAX_VALUE).v.toString() shouldBe "-1"
+            Ulong(Ulong.MAX_VALUE).toString() shouldBe "18446744073709551615"
+        }
     }
 }

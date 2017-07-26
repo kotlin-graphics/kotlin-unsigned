@@ -77,5 +77,7 @@ data class Uint(var v: Int = 0) : Number() {
     operator fun compareTo(b: Uint) = v compareUnsigned b.toInt()
     operator fun compareTo(b: Int) = v compareUnsigned b
 
+    override fun toString() = toLong().toString()
+
     // TODO long?
 }
