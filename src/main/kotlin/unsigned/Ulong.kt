@@ -73,6 +73,8 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
 
     // TODO others
 
+    override fun toString() = toBigInt().toString()
+
     operator fun rangeTo(b: Ulong) = UlongRange(this, b)
 
     class UlongRange(override val start: Ulong, override val endInclusive: Ulong) : ClosedRange<Ulong>, Iterable<Ulong> {
