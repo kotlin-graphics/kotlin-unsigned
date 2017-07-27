@@ -32,7 +32,7 @@ Android compatible, sources compiled with java 1.7.
 
 All unsigned methods available for `int`s and `long`s on java 1.8 have been reported here. 
 
-These are offered directly on the corresponding [`Int`](https://github.com/kotlin-graphics/kotlin-unsigned/blob/android/src/main/kotlin/unsigned/java_1_7/int.kt) and [`Long`](https://github.com/kotlin-graphics/kotlin-unsigned/blob/android/src/main/kotlin/unsigned/java_1_7/long.kt) Kotlin primitives (with `infix` too)
+These are offered directly on the corresponding [`Int`](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/src/main/kotlin/unsigned/java_1_7/int.kt) and [`Long`](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/src/main/kotlin/unsigned/java_1_7/long.kt) Kotlin primitives (with `infix` too)
 
 ### Contributions:
 
