@@ -22,7 +22,7 @@ dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
-    testCompile 'com.github.elect86:kotlintest:43281b7e1b'
+    testCompile 'io.kotlintest:kotlintest:2.0.7'
 }
 
 repositories {
