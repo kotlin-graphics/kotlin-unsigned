@@ -10,18 +10,18 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 
 - Add it in your root build.gradle at the end of repositories:
 
-	  allprojects {
-        repositories {
-          ...
-          maven { url 'https://jitpack.io' }
-        }
-	  }
+      allprojects {
+          repositories {
+              ...
+              maven { url 'https://jitpack.io' }
+          }
+      }
 
 - Add the dependency
 
-	  dependencies {
-        compile 'com.github.kotlin-graphics:kotlin-unsigned:v2.1'
-	  }
+      dependencies {
+          compile 'com.github.kotlin-graphics:kotlin-unsigned:v2.1'
+      }
 
 [Maven, Sbt, Leiningen](https://jitpack.io/#kotlin-graphics/kotlin-unsigned/v2.1)
 
