@@ -1,6 +1,6 @@
 # kotlin-unsigned
 
-[![Travis](https://img.shields.io/travis/rust-lang/rust.svg)](https://github.com/kotlin-graphics/kotlin-unsigned)
+[![Build Status](https://travis-ci.org/kotlin-graphics/kotlin-unsigned.svg?branch=master)](https://travis-ci.org/kotlin-graphics/kotlin-unsigned)
 
 Unsigned operators and boxed types (`Ubyte`, `Uint`, `Ulong` and `Ushort`) for unsigned support.
 
