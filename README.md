@@ -13,7 +13,7 @@ To have a quick idea what this library offers, take a look at the [tests](https:
       allprojects {
           repositories {
               ...
-              maven { url 'https://jitpack.io' }
+              maven { url 'https://jitpack.io' } // should be the last entry
           }
       }
 
