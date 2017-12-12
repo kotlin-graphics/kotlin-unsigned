@@ -1,6 +1,6 @@
 # kotlin-unsigned
 
-[![Build Status](https://travis-ci.org/kotlin-graphics/kotlin-unsigned.svg?branch=master)](https://travis-ci.org/kotlin-graphics/kotlin-unsigned) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/LICENSE) ![](https://reposs.herokuapp.com/?path=kotlin-graphics/kotlin-unsigned)
+[![Build Status](https://travis-ci.org/kotlin-graphics/kotlin-unsigned.svg?branch=master)](https://travis-ci.org/kotlin-graphics/kotlin-unsigned) [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/LICENSE) ![](https://reposs.herokuapp.com/?path=kotlin-graphics/kotlin-unsigned) [![Release](https://jitpack.io/v/kotlin-graphics/kotlin-unsigned.svg)](https://jitpack.io/#kotlin-graphics/kotlin-unsigned)
 
 Unsigned operators and boxed types (`Ubyte`, `Uint`, `Ulong` and `Ushort`) for unsigned support.
 
