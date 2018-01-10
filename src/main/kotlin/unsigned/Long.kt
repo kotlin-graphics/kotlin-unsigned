@@ -2,9 +2,8 @@ import unsigned.*
 import unsigned.java_1_7.toUnsignedString
 import java.math.BigInteger
 
-/**
- * Created by GBarbieri on 31.01.2017.
- */
+// Created by GBarbieri on 31.01.2017.
+
 
 fun Long.toUByte() = toByte()
 fun Long.toUShort() = toShort()
