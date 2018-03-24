@@ -5,12 +5,12 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 buildscript {
 
-    ext.kotlinVersion = '1.2.31'
+    ext.kotlinVersion = '1.2.30-eap-16'
 
     repositories {
         jcenter()   // shadow
         mavenCentral()
-        maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
+        maven { setUrl("https://dl.bintray.com/kotlin/kotlin-eap") }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
