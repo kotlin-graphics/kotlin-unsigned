@@ -53,7 +53,7 @@ fun Long.toString(radix: Int): String {
 
     while (i <= -_radix) {
         buf[charPos--] = digits[(-(i % _radix)).toInt()]
-        i = i / _radix
+        i /= _radix
     }
     buf[charPos] = digits[(-i).toInt()]
 
