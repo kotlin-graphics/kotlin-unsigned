@@ -1,14 +1,12 @@
 package unsigned
 
 import and
-import io.kotlintest.KTestJUnitRunner
 import io.kotlintest.matchers.beLessThan
-import io.kotlintest.matchers.should
-import io.kotlintest.matchers.shouldBe
+import io.kotlintest.shouldBe
+import io.kotlintest.should
 import io.kotlintest.specs.StringSpec
 import minus
 import or
-import org.junit.runner.RunWith
 import plus
 import times
 import toUBigInt
@@ -23,7 +21,6 @@ import kotlin.experimental.inv
  * Created by elect on 15/10/16.
  */
 
-@RunWith(KTestJUnitRunner::class)
 class Unsigned : StringSpec() {
 
     val Int.b
@@ -55,6 +52,9 @@ class Unsigned : StringSpec() {
     init {
 
         "primitive" {
+            val a = 4
+            val b = 5
+            a.shouldBe(5)
 
             250.b udiv 50.b shouldBe 5.b
             250.b urem 200.b shouldBe 50.b

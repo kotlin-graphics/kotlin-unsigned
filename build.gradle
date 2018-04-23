@@ -5,7 +5,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 buildscript {
 
-    ext.kotlinVersion = '1.2.40-eap-51'
+    ext.kotlinVersion = '1.2.40'
 
     repositories {
         jcenter()   // shadow
@@ -14,7 +14,8 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.2'
+        classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.3'
+        classpath "org.junit.platform:junit-platform-gradle-plugin:1.1.0"
     }
 }
 
@@ -22,7 +23,7 @@ dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
-    testCompile 'io.kotlintest:kotlintest:2.0.7'
+    testCompile 'io.kotlintest:kotlintest-runner-junit5:3.0.4'
 }
 
 repositories {
