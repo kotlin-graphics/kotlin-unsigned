@@ -52,9 +52,6 @@ class Unsigned : StringSpec() {
     init {
 
         "primitive" {
-            val a = 4
-            val b = 5
-            a.shouldBe(5)
 
             250.b udiv 50.b shouldBe 5.b
             250.b urem 200.b shouldBe 50.b
