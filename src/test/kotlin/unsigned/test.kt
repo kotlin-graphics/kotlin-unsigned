@@ -461,6 +461,8 @@ class Unsigned : StringSpec() {
             var b = Ushort(1)
             var c = Ushort(0)
 
+            assert(a >= b)
+
             a + b shouldBe c
             a + 1.s shouldBe c
             a + 1 shouldBe c
