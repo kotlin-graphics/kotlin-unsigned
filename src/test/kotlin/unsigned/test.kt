@@ -82,7 +82,7 @@ class Unsigned : StringSpec() {
             Ulong(Ulong.MAX_VALUE).v.toString() shouldBe "-1"
             Ulong(Ulong.MAX_VALUE).toString() shouldBe "18446744073709551615"
 
-            println((-71777214294589696L).toBinaryString())
+            (-71777214294589696L).toBinaryString() shouldBe "1111111100000000111111110000000011111111000000001111111100000000"
         }
     }
 }
