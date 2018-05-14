@@ -186,7 +186,7 @@ internal fun Long.formatUnsignedLong(shift: Int, buf: CharArray, offset: Int, le
     val radix = 1 shl shift
     val mask = radix - 1
     do {
-        buf[offset + --charPos] = digits[toInt() and mask]
+        buf[offset + --charPos] = digits[_this.toInt() and mask]
         _this = _this ushr shift
     } while (_this != 0L && charPos > 0)
 
