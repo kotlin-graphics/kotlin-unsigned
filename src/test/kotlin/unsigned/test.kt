@@ -4,10 +4,7 @@ import io.kotlintest.matchers.beLessThan
 import io.kotlintest.should
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
-import ucmp
-import udiv
 import unsigned.java_1_7.toBinaryString
-import urem
 import java.math.BigInteger
 
 /**

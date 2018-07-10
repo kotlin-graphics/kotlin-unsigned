@@ -1,19 +1,9 @@
 package unsigned
 
-import and
 import io.kotlintest.matchers.beLessThan
 import io.kotlintest.should
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
-import minus
-import or
-import plus
-import times
-import toUBigInt
-import ucmp
-import udiv
-import urem
-import xor
 
 class `Ulong test` : StringSpec() {
 
