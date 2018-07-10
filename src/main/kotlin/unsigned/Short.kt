@@ -4,7 +4,6 @@
 
 package unsigned
 
-import toBigInt
 import java.math.BigInteger
 import kotlin.experimental.and
 import kotlin.experimental.or
