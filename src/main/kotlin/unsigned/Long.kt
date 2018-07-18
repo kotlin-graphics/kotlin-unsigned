@@ -7,7 +7,6 @@ import java.math.BigInteger
 
 // Created by GBarbieri on 31.01.2017.
 
-
 fun Long.toUByte() = toByte()
 fun Long.toUShort() = toShort()
 fun Long.toUInt() = toInt()
