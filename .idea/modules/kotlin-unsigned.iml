@@ -3,9 +3,7 @@
   <component name="FacetManager">
     <facet type="kotlin-language" name="Kotlin">
       <configuration version="3" platform="JVM 1.6" useProjectSettings="false">
-        <compilerSettings>
-          <option name="additionalArguments" value="-Xskip-metadata-version-check" />
-        </compilerSettings>
+        <compilerSettings />
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/../../build/classes/kotlin/main" />
           <option name="noStdlib" value="true" />

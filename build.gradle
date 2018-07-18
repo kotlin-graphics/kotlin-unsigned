@@ -53,9 +53,3 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
-
-allprojects {
-    compileKotlin {
-        kotlinOptions.freeCompilerArgs = ["-XXLanguage:+InlineClasses", "-Xskip-metadata-version-check"]
-    }
-}
