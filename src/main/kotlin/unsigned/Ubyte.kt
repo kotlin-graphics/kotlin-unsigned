@@ -12,14 +12,15 @@ import kotlin.experimental.inv
  * Created by GBarbieri on 20.03.2017.
  */
 
-data class Ubyte(var v: Byte = 0) : Number() {
+@Suppress("NON_PUBLIC_PRIMARY_CONSTRUCTOR_OF_INLINE_CLASS")
+public inline class Ubyte(val v: Byte) : Number() {
 
     companion object {
 
         /** A constant holding the minimum value an <code>unsigned byte</code> can have, 0. */
         const val MIN_VALUE = 0x00
         /** A constant holding the maximum value an <code>unsigned byte</code> can have, 2<sup>8</sup>-1.   */
-        const val MAX_VALUE = 0xff
+        const val MAX_VALUE: Int = 0xff
 
         fun checkSigned(v: Number) = v.toInt() in MIN_VALUE..MAX_VALUE
     }

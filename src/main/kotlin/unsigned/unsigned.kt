@@ -1,5 +1,8 @@
 package unsigned
 
+
+import kotlin.UByte
+
 /**
  * Created by GBarbieri on 06.10.2016.
  */
@@ -18,3 +21,8 @@ fun Char.toUint() = Uint(toInt())
 fun Char.toUlong() = Ulong(toLong())
 fun Char.toUshort() = Ushort(toShort())
 
+
+fun main(args: Array<String>) {
+
+    val a = Int
+}
