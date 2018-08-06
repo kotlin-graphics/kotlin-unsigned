@@ -5,7 +5,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 
 buildscript {
 
-    ext.kotlinVersion = '1.2.51'
+    ext.kotlinVersion = '1.2.60'
 
     repositories {
         jcenter()   // shadow
