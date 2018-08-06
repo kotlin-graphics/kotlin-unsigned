@@ -12,7 +12,6 @@ import kotlin.experimental.inv
  * Created by GBarbieri on 20.03.2017.
  */
 
-@Suppress("NON_PUBLIC_PRIMARY_CONSTRUCTOR_OF_INLINE_CLASS")
 public inline class Ubyte(val v: Byte) : Number() {
 
     companion object {
