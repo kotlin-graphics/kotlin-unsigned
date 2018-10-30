@@ -12,7 +12,7 @@ import kotlin.experimental.inv
  * Created by GBarbieri on 20.03.2017.
  */
 
-class Ubyte(val v: Byte) : Number() {
+class Ubyte(var v: Byte) : Number() {
 
     companion object {
 
