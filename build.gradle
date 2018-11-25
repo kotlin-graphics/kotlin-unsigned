@@ -3,9 +3,11 @@ apply plugin: 'kotlin'
 
 apply plugin: 'com.github.johnrengelman.shadow'
 
+ext.moduleName = 'com.github.kotlin_graphics.kotlin_unsigned'
+
 buildscript {
 
-    ext.kotlinVersion = '1.3.0'
+    ext.kotlinVersion = '1.3.10'
 
     repositories {
         jcenter()   // shadow
@@ -52,4 +54,11 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 artifacts {
     archives sourcesJar
     archives javadocJar
+}
+
+jar {
+    inputs.property("moduleName", moduleName)
+    manifest {
+        attributes('Automatic-Module-Name': moduleName)
+    }
 }
