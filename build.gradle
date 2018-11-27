@@ -8,7 +8,7 @@ buildscript {
 //        maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version".toString()
         classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
         classpath "org.junit.platform:junit-platform-gradle-plugin:1.2.0"
     }
@@ -24,15 +24,16 @@ ext.moduleName = 'com.github.kotlin_graphics.kotlin_unsigned'
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version".toString()
+    implementation "org.jetbrains.kotlin:kotlin-reflect" // fix kotlintest classpath warnings
 
     testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.10'
 }
 
 repositories {
     mavenCentral()
-    maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
-    maven { url = "https://jitpack.io" }
+//    maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
+//    maven { url = "https://jitpack.io" }
 }
 
 task sourcesJar(type: Jar, dependsOn: classes) {
