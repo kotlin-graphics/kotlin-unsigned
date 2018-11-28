@@ -36,9 +36,7 @@ artifacts {
 
 jar {
     inputs.property("moduleName", moduleName)
-    manifest {
-        attributes('Automatic-Module-Name': moduleName)
-    }
+    manifest.attributes('Automatic-Module-Name': moduleName)
 }
 
 test {
