@@ -8,6 +8,7 @@ ext.moduleName = 'com.github.kotlin_graphics.kotlin_unsigned'
 
 dependencies {
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
     implementation "org.jetbrains.kotlin:kotlin-reflect" // fix kotlintest classpath warnings
 
     testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.10'
