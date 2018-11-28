@@ -3,7 +3,7 @@ apply plugin: 'kotlin'
 
 apply plugin: 'com.github.johnrengelman.shadow'
 
-ext.moduleName = 'com.github.kotlin_graphics.kotlin_unsigned'
+//ext.moduleName = 'com.github.kotlin_graphics.kotlin_unsigned'
 
 buildscript {
 
@@ -55,10 +55,10 @@ artifacts {
     archives sourcesJar
     archives javadocJar
 }
-
-jar {
-    inputs.property("moduleName", moduleName)
-    manifest {
-        attributes('Automatic-Module-Name': moduleName)
-    }
-}
+//
+//jar {
+//    inputs.property("moduleName", moduleName)
+//    manifest {
+//        attributes('Automatic-Module-Name': moduleName)
+//    }
+//}

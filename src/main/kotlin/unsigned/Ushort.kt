@@ -93,4 +93,5 @@ data class Ushort(var v: Short = 0) : Number() {
     operator fun compareTo(b: Int) = toInt() compareUnsigned b
 
     override fun toString() = toInt().toString()
+    override fun equals(other: Any?) = other is Ushort && v == other.v
 }
