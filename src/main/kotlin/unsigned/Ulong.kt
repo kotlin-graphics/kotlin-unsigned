@@ -74,6 +74,7 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
     // TODO others
 
     override fun toString() = toBigInt().toString()
+    override fun equals(other: Any?) = other is Ulong && v == other.v
 
     operator fun rangeTo(b: Ulong) = UlongRange(this, b)
 

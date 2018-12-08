@@ -79,5 +79,6 @@ data class Uint(var v: Int = 0) : Number() {
 
     override fun toString() = toLong().toString()
 
+    override fun equals(other: Any?) = other is Uint && v == other.v
     // TODO long?
 }
