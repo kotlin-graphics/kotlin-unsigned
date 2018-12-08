@@ -7,7 +7,7 @@ ext.moduleName = 'com.github.kotlin_graphics.kotlin_unsigned'
 
 buildscript {
 
-    ext.kotlinVersion = '1.3.10'
+    ext.kotlinVersion = '1.3.11'
 
     repositories {
         jcenter()   // shadow
@@ -15,7 +15,7 @@ buildscript {
         maven { url = "https://dl.bintray.com/kotlin/kotlin-eap" }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion".toString()
         classpath 'com.github.jengelman.gradle.plugins:shadow:2.0.4'
         classpath "org.junit.platform:junit-platform-gradle-plugin:1.2.0"
     }
@@ -23,9 +23,9 @@ buildscript {
 
 dependencies {
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion".toString()
 
-    testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.10'
+    testImplementation 'io.kotlintest:kotlintest-runner-junit5:3.1.11'
 }
 
 repositories {
@@ -58,7 +58,5 @@ artifacts {
 
 jar {
     inputs.property("moduleName", moduleName)
-    manifest {
-        attributes('Automatic-Module-Name': moduleName)
-    }
+    manifest.attributes('Automatic-Module-Name': moduleName)
 }
