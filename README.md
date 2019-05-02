@@ -11,6 +11,16 @@ Unsigned operators and boxed types (`Ubyte`, `Uint`, `Ulong` and `Ushort`) for u
 
 To have a quick idea what this library offers, take a look at the [tests](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/src/test/kotlin/unsigned/test.kt)
 
+### Differences with kotlin stdlib: 
+
+- this project uses classes instead inline classes. To address this in critical scenarios where allocations may have a sensitive impact, primitive variable holding the utype value is a `var`, so you can re-use the same istance over and over again
+- utypes extend `Number` abstract class
+- automatic conversions
+- it is possible to string format by calling the corresponding `format()` method, eg: `ubyte.format("%08x")`
+- all the utypes implement all the function, including `shl` and `shr` for `Ubyte` and `Ushort`
+- if you add an `Ushort` to another `Ushort` you get an `Ushort` (and not an `Uint)
+- no unsigned arrays supported yet
+
 ### How to get it:
 
 [Gradle](https://jitpack.io/#kotlin-graphics/kotlin-unsigned/v2.1)
