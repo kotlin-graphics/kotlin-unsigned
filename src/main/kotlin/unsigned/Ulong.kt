@@ -1,6 +1,5 @@
 package unsigned
 
-import unsigned.java_1_7.*
 import java.math.BigInteger
 
 /**
@@ -17,6 +16,12 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
         /** A constant holding the maximum value an <code>unsigned long</code> can have, 2<sup>64</sup>-1.  */
         val MAX_VALUE = BigInteger("18446744073709551615")
 
+        /** A constant holding the minimum value an <code>unsigned long</code> can have, 0. */
+        val MIN = Ulong(0L)
+
+        /** A constant holding the maximum value an <code>unsigned long</code> can have, 2<sup>64</sup>-1.  */
+        val MAX = Ulong(-1L)
+
         fun checkSigned(v: Number) = BigInteger.valueOf(v.toLong()) in MIN_VALUE..MAX_VALUE
     }
 
@@ -28,7 +33,7 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
     override fun toInt() = v.toInt()
     override fun toLong() = v
 
-    fun toBigInt(): BigInteger = BigInteger(v.toUnsignedString())
+    fun toBigInt(): BigInteger = BigInteger(v.toUnsignedString)
 
     override fun toDouble() = toBigInt().toDouble()
     override fun toFloat() = toBigInt().toFloat()
@@ -73,8 +78,11 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
 
     // TODO others
 
-    override fun toString() = toBigInt().toString()
     override fun equals(other: Any?) = other is Ulong && v == other.v
+    override fun hashCode(): Int = v.hashCode()
+    override fun toString() = toBigInt().toString()
+    fun toString(radix: Int) = toBigInt().toString(radix)
+    fun toString(format: String) = format.format(toBigInt())
 
     operator fun rangeTo(b: Ulong) = UlongRange(this, b)
 

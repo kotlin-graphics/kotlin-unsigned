@@ -1,24 +1,26 @@
 package unsigned
 
-import unsigned.java_1_7.compareUnsigned
-import unsigned.java_1_7.divideUnsigned
-import unsigned.java_1_7.parseUnsignedInt
-import unsigned.java_1_7.remainderUnsigned
 import java.math.BigInteger
 
 /**
  * Created by GBarbieri on 20.03.2017.
  */
 
-data class Uint(var v: Int = 0) : Number() {
+data class Uint(var v: Int = 0) : Number(), Comparable<Uint> {
 
     companion object {
 
         /** A constant holding the minimum value an <code>unsigned int</code> can have, 0.  */
-        const val MIN_VALUE = 0x00000000
+        const val MIN_VALUE: Long = 0L
 
         /** A constant holding the maximum value an <code>unsigned int</code> can have, 2<sup>32</sup>-1.   */
-        const val MAX_VALUE = 0xffffffffL
+        const val MAX_VALUE: Long = 0xffffffffL
+
+        /** A constant holding the minimum value an <code>unsigned int</code> can have, 0.  */
+        val MIN = Uint(0)
+
+        /** A constant holding the maximum value an <code>unsigned int</code> can have, 2<sup>32</sup>-1.   */
+        val MAX = Uint(-1)
 
         fun checkSigned(v: Number) = v.toLong() in MIN_VALUE..MAX_VALUE
     }
@@ -51,11 +53,11 @@ data class Uint(var v: Int = 0) : Number() {
     infix operator fun times(b: Uint) = Uint(v * b.v)
     infix operator fun times(b: Int) = Uint(v * b)
 
-    infix operator fun div(b: Uint) = Uint(v divideUnsigned b.toInt())
-    infix operator fun div(b: Int) = Uint(v divideUnsigned b)
+    infix operator fun div(b: Uint) = Uint(v udiv  b.toInt())
+    infix operator fun div(b: Int) = Uint(v udiv b)
 
-    infix operator fun rem(b: Uint) = Uint(v remainderUnsigned b.toInt())
-    infix operator fun rem(b: Int) = Uint(v remainderUnsigned b)
+    infix operator fun rem(b: Uint) = Uint(v urem b.toInt())
+    infix operator fun rem(b: Int) = Uint(v urem b)
 
     infix fun and(b: Uint) = Uint(v and b.toInt())
     infix fun and(b: Int) = Uint(v and b)
@@ -74,11 +76,14 @@ data class Uint(var v: Int = 0) : Number() {
 
     fun inv() = Uint(v.inv())
 
-    operator fun compareTo(b: Uint) = v compareUnsigned b.toInt()
-    operator fun compareTo(b: Int) = v compareUnsigned b
-
-    override fun toString() = toLong().toString()
+    override operator fun compareTo(other: Uint) = v compareUnsigned other.toInt()
+    operator fun compareTo(other: Int) = v compareUnsigned other
 
     override fun equals(other: Any?) = other is Uint && v == other.v
+    override fun hashCode(): Int = v.hashCode()
+    override fun toString() = toLong().toString()
+    fun toString(radix: Int) = toLong().toString(radix)
+    fun toString(format: String) = format.format(toLong())
+
     // TODO long?
 }

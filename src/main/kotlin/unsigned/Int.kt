@@ -103,3 +103,20 @@ infix fun Int.udiv(b: Ulong) = (toULong() / b.toLong()).toInt()
 infix fun Int.urem(b: Ulong) = (toULong() % b.toLong()).toInt()
 infix fun Int.ucmp(b: Ulong) = toULong().compareTo(b.toLong())
 // no Int ushr Ulong
+
+
+// binds jdk unsigned operation
+
+infix fun Int.toUnsignedString(radix: Int): String = Integer.toUnsignedString(this, radix)
+/** no-radix version has a different codepath */
+val Int.toUnsignedString: String
+    get() = Integer.toUnsignedString(this)
+
+fun String.parseUnsignedInt(radix: Int = 10): Int = Integer.parseUnsignedInt(this, radix)
+
+infix fun Int.compareUnsigned(b: Int): Int = Integer.compareUnsigned(this, b)
+
+fun Int.toUnsignedLong(): Long = toLong() and 0xffffffffL
+
+infix fun Int.divideUnsigned(divisor: Int) = Integer.divideUnsigned(this, divisor)
+infix fun Int.remainderUnsigned(divisor: Int) = Integer.remainderUnsigned(this, divisor)

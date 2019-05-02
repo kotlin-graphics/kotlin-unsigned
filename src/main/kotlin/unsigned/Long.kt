@@ -1,9 +1,8 @@
 package unsigned
 
 
-import unsigned.*
-import unsigned.java_1_7.toUnsignedString
 import java.math.BigInteger
+
 
 // Created by GBarbieri on 31.01.2017.
 
@@ -17,7 +16,7 @@ fun Long.toUint() = Uint(this)
 fun Long.toUlong() = Ulong(this)
 
 fun Long.toBigInt(): BigInteger = BigInteger.valueOf(this)
-fun Long.toUBigInt(): BigInteger = BigInteger(toUnsignedString())
+fun Long.toUBigInt(): BigInteger = BigInteger(toUnsignedString)
 
 val Long.ub
     get() = toUbyte()
@@ -103,3 +102,31 @@ infix fun Long.udiv(b: Ulong) = (toUBigInt() / b.toBigInt()).toLong()
 infix fun Long.urem(b: Ulong) = (toUBigInt() % b.toBigInt()).toLong()
 infix fun Long.ucmp(b: Ulong) = toUBigInt().compareTo(b.toBigInt())
 // no Int ushr Ulong
+
+
+infix fun Long.toUnsignedString(radix: Int): String = java.lang.Long.toUnsignedString(this, radix)
+
+fun Long.toUnsignedBigInteger(): BigInteger = when {
+    this >= 0L -> BigInteger.valueOf(this)
+    else -> {
+        val upper = ushr(32).toInt()
+        val lower = toInt()
+
+        // return (upper << 32) + lower
+        BigInteger.valueOf(upper.toLong() and 0xffffffffL).shiftLeft(32) + BigInteger.valueOf(lower.toLong() and 0xffffffffL)
+    }
+}
+
+/** no-radix version has a different codepath */
+val Long.toUnsignedString: String
+    get() = java.lang.Long.toUnsignedString(this)
+
+fun String.parseUnsignedLong(radix: Int = 10): Long = java.lang.Long.parseUnsignedLong(this, radix)
+
+infix fun Long.compareUnsigned(b: Long): Int = java.lang.Long.compareUnsigned(this, b)
+
+infix fun Long.divideUnsigned(divisor: Long) = java.lang.Long.divideUnsigned(this, divisor)
+infix fun Long.remainderUnsigned(divisor: Long) = java.lang.Long.remainderUnsigned(this, divisor)
+
+
+

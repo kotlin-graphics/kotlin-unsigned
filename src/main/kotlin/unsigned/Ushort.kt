@@ -1,9 +1,5 @@
 package unsigned
 
-import unsigned.java_1_7.compareUnsigned
-import unsigned.java_1_7.divideUnsigned
-import unsigned.java_1_7.parseUnsignedInt
-import unsigned.java_1_7.remainderUnsigned
 import java.math.BigInteger
 import kotlin.experimental.and
 import kotlin.experimental.inv
@@ -14,15 +10,21 @@ import kotlin.experimental.xor
  * Created by GBarbieri on 20.03.2017.
  */
 
-data class Ushort(var v: Short = 0) : Number() {
+data class Ushort(var v: Short = 0) : Number(), Comparable<Ushort> {
 
     companion object {
 
         /** A constant holding the minimum value an <code>unsigned short</code> can have, 0.    */
-        const val MIN_VALUE = 0x0000
+        const val MIN_VALUE: Int = 0
 
         /** A constant holding the maximum value an <code>unsigned short</code> can have, 2<sup>16</sup>-1. */
-        const val MAX_VALUE = 0xffff
+        const val MAX_VALUE: Int = 0xffff
+
+        /** A constant holding the minimum value an <code>unsigned short</code> can have, 0.    */
+        val MIN = Ushort(0)
+
+        /** A constant holding the maximum value an <code>unsigned short</code> can have, 2<sup>16</sup>-1. */
+        val MAX = Ushort(0xffff)
 
         fun checkSigned(v: Number) = v.toInt() in MIN_VALUE..MAX_VALUE
     }
@@ -60,11 +62,11 @@ data class Ushort(var v: Short = 0) : Number() {
 
     infix operator fun div(b: Ushort) = Ushort(toInt() / b.toInt())
     infix operator fun div(b: Short) = Ushort(toInt() / b.toUInt())
-    infix operator fun div(b: Int) = Ushort(toInt() divideUnsigned b)
+    infix operator fun div(b: Int) = Ushort(toInt() udiv b)
 
     infix operator fun rem(b: Ushort) = Ushort(toInt() % b.toInt())
     infix operator fun rem(b: Short) = Ushort(toInt() % b.toUInt())
-    infix operator fun rem(b: Int) = Ushort(toInt() remainderUnsigned b)
+    infix operator fun rem(b: Int) = Ushort(toInt() urem b)
 
     infix fun and(b: Ushort) = Ushort(v and b.v)
     infix fun and(b: Short) = Ushort(v and b)
@@ -88,10 +90,13 @@ data class Ushort(var v: Short = 0) : Number() {
 
     fun inv() = Ushort(v.inv())
 
-    operator fun compareTo(b: Ushort) = toInt() compareUnsigned b.toInt()
-    operator fun compareTo(b: Short) = toInt() compareUnsigned b.toUInt()
-    operator fun compareTo(b: Int) = toInt() compareUnsigned b
+    override operator fun compareTo(other: Ushort) = toInt() compareUnsigned other.toInt()
+    operator fun compareTo(other: Short) = toInt() compareUnsigned other.toUInt()
+    operator fun compareTo(other: Int) = toInt() compareUnsigned other
 
-    override fun toString() = toInt().toString()
     override fun equals(other: Any?) = other is Ushort && v == other.v
+    override fun hashCode(): Int = v.hashCode()
+    override fun toString() = toInt().toString()
+    fun toString(radix: Int) = toInt().toString(radix)
+    fun toString(format: String) = format.format(toInt())
 }

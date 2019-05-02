@@ -4,7 +4,6 @@ import io.kotlintest.matchers.beLessThan
 import io.kotlintest.should
 import io.kotlintest.shouldBe
 import io.kotlintest.specs.StringSpec
-import unsigned.java_1_7.toBinaryString
 import java.math.BigInteger
 
 /**
@@ -79,7 +78,17 @@ class Unsigned : StringSpec() {
             Ulong(Ulong.MAX_VALUE).v.toString() shouldBe "-1"
             Ulong(Ulong.MAX_VALUE).toString() shouldBe "18446744073709551615"
 
-            (-71777214294589696L).toBinaryString() shouldBe "1111111100000000111111110000000011111111000000001111111100000000"
+            Ubyte.MIN.toString(16) shouldBe "0"
+            Ubyte.MAX.toString(16) shouldBe "ff"
+            Ushort.MIN.toString(16) shouldBe "0"
+            Ushort.MAX.toString(16) shouldBe "ffff"
+            Uint.MIN.toString(16) shouldBe "0"
+            Uint.MAX.toString(16) shouldBe "ffffffff"
+            Ulong.MIN.toString(16) shouldBe "0"
+            Ulong.MAX.toString(16) shouldBe "ffffffffffffffff"
+
+            Ubyte.MAX.toString("%08x") shouldBe "000000ff"
+//            (-71777214294589696L).toBinaryString() shouldBe "1111111100000000111111110000000011111111000000001111111100000000"
         }
     }
 }

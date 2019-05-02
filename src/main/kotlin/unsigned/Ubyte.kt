@@ -1,9 +1,5 @@
 package unsigned
 
-import unsigned.java_1_7.compareUnsigned
-import unsigned.java_1_7.divideUnsigned
-import unsigned.java_1_7.parseUnsignedInt
-import unsigned.java_1_7.remainderUnsigned
 import java.math.BigInteger
 import kotlin.experimental.and
 import kotlin.experimental.inv
@@ -12,14 +8,19 @@ import kotlin.experimental.inv
  * Created by GBarbieri on 20.03.2017.
  */
 
-class Ubyte(var v: Byte) : Number() {
+class Ubyte(var v: Byte) : Number(), Comparable<Ubyte> {
 
     companion object {
 
         /** A constant holding the minimum value an <code>unsigned byte</code> can have, 0. */
-        const val MIN_VALUE = 0x00
+        const val MIN_VALUE: Int = 0
         /** A constant holding the maximum value an <code>unsigned byte</code> can have, 2<sup>8</sup>-1.   */
         const val MAX_VALUE: Int = 0xff
+
+        /** A constant holding the minimum value an <code>unsigned byte</code> can have, 0. */
+        val MIN = Ubyte(0)
+        /** A constant holding the maximum value an <code>unsigned byte</code> can have, 2<sup>8</sup>-1.   */
+        val MAX = Ubyte(0xff)
 
         fun checkSigned(v: Number) = v.toInt() in MIN_VALUE..MAX_VALUE
     }
@@ -61,11 +62,11 @@ class Ubyte(var v: Byte) : Number() {
 
     infix operator fun div(b: Ubyte) = Ubyte(toInt() / b.toInt())
     infix operator fun div(b: Byte) = Ubyte(toInt() / b.toUInt())
-    infix operator fun div(b: Int) = Ubyte(toInt() divideUnsigned b)
+    infix operator fun div(b: Int) = Ubyte(toInt() udiv b)
 
     infix operator fun rem(b: Ubyte) = Ubyte(toInt() % b.toInt())
     infix operator fun rem(b: Byte) = Ubyte(toInt() % b.toUInt())
-    infix operator fun rem(b: Int) = Ubyte(toInt() remainderUnsigned b)
+    infix operator fun rem(b: Int) = Ubyte(toInt() urem b)
 
     // TODO add counterparts with res
 
@@ -91,11 +92,13 @@ class Ubyte(var v: Byte) : Number() {
 
     fun inv() = Ubyte(v.inv())
 
-    operator fun compareTo(b: Ubyte) = toInt() compareUnsigned b.toInt()
-    operator fun compareTo(b: Byte) = toInt() compareUnsigned b.toUInt()
-    operator fun compareTo(b: Int) = toInt() compareUnsigned b
-
-    override fun toString() = toInt().toString()
+    override operator fun compareTo(other: Ubyte) = toInt() compareUnsigned other.toInt()
+    operator fun compareTo(other: Byte) = toInt() compareUnsigned other.toUInt()
+    operator fun compareTo(other: Int) = toInt() compareUnsigned other
 
     override fun equals(other: Any?) = other is Ubyte && v == other.v
+    override fun hashCode(): Int = v.hashCode()
+    override fun toString() = toInt().toString()
+    fun toString(radix: Int) = toInt().toString(radix)
+    fun toString(format: String) = format.format(toInt())
 }
