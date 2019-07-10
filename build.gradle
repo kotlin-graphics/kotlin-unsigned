@@ -34,12 +34,39 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 
 artifacts {
     archives sourcesJar
-    archives javadocJar
+//    archives javadocJar
+}
+
+compileKotlin {
+    // Enable Kotlin compilation to Java 8 class files with method parameter name metadata
+    kotlinOptions{
+        jvmTarget = "1.8"
+//        javaParameters = true
+    }
+    // As per https://stackoverflow.com/a/47669720
+    // See also https://discuss.kotlinlang.org/t/kotlin-support-for-java-9-module-system/2499/9
+//    destinationDir = compileJava.destinationDir
+}
+
+compileTestKotlin {
+    kotlinOptions{
+        jvmTarget = "1.8"
+//        javaParameters = true
+    }
+}
+
+compileJava {
+    dependsOn(':compileKotlin')
+    doFirst {
+        options.compilerArgs = ['--module-path', classpath.asPath,]
+        classpath = files()
+    }
 }
 
 jar {
-    inputs.property("moduleName", moduleName)
-    manifest.attributes('Automatic-Module-Name': moduleName)
+//    inputs.property("moduleName", moduleName)
+//    manifest.attributes('Automatic-Module-Name': moduleName)
+//    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 test.useJUnitPlatform()

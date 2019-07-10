@@ -50,3 +50,9 @@
 #build/
 
 #.idea/
+# Project exclude paths
+/.gradle/
+/build/
+/out/
+/out/production/classes/
+/out/test/classes/
