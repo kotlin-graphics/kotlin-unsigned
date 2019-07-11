@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/kotlin-graphics/kotlin-unsigned.svg?branch=master)](https://travis-ci.org/kotlin-graphics/kotlin-unsigned) 
 [![license](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/LICENSE) 
 [![Release](https://jitpack.io/v/kotlin-graphics/kotlin-unsigned.svg)](https://jitpack.io/#kotlin-graphics/kotlin-unsigned) 
-![](https://reposs.herokuapp.com/?path=kotlin-graphics/kotlin-unsigned&color=yellow) 
+![Size](https://github-size-badge.herokuapp.com/:owner/:repo.svg)
 [![Github All Releases](https://img.shields.io/github/downloads/kotlin-graphics/kotlin-unsigned/total.svg)]()
 [![Slack Status](http://slack.kotlinlang.org/badge.svg)](http://slack.kotlinlang.org/)
 
