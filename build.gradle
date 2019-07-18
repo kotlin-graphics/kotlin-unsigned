@@ -39,7 +39,7 @@ artifacts {
 compileKotlin {
     // Enable Kotlin compilation to Java 8 class files with method parameter name metadata
     kotlinOptions{
-        jvmTarget = "1.8"
+        jvmTarget = "11"
 //        javaParameters = true
     }
     // As per https://stackoverflow.com/a/47669720
@@ -49,7 +49,7 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions{
-        jvmTarget = "1.8"
+        jvmTarget = "11"
 //        javaParameters = true
     }
 }
