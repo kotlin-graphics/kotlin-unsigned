@@ -1,6 +1,6 @@
 # kotlin-unsigned
 
-[![Build Status](https://travis-ci.org/kotlin-graphics/kotlin-unsigned.svg?branch=master)](https://travis-ci.org/kotlin-graphics/kotlin-unsigned) 
+[![Build Status](https://github.com/kotlin-graphics/kotlin-unsigned/workflows/build/badge.svg)](https://github.com/kotlin-graphics/kotlin-unsigned/actions?workflow=build)
 [![license](https://img.shields.io/badge/License-MIT-orange.svg)](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/LICENSE) 
 [![Release](https://jitpack.io/v/kotlin-graphics/kotlin-unsigned.svg)](https://jitpack.io/#kotlin-graphics/kotlin-unsigned) 
 ![Size](https://github-size-badge.herokuapp.com/:owner/:repo.svg)
