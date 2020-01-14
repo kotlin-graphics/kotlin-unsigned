@@ -5,8 +5,6 @@
 [![Release](https://jitpack.io/v/kotlin-graphics/kotlin-unsigned.svg)](https://jitpack.io/#kotlin-graphics/kotlin-unsigned) 
 ![Size](https://github-size-badge.herokuapp.com/kotlin-graphics/kotlin-unsigned.svg)
 [![Github All Releases](https://img.shields.io/github/downloads/kotlin-graphics/kotlin-unsigned/total.svg)]()
-[![Slack Status](http://kotlinlang.slack.com/badge.svg)](http://kotlinlang.slack.com/)
-<img src="http://kotlinlang.slack.com/badge.svg">
 
 Unsigned operators and boxed types (`Ubyte`, `Uint`, `Ulong` and `Ushort`) for unsigned support.
 
