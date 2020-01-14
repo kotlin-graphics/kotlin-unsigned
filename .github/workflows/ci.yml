@@ -1,0 +1,31 @@
+name: CI
+
+on: [push]
+
+jobs:
+  linux:
+    name: 'Linux'
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@master
+      with:
+        java-version: openjdk@1.11
+      
+  windows: 
+    name: 'Windows'
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@master
+      with:
+        java-version: openjdk@1.11
+                
+  mac: 
+    name: 'Mac OS'
+    runs-on: macos-latest
+    
+    steps:
+    - uses: actions/checkout@master
+      with:
+        java-version: openjdk@1.11
