@@ -30,7 +30,8 @@ data class Ushort(var v: Short = 0) : Number(), Comparable<Ushort> {
     }
 
     constructor(number: Number) : this(number.toShort())
-    @JvmOverloads constructor(string: String, base: Int = 10) :
+    @JvmOverloads
+    constructor(string: String, base: Int = 10) :
             this(string.filter { it != '_' && it != '\'' }.parseUnsignedInt(base).toShort())
 
     override fun toByte() = v.toByte()
