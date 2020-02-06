@@ -26,7 +26,8 @@ class Ubyte(var v: Byte) : Number(), Comparable<Ubyte> {
     }
 
     constructor(number: Number) : this(number.toByte())
-    @JvmOverloads constructor(string: String, base: Int = 10) : this(string.filter { it != '_' && it != '\'' }.parseUnsignedInt(base).toByte())
+    @JvmOverloads
+    constructor(string: String, base: Int = 10) : this(string.filter { it != '_' && it != '\'' }.parseUnsignedInt(base).toByte())
 
     override fun toByte() = v
     override fun toShort() = v.toUInt().toShort()

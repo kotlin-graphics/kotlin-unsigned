@@ -27,7 +27,8 @@ data class Uint(var v: Int = 0) : Number(), Comparable<Uint> {
 
 
     constructor(number: Number) : this(number.toInt())
-    @JvmOverloads constructor(string: String, base: Int = 10) : this(string.filter { it != '_' && it != '\'' }.parseUnsignedInt(base))
+    @JvmOverloads
+    constructor(string: String, base: Int = 10) : this(string.filter { it != '_' && it != '\'' }.parseUnsignedInt(base))
 
     override fun toByte() = v.toByte()
     override fun toShort() = v.toShort()
@@ -53,7 +54,7 @@ data class Uint(var v: Int = 0) : Number(), Comparable<Uint> {
     infix operator fun times(b: Uint) = Uint(v * b.v)
     infix operator fun times(b: Int) = Uint(v * b)
 
-    infix operator fun div(b: Uint) = Uint(v udiv  b.toInt())
+    infix operator fun div(b: Uint) = Uint(v udiv b.toInt())
     infix operator fun div(b: Int) = Uint(v udiv b)
 
     infix operator fun rem(b: Uint) = Uint(v urem b.toInt())
