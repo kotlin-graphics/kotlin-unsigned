@@ -6,14 +6,14 @@ plugins {
 ext{
     moduleName = 'com.github.kotlin_graphics.kotlin_unsigned'
     kotlin = 'org.jetbrains.kotlin:kotlin'
-    kotlintest_version = '3.4.3'
+    kotlintest_version = '3.4.2'
 }
 
 dependencies {
 
     implementation "$kotlin-stdlib"
 
-    testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintest_version".toString()
+    testImplementation "io.kotlintest:kotlintest-runner-junit5:$kotlintest_version"
 }
 
 repositories {
@@ -40,6 +40,7 @@ compileKotlin {
     // Enable Kotlin compilation to Java 8 class files with method parameter name metadata
     kotlinOptions{
         jvmTarget = "11"
+        freeCompilerArgs = ["-XXLanguage:+InlineClasses"]
 //        javaParameters = true
     }
     // As per https://stackoverflow.com/a/47669720
