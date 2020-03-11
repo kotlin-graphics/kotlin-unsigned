@@ -59,7 +59,7 @@ compileJava {
     doFirst {
         options.compilerArgs = [
                 '--module-path', classpath.asPath,
-                "--patch-module", "$moduleName=${sourceSets["main"].output.asPath}"]
+                '--patch-module', "$moduleName=${sourceSets["main"].output.asPath}"]
         classpath = files()
     }
 }
