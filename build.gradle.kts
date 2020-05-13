@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.3.72"
+    java
 }
 
 val moduleName = "com.github.kotlin_graphics.kotlin_unsigned"
@@ -13,6 +14,15 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+
+    attributesSchema.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE).compatibilityRules.add(ModularJarCompatibilityRule::class)
+    components { withModule<ModularKotlinRule>(kotlin("stdlib-jdk8")) }
+
+    testImplementation("io.kotlintest:kotlintest-runner-junit5:$kotlintest_version")
+}
+
+java {
+    modularity.inferModulePath.set(true)
 }
 
 //java {
@@ -60,31 +70,8 @@ tasks.compileJava {
     options.compilerArgs = listOf("--patch-module", "$moduleName=${sourceSets.main.get().output.asPath}")
 }
 
-//compileJava {
-//    // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
-//    options.compilerArgs = ["--patch-module", "$moduleName=${sourceSets["main"].output.asPath}"]
-////    dependsOn(':compileKotlin')
-////    doFirst {
-////        options.compilerArgs = [
-////                '--module-path', classpath.asPath,
-////                '--patch-module', "$moduleName=${sourceSets["main"].output.asPath}"]
-////        classpath = files()
-////    }
-//}
-//
-//jar {
-//    inputs.property("moduleName", moduleName)
-////    manifest.attributes('Automatic-Module-Name': moduleName)
-////    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-//}
-//
+
 //test.useJUnitPlatform()
-//
-//plugins.withType(JavaPlugin).configureEach {
-//    java {
-//        modularity.inferModulePath = true
-//    }
-//}
 
 // == Add access to the 'modular' variant of kotlin("stdlib"): Put this into a buildSrc plugin and reuse it in all your subprojects
 configurations.all {
@@ -94,11 +81,6 @@ configurations.all {
     if (name.toLowerCase().endsWith("compile") || name.toLowerCase().endsWith("runtime")) {
         isCanBeConsumed = false
     }
-}
-
-dependencies {
-    attributesSchema.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE).compatibilityRules.add(ModularJarCompatibilityRule::class)
-    components { withModule<ModularKotlinRule>(kotlin("stdlib")) }
 }
 
 abstract class ModularJarCompatibilityRule : AttributeCompatibilityRule<LibraryElements> {
