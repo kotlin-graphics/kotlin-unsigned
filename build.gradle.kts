@@ -1,6 +1,6 @@
 plugins {
-    kotlin("jvm") version "1.3.72"
     java
+    kotlin("jvm") version "1.3.72"
 }
 
 val moduleName = "com.github.kotlin_graphics.kotlin_unsigned"
