@@ -5,8 +5,7 @@ plugins {
 }
 
 val moduleName = "com.github.kotlin_graphics.kotlin_unsigned"
-val kot = "org.jetbrains.kotlin:kotlin"
-val kotlintest_version = "4.0.5"
+val kotestVersion = "4.0.5"
 
 repositories {
     mavenCentral()
@@ -23,7 +22,7 @@ dependencies {
     components { withModule<ModularKotlinRule>(kotlin("stdlib-jdk8")) }
 
     listOf("runner-junit5", "assertions-core"/*, "property"*/).forEach {
-        testImplementation("io.kotest:kotest-$it-jvm:$kotlintest_version")
+        testImplementation("io.kotest:kotest-$it-jvm:$kotestVersion")
     }
 }
 
@@ -81,18 +80,15 @@ tasks.compileJava {
     options.compilerArgs = listOf("--patch-module", "$moduleName=${sourceSets.main.get().output.asPath}")
 }
 
-tasks.withType<Test> {
-    useJUnitPlatform()
-}
+tasks.withType<Test> { useJUnitPlatform() }
 
 // == Add access to the 'modular' variant of kotlin("stdlib"): Put this into a buildSrc plugin and reuse it in all your subprojects
 configurations.all {
-    if (name.toLowerCase().endsWith("compileclasspath") || name.toLowerCase().endsWith("runtimeclasspath")) {
+    val n = name.toLowerCase()
+    if (n.endsWith("compileclasspath") || n.endsWith("runtimeclasspath"))
         attributes.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named("modular-jar"))
-    }
-    if (name.toLowerCase().endsWith("compile") || name.toLowerCase().endsWith("runtime")) {
+    if (n.endsWith("compile") || n.endsWith("runtime"))
         isCanBeConsumed = false
-    }
 }
 
 abstract class ModularJarCompatibilityRule : AttributeCompatibilityRule<LibraryElements> {
