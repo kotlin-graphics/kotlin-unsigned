@@ -1,50 +1,61 @@
 plugins {
     java
     kotlin("jvm") version "1.3.72"
+    id("org.jetbrains.dokka") version "0.10.1"
 }
 
 val moduleName = "com.github.kotlin_graphics.kotlin_unsigned"
 val kot = "org.jetbrains.kotlin:kotlin"
-val kotlintest_version = "3.4.2"
+val kotlintest_version = "4.0.5"
 
 repositories {
     mavenCentral()
+    jcenter()
     maven { url = uri("https://jitpack.io") }
 }
 
 dependencies {
+    implementation(kotlin("stdlib"))
     implementation(kotlin("stdlib-jdk8"))
 
     attributesSchema.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE).compatibilityRules.add(ModularJarCompatibilityRule::class)
+    components { withModule<ModularKotlinRule>(kotlin("stdlib")) }
     components { withModule<ModularKotlinRule>(kotlin("stdlib-jdk8")) }
 
-    testImplementation("io.kotlintest:kotlintest-runner-junit5:$kotlintest_version")
+    listOf("runner-junit5", "assertions-core"/*, "property"*/).forEach {
+        testImplementation("io.kotest:kotest-$it-jvm:$kotlintest_version")
+    }
 }
 
 java {
     modularity.inferModulePath.set(true)
 }
 
-//java {
-//    withJavadocJar()
-//    withSourcesJar()
-//}
+tasks {
+    val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
+        outputFormat = "html"
+        outputDirectory = "$buildDir/dokka"
+    }
+}
 
-//task sourcesJar(type: Jar, dependsOn: classes) {
-//    archiveClassifier = 'sources'
-//    from sourceSets.main.allSource
-//}
-//
-//task javadocJar(type: Jar, dependsOn: javadoc) {
-//    archiveClassifier = 'javadoc'
-//    from javadoc.destinationDir
-//}
-//
-//artifacts {
-//    archives sourcesJar
-////    archives javadocJar
-//}
-//
+val dokkaJar by tasks.creating(Jar::class) {
+    group = JavaBasePlugin.DOCUMENTATION_GROUP
+    description = "Assembles Kotlin docs with Dokka"
+    archiveClassifier.set("javadoc")
+    from(tasks.dokka)
+}
+
+val sourceJar = task("sourceJar", Jar::class) {
+    dependsOn(tasks["classes"])
+    archiveClassifier.set("sources")
+    from(sourceSets.main.get().allSource)
+}
+
+artifacts {
+    archives(sourceJar)
+    archives(dokkaJar)
+}
+
 
 tasks.compileKotlin {
     // Enable Kotlin compilation to Java 8 class files with method parameter name metadata
@@ -70,8 +81,9 @@ tasks.compileJava {
     options.compilerArgs = listOf("--patch-module", "$moduleName=${sourceSets.main.get().output.asPath}")
 }
 
-
-//test.useJUnitPlatform()
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
 
 // == Add access to the 'modular' variant of kotlin("stdlib"): Put this into a buildSrc plugin and reuse it in all your subprojects
 configurations.all {
