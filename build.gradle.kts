@@ -1,3 +1,5 @@
+import org.jetbrains.dokka.gradle.DokkaTask
+
 plugins {
     java
     kotlin("jvm") version "1.3.72"
@@ -31,7 +33,7 @@ java {
 }
 
 tasks {
-    val dokka by getting(org.jetbrains.dokka.gradle.DokkaTask::class) {
+    val dokka by getting(DokkaTask::class) {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
     }
