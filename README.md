@@ -17,8 +17,7 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 - automatic conversions
 - it is possible to string format by calling the corresponding `format()` method, eg: `ubyte.format("%08x")`
 - all the utypes implement all the function, including `shl` and `shr` for `Ubyte` and `Ushort`
-- if you add an `Ushort` to another `Ushort` you get an `Ushort` (and not an `Uint)
-- no unsigned arrays supported yet
+- if you add an `Ushort` to another `Ushort` you get an `Ushort` (and not an `Uint`)
 
 ### How to get it:
 

@@ -1,9 +1,9 @@
 package unsigned
 
-import io.kotlintest.matchers.beLessThan
-import io.kotlintest.should
-import io.kotlintest.shouldBe
-import io.kotlintest.specs.StringSpec
+import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.ints.shouldBeLessThan
+import io.kotest.matchers.shouldBe
+
 
 class `Ulong test` : StringSpec() {
 
@@ -12,7 +12,7 @@ class `Ulong test` : StringSpec() {
 
             val max = "ffff_ffff__ffff_ffff".hL
 
-            Ulong(Ulong.Companion.MAX_VALUE).v shouldBe max
+            Ulong(Ulong.MAX_VALUE).v shouldBe max
             Ulong("18446744073709551615").v shouldBe max
 
             var a = Ulong(Ulong.Companion.MAX_VALUE)
@@ -117,7 +117,7 @@ class `Ulong test` : StringSpec() {
             d = "0100_1100__0111_0000__1111_0000__0111_1100__0000_1111__1100_0000__0111_1111__0000_0000".bL
             d shl Ulong(32).toInt() shouldBe "0000_1111__1100_0000__0111_1111__0000_0000__0000_0000__0000_0000__0000_0000__0000_0000".bL
             d shr Ulong(32).toInt() shouldBe "0000_0000__0000_0000__0000_0000__0000_0000__0100_1100__0111_0000__1111_0000__0111_1100".bL
-            (d ucmp Ulong("1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1011", 2)) should beLessThan(0)
+            (d ucmp Ulong("1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1010__1010_1011", 2)) shouldBeLessThan 0
             (d ucmp Ulong(d)) shouldBe 0
         }
     }
