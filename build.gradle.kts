@@ -40,23 +40,15 @@ tasks {
     }
 
     compileKotlin {
-        // Enable Kotlin compilation to Java 8 class files with method parameter name metadata
         kotlinOptions {
             jvmTarget = "11"
             freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
-//        javaParameters = true
         }
         sourceCompatibility = "11"
-        // As per https://stackoverflow.com/a/47669720
-        // See also https://discuss.kotlinlang.org/t/kotlin-support-for-java-9-module-system/2499/9
-//    destinationDir = compileJava.destinationDir
     }
 
     compileTestKotlin {
-        kotlinOptions {
-            jvmTarget = "11"
-//        javaParameters = true
-        }
+        kotlinOptions.jvmTarget = "11"
         sourceCompatibility = "11"
     }
 
