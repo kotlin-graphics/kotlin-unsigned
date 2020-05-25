@@ -16,20 +16,11 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
     implementation(kotlin("stdlib-jdk8"))
-
-    attributesSchema.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE).compatibilityRules.add(ModularJarCompatibilityRule::class)
-    components { withModule<ModularKotlinRule>(kotlin("stdlib")) }
-    components { withModule<ModularKotlinRule>(kotlin("stdlib-jdk8")) }
 
     listOf("runner-junit5", "assertions-core"/*, "property"*/).forEach {
         testImplementation("io.kotest:kotest-$it-jvm:$kotestVersion")
     }
-}
-
-java {
-    modularity.inferModulePath.set(true)
 }
 
 tasks {
@@ -39,27 +30,18 @@ tasks {
     }
 
     compileKotlin {
-        // Enable Kotlin compilation to Java 8 class files with method parameter name metadata
         kotlinOptions {
-            jvmTarget = "11"
+            jvmTarget = "1.8"
             freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
-//        javaParameters = true
         }
-        // As per https://stackoverflow.com/a/47669720
-        // See also https://discuss.kotlinlang.org/t/kotlin-support-for-java-9-module-system/2499/9
-//    destinationDir = compileJava.destinationDir
+        sourceCompatibility = "1.8"
     }
 
     compileTestKotlin {
         kotlinOptions {
-            jvmTarget = "11"
-//        javaParameters = true
+            jvmTarget = "1.8"
         }
-    }
-
-    compileJava {
-        // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
-        options.compilerArgs = listOf("--patch-module", "$moduleName=${sourceSets.main.get().output.asPath}")
+        sourceCompatibility = "1.8"
     }
 
     withType<Test> { useJUnitPlatform() }
@@ -81,44 +63,4 @@ val sourceJar = task("sourceJar", Jar::class) {
 artifacts {
     archives(sourceJar)
     archives(dokkaJar)
-}
-
-// == Add access to the 'modular' variant of kotlin("stdlib"): Put this into a buildSrc plugin and reuse it in all your subprojects
-configurations.all {
-    val n = name.toLowerCase()
-    if (n.endsWith("compileclasspath") || n.endsWith("runtimeclasspath"))
-        attributes.attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, objects.named("modular-jar"))
-    if (n.endsWith("compile") || n.endsWith("runtime"))
-        isCanBeConsumed = false
-}
-
-abstract class ModularJarCompatibilityRule : AttributeCompatibilityRule<LibraryElements> {
-    override fun execute(details: CompatibilityCheckDetails<LibraryElements>): Unit = details.run {
-        if (producerValue?.name == LibraryElements.JAR && consumerValue?.name == "modular-jar")
-            compatible()
-    }
-}
-
-abstract class ModularKotlinRule : ComponentMetadataRule {
-
-    @javax.inject.Inject
-    abstract fun getObjects(): ObjectFactory
-
-    override fun execute(ctx: ComponentMetadataContext) {
-        val id = ctx.details.id
-        listOf("compile", "runtime").forEach { baseVariant ->
-            ctx.details.addVariant("${baseVariant}Modular", baseVariant) {
-                attributes {
-                    attribute(LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE, getObjects().named("modular-jar"))
-                }
-                withFiles {
-                    removeAllFiles()
-                    addFile("${id.name}-${id.version}-modular.jar")
-                }
-                withDependencies {
-                    clear() // 'kotlin-stdlib-common' and  'annotations' are not modules and are also not needed
-                }
-            }
-        }
-    }
 }
