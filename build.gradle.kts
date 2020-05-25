@@ -37,6 +37,32 @@ tasks {
         outputFormat = "html"
         outputDirectory = "$buildDir/dokka"
     }
+
+    compileKotlin {
+        // Enable Kotlin compilation to Java 8 class files with method parameter name metadata
+        kotlinOptions {
+            jvmTarget = "11"
+            freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
+//        javaParameters = true
+        }
+        // As per https://stackoverflow.com/a/47669720
+        // See also https://discuss.kotlinlang.org/t/kotlin-support-for-java-9-module-system/2499/9
+//    destinationDir = compileJava.destinationDir
+    }
+
+    compileTestKotlin {
+        kotlinOptions {
+            jvmTarget = "11"
+//        javaParameters = true
+        }
+    }
+
+    compileJava {
+        // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
+        options.compilerArgs = listOf("--patch-module", "$moduleName=${sourceSets.main.get().output.asPath}")
+    }
+
+    withType<Test> { useJUnitPlatform() }
 }
 
 val dokkaJar by tasks.creating(Jar::class) {
@@ -56,33 +82,6 @@ artifacts {
     archives(sourceJar)
     archives(dokkaJar)
 }
-
-
-tasks.compileKotlin {
-    // Enable Kotlin compilation to Java 8 class files with method parameter name metadata
-    kotlinOptions {
-        jvmTarget = "11"
-        freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
-//        javaParameters = true
-    }
-    // As per https://stackoverflow.com/a/47669720
-    // See also https://discuss.kotlinlang.org/t/kotlin-support-for-java-9-module-system/2499/9
-//    destinationDir = compileJava.destinationDir
-}
-
-tasks.compileTestKotlin {
-    kotlinOptions {
-        jvmTarget = "11"
-//        javaParameters = true
-    }
-}
-
-tasks.compileJava {
-    // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
-    options.compilerArgs = listOf("--patch-module", "$moduleName=${sourceSets.main.get().output.asPath}")
-}
-
-tasks.withType<Test> { useJUnitPlatform() }
 
 // == Add access to the 'modular' variant of kotlin("stdlib"): Put this into a buildSrc plugin and reuse it in all your subprojects
 configurations.all {
