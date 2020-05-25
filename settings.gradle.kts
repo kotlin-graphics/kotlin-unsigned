@@ -1,1 +1,1 @@
-rootProject.name = "kotlin-unsigned"
+rootProject.name = "kotlin-unsigned-jdk8"
