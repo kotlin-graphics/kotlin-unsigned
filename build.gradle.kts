@@ -6,7 +6,8 @@ plugins {
     id("org.jetbrains.dokka") version "0.10.1"
 }
 
-val moduleName = "com.github.kotlin_graphics.kotlin_unsigned"
+val group = "com.github.kotlin_graphics"
+val moduleName = "$group.kotlin_unsigned"
 val kotestVersion = "4.0.5"
 
 repositories {
