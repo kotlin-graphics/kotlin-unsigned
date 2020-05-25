@@ -45,6 +45,7 @@ tasks {
             freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
 //        javaParameters = true
         }
+        sourceCompatibility = "11"
         // As per https://stackoverflow.com/a/47669720
         // See also https://discuss.kotlinlang.org/t/kotlin-support-for-java-9-module-system/2499/9
 //    destinationDir = compileJava.destinationDir
@@ -55,6 +56,7 @@ tasks {
             jvmTarget = "11"
 //        javaParameters = true
         }
+        sourceCompatibility = "11"
     }
 
     compileJava {
