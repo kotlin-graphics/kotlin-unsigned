@@ -1,3 +1,4 @@
+import org.gradle.api.attributes.java.TargetJvmVersion.*
 import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
@@ -22,6 +23,10 @@ dependencies {
     listOf("runner-junit5", "assertions-core"/*, "property"*/).forEach {
         testImplementation("io.kotest:kotest-$it-jvm:$kotestVersion")
     }
+}
+
+configurations.all {
+    attributes.attribute(TARGET_JVM_VERSION_ATTRIBUTE, 8)
 }
 
 tasks {
