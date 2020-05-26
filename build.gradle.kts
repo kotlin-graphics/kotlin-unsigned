@@ -27,7 +27,7 @@ dependencies {
     components { withModule<ModularKotlinRule>(kotlin("stdlib")) }
     components { withModule<ModularKotlinRule>(kotlin("stdlib-jdk8")) }
 
-    listOf("runner-junit5", "assertions-core"/*, "property"*/).forEach {
+    listOf("runner-junit5", "assertions-core", "runner-console"/*, "property"*/).forEach {
         testImplementation("io.kotest:kotest-$it-jvm:$kotestVersion")
     }
 }
