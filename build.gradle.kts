@@ -1,17 +1,16 @@
 import org.gradle.api.attributes.LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE
 import org.gradle.api.attributes.java.TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE
-import org.jetbrains.dokka.gradle.DokkaTask
 
 plugins {
     java
-    kotlin("jvm") version "1.3.72"
-    maven
-    id("org.jetbrains.dokka") version "0.10.1"
+    kotlin("jvm") version "1.4.0"
+//    maven
+    id("org.jetbrains.dokka") version "1.4.0-rc"
 }
 
 val group = "com.github.kotlin_graphics"
 val moduleName = "$group.kotlin_unsigned"
-val kotestVersion = "4.0.5"
+val kotestVersion = "4.2.0"
 
 repositories {
     mavenCentral()
@@ -27,9 +26,8 @@ dependencies {
     components { withModule<ModularKotlinRule>(kotlin("stdlib")) }
     components { withModule<ModularKotlinRule>(kotlin("stdlib-jdk8")) }
 
-    listOf("runner-junit5", "assertions-core", "runner-console"/*, "property"*/).forEach {
-        testImplementation("io.kotest:kotest-$it-jvm:$kotestVersion")
-    }
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
 }
 
 java {
@@ -37,10 +35,6 @@ java {
 }
 
 tasks {
-    val dokka by getting(DokkaTask::class) {
-        outputFormat = "html"
-        outputDirectory = "$buildDir/dokka"
-    }
 
     compileKotlin {
         kotlinOptions {
@@ -67,7 +61,7 @@ val dokkaJar by tasks.creating(Jar::class) {
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     description = "Assembles Kotlin docs with Dokka"
     archiveClassifier.set("javadoc")
-    from(tasks.dokka)
+    from(tasks.dokkaHtml)
 }
 
 val sourceJar = task("sourceJar", Jar::class) {
