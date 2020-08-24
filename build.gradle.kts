@@ -36,6 +36,40 @@ java {
 
 tasks {
 
+    val moveCss by registering {
+        description = "Move style.css in kotlin-unsigned folder (distribution friendly)."
+//        fun File.fixStyle() = readText().replace("../style.css", "style.css").also { writeText(it) }
+//        fun File.recursivelyFixStyle() {
+//            list()?.map(::resolve)?.forEach { if (it.isDirectory) it.recursivelyFixStyle() else it.fixStyle() }
+//        }
+        doLast {
+            val output = file(dokkaHtml.get().outputDirectory)
+//            val folder = output.resolve("kotlin-unsigned").apply { recursivelyFixStyle() }
+//            output.resolve("style.css").apply { renameTo(folder.resolve(name)) }
+            val target = "$output/kotlin-unsigned"
+            ant.withGroovyBuilder {
+//                "move"( "styles" to target)
+            }
+        }
+    }
+
+    dokkaHtml {
+        dokkaSourceSets {
+            configureEach {
+                sourceLink {
+                    // Unix based directory relative path to the root of the project (where you execute gradle respectively).
+//                    path = "src/main/kotlin"
+
+                    // URL showing where the source code can be accessed through the web browser
+                    url = "https://github.com/kotlin-graphics/kotlin-unsigned/tree/master/src/main/kotlin"
+                    // Suffix which is used to append the line number to the URL. Use #L for GitHub
+                    lineSuffix = "#L"
+                }
+            }
+        }
+        finalizedBy(moveCss)
+    }
+
     compileKotlin {
         kotlinOptions {
             jvmTarget = "11"
@@ -56,6 +90,7 @@ tasks {
 
     withType<Test> { useJUnitPlatform() }
 }
+
 
 val dokkaJar by tasks.creating(Jar::class) {
     group = JavaBasePlugin.DOCUMENTATION_GROUP
