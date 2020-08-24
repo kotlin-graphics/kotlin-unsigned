@@ -1,7 +1,7 @@
 [[redirects]]
   from = "/"
   to = "/build/dokka/html/kotlin-unsigned"
-  status = 200
+#  status = 200
 
 #[[redirects]]
 #  from = "/build/dokka/html/images/*"
