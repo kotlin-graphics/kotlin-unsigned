@@ -4,19 +4,19 @@
   status = 200
 
 [[redirects]]
-  from = "/build/dokka/html/images"
+  from = "/build/dokka/html/images/*"
   to = "/build/dokka/html/images/:splat"
   status = 200
   force = true
 
 [[redirects]]
-  from = "/build/dokka/html/scripts"
+  from = "/build/dokka/html/scripts/*"
   to = "/build/dokka/html/scripts/:splat"
   status = 200
   force = true
 
 [[redirects]]
-  from = "/build/dokka/html/styles"
+  from = "/build/dokka/html/styles/*"
   to = "/build/dokka/html/styles/:splat"
   status = 200
   force = true
