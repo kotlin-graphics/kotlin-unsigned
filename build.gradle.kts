@@ -58,7 +58,7 @@ tasks {
             configureEach {
                 sourceLink {
                     // Unix based directory relative path to the root of the project (where you execute gradle respectively).
-//                    path = "src/main/kotlin"
+                    path = "src/main/kotlin"
 
                     // URL showing where the source code can be accessed through the web browser
                     url = "https://github.com/kotlin-graphics/kotlin-unsigned/tree/master/src/main/kotlin"
