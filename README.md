@@ -58,3 +58,8 @@ Don't hesitate to contribute to the project by submitting [issues](https://githu
 ### Credits:
 
 - inspired by [jOOU](https://github.com/jOOQ/jOOU)
+
+
+ <a href="https://www.netlify.com">
+    <img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg" alt="Deploys by Netlify" />
+ </a>
