@@ -1,5 +1,4 @@
-import org.gradle.api.attributes.java.TargetJvmVersion.*
-import org.jetbrains.dokka.gradle.DokkaTask
+import org.gradle.api.attributes.java.TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE
 
 plugins {
     java
