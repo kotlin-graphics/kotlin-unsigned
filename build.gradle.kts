@@ -72,12 +72,16 @@ tasks {
     withType<Test> { useJUnitPlatform() }
 }
 
-
-val dokkaJar by tasks.creating(Jar::class) {
-    group = JavaBasePlugin.DOCUMENTATION_GROUP
-    description = "Assembles Kotlin docs with Dokka"
+val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
+    dependsOn(tasks.dokkaJavadoc)
+    from(tasks.dokkaJavadoc.get().getOutputDirectoryAsFile())
     archiveClassifier.set("javadoc")
-    from(tasks.dokkaHtml)
+}
+
+val dokkaHtmlJar by tasks.register<Jar>("dokkaHtmlJar") {
+    dependsOn(tasks.dokkaHtml)
+    from(tasks.dokkaHtml.get().getOutputDirectoryAsFile())
+    archiveClassifier.set("html-doc")
 }
 
 val sourceJar = task("sourceJar", Jar::class) {
@@ -87,8 +91,9 @@ val sourceJar = task("sourceJar", Jar::class) {
 }
 
 artifacts {
+    archives(dokkaJavadocJar)
+    archives(dokkaHtmlJar)
     archives(sourceJar)
-    archives(dokkaJar)
 }
 
 // == Add access to the 'modular' variant of kotlin("stdlib"): Put this into a buildSrc plugin and reuse it in all your subprojects
