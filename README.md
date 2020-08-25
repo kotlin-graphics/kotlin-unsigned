@@ -5,6 +5,10 @@
 [![Release](https://jitpack.io/v/kotlin-graphics/kotlin-unsigned.svg)](https://jitpack.io/#kotlin-graphics/kotlin-unsigned) 
 ![Size](https://github-size-badge.herokuapp.com/kotlin-graphics/kotlin-unsigned.svg)
 [![Github All Releases](https://img.shields.io/github/downloads/kotlin-graphics/kotlin-unsigned/total.svg)]()
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md) 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c75db044-f985-47a3-84a1-73ad33401596/deploy-status)](https://app.netlify.com/sites/unsigned/deploys)
+
+[<img src="https://unsigned.netlify.app/build/dokka/html/images/docs_logo.svg">](https://unsigned.netlify.app)
 
 Unsigned operators and boxed types (`Ubyte`, `Uint`, `Ulong` and `Ushort`) for unsigned support.
 
@@ -57,3 +61,8 @@ Don't hesitate to contribute to the project by submitting [issues](https://githu
 ### Credits:
 
 - inspired by [jOOU](https://github.com/jOOQ/jOOU)
+
+
+ <a href="https://www.netlify.com">
+    <img src="https://www.netlify.com/img/global/badges/netlify-color-bg.svg" alt="Deploys by Netlify" />
+ </a>
