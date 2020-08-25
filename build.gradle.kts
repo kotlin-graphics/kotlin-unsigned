@@ -31,23 +31,6 @@ configurations.all {
 
 tasks {
 
-    val moveCss by registering {
-        description = "Move style.css in kotlin-unsigned folder (distribution friendly)."
-//        fun File.fixStyle() = readText().replace("../style.css", "style.css").also { writeText(it) }
-//        fun File.recursivelyFixStyle() {
-//            list()?.map(::resolve)?.forEach { if (it.isDirectory) it.recursivelyFixStyle() else it.fixStyle() }
-//        }
-        doLast {
-            val output = file(dokkaHtml.get().outputDirectory)
-//            val folder = output.resolve("kotlin-unsigned").apply { recursivelyFixStyle() }
-//            output.resolve("style.css").apply { renameTo(folder.resolve(name)) }
-            val target = "$output/kotlin-unsigned"
-            ant.withGroovyBuilder {
-//                "move"( "styles" to target)
-            }
-        }
-    }
-
     dokkaHtml {
         dokkaSourceSets {
             configureEach {
@@ -61,7 +44,6 @@ tasks {
                 }
             }
         }
-        finalizedBy(moveCss)
     }
 
     compileKotlin {
