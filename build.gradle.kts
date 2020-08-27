@@ -54,7 +54,7 @@ tasks {
     compileKotlin {
         kotlinOptions {
             jvmTarget = "11"
-            freeCompilerArgs = listOf("-XXLanguage:+InlineClasses")
+            freeCompilerArgs += listOf("-XXLanguage:+InlineClasses")
         }
         sourceCompatibility = "11"
     }
@@ -72,10 +72,7 @@ tasks {
     withType<Test> { useJUnitPlatform() }
 }
 
-kotlin {
-    // for strict mode
-    explicitApi()
-}
+//kotlin.explicitApiWarning()
 
 val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
     dependsOn(tasks.dokkaJavadoc)
