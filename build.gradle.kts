@@ -77,7 +77,7 @@ kotlin {
     explicitApi()
 }
 
-    val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
+val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
     dependsOn(tasks.dokkaJavadoc)
     from(tasks.dokkaJavadoc.get().getOutputDirectoryAsFile())
     archiveClassifier.set("javadoc")
