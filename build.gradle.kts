@@ -72,8 +72,12 @@ tasks {
     withType<Test> { useJUnitPlatform() }
 }
 
+kotlin {
+    // for strict mode
+    explicitApi()
+}
 
-val dokkaJar by tasks.creating(Jar::class) {
+    val dokkaJar by tasks.creating(Jar::class) {
     group = JavaBasePlugin.DOCUMENTATION_GROUP
     description = "Assembles Kotlin docs with Dokka"
     archiveClassifier.set("javadoc")
