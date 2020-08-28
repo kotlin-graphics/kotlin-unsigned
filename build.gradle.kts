@@ -1,10 +1,11 @@
 import org.gradle.api.attributes.LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE
 import org.gradle.api.attributes.java.TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     java
     kotlin("jvm") version "1.4.0"
-//    maven
+    `maven-publish` // Jitpack
     id("org.jetbrains.dokka") version "1.4.0-rc"
 }
 
@@ -30,9 +31,7 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core-jvm:$kotestVersion")
 }
 
-java {
-    modularity.inferModulePath.set(true)
-}
+java.modularity.inferModulePath.set(true)
 
 tasks {
 
@@ -51,16 +50,11 @@ tasks {
         }
     }
 
-    compileKotlin {
+    withType<KotlinCompile>().all {
         kotlinOptions {
             jvmTarget = "11"
-            freeCompilerArgs += listOf("-XXLanguage:+InlineClasses")
+            freeCompilerArgs = listOf("-Xinline-classes", "-Xopt-in=kotlin.RequiresOptIn")
         }
-        sourceCompatibility = "11"
-    }
-
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "11"
         sourceCompatibility = "11"
     }
 
@@ -71,8 +65,6 @@ tasks {
 
     withType<Test> { useJUnitPlatform() }
 }
-
-//kotlin.explicitApiWarning()
 
 val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
     dependsOn(tasks.dokkaJavadoc)
@@ -96,6 +88,11 @@ artifacts {
     archives(dokkaJavadocJar)
     archives(dokkaHtmlJar)
     archives(sourceJar)
+}
+
+publishing.publications.register("mavenJava", MavenPublication::class) {
+    from(components["java"])
+    artifact(sourceJar)
 }
 
 // == Add access to the 'modular' variant of kotlin("stdlib"): Put this into a buildSrc plugin and reuse it in all your subprojects
@@ -124,9 +121,7 @@ abstract class ModularKotlinRule : ComponentMetadataRule {
         val id = ctx.details.id
         listOf("compile", "runtime").forEach { baseVariant ->
             ctx.details.addVariant("${baseVariant}Modular", baseVariant) {
-                attributes {
-                    attribute(LIBRARY_ELEMENTS_ATTRIBUTE, getObjects().named("modular-jar"))
-                }
+                attributes.attribute(LIBRARY_ELEMENTS_ATTRIBUTE, getObjects().named("modular-jar"))
                 withFiles {
                     removeAllFiles()
                     addFile("${id.name}-${id.version}-modular.jar")
