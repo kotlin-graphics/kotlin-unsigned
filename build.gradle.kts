@@ -50,24 +50,11 @@ tasks {
         }
     }
 
-//    withType<KotlinCompile>().all {
-//        kotlinOptions {
-//            jvmTarget = "11"
-//            freeCompilerArgs += listOf("-Xinline-classes", "-Xopt-in=kotlin.RequiresOptIn")
-//        }
-//        sourceCompatibility = "11"
-//    }
-
-    compileKotlin {
+    withType<KotlinCompile>().all {
         kotlinOptions {
             jvmTarget = "11"
             freeCompilerArgs += listOf("-Xinline-classes", "-Xopt-in=kotlin.RequiresOptIn")
         }
-        sourceCompatibility = "11"
-    }
-
-    compileTestKotlin {
-        kotlinOptions.jvmTarget = "11"
         sourceCompatibility = "11"
     }
 
@@ -134,7 +121,9 @@ abstract class ModularKotlinRule : ComponentMetadataRule {
         val id = ctx.details.id
         listOf("compile", "runtime").forEach { baseVariant ->
             ctx.details.addVariant("${baseVariant}Modular", baseVariant) {
-                attributes.attribute(LIBRARY_ELEMENTS_ATTRIBUTE, getObjects().named("modular-jar"))
+                attributes {
+                    attribute(LIBRARY_ELEMENTS_ATTRIBUTE, getObjects().named("modular-jar"))
+                }
                 withFiles {
                     removeAllFiles()
                     addFile("${id.name}-${id.version}-modular.jar")
