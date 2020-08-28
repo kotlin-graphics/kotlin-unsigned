@@ -50,11 +50,24 @@ tasks {
         }
     }
 
-    withType<KotlinCompile>().all {
+//    withType<KotlinCompile>().all {
+//        kotlinOptions {
+//            jvmTarget = "11"
+//            freeCompilerArgs += listOf("-Xinline-classes", "-Xopt-in=kotlin.RequiresOptIn")
+//        }
+//        sourceCompatibility = "11"
+//    }
+
+    compileKotlin {
         kotlinOptions {
             jvmTarget = "11"
-            freeCompilerArgs = listOf("-Xinline-classes", "-Xopt-in=kotlin.RequiresOptIn")
+            freeCompilerArgs += listOf("-Xinline-classes", "-Xopt-in=kotlin.RequiresOptIn")
         }
+        sourceCompatibility = "11"
+    }
+
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "11"
         sourceCompatibility = "11"
     }
 
