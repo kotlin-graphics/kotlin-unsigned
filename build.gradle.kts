@@ -1,5 +1,6 @@
 import org.gradle.api.attributes.LibraryElements.LIBRARY_ELEMENTS_ATTRIBUTE
 import org.gradle.api.attributes.java.TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE
+import org.jetbrains.dokka.plugability.configuration
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -85,7 +86,7 @@ val sourceJar = task("sourceJar", Jar::class) {
 }
 
 artifacts {
-    archives(dokkaJavadocJar)
+//    archives(dokkaJavadocJar)
     archives(dokkaHtmlJar)
     archives(sourceJar)
 }
