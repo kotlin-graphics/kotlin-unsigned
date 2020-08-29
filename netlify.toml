@@ -1,5 +1,5 @@
 [[redirects]]
-from = "index.html"
+from = "/index.html"
 to = "/build/dokka/html/kotlin-unsigned/index.html"
 #status = 200
 #
