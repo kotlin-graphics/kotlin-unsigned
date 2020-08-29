@@ -1,22 +1,22 @@
-[[redirects]]
-  from = "/index.html"
-  to = "/build/dokka/html/kotlin-unsigned/index.html"
-#status = 200
-#
 #[[redirects]]
-#from = "/images/*"
-#to = "/build/dokka/html/images/:splat"
-#status = 200
-#  force = true
-#
-#[[redirects]]
-#from = "/scripts/*"
-#to = "/build/dokka/html/scripts/:splat"
-#status = 200
-#  force = true
-#
-#[[redirects]]
-#from = "/styles/*"
-#to = "/build/dokka/html/styles/:splat"
-#status = 200
-#  force = true
+#  from = "/index.html"
+#  to = "/build/dokka/html/kotlin-unsigned/index.html"
+##status = 200
+##
+##[[redirects]]
+##from = "/images/*"
+##to = "/build/dokka/html/images/:splat"
+##status = 200
+##  force = true
+##
+##[[redirects]]
+##from = "/scripts/*"
+##to = "/build/dokka/html/scripts/:splat"
+##status = 200
+##  force = true
+##
+##[[redirects]]
+##from = "/styles/*"
+##to = "/build/dokka/html/styles/:splat"
+##status = 200
+##  force = true
