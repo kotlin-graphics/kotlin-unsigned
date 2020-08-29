@@ -7,7 +7,7 @@ to = "/build/dokka/html/kotlin-unsigned/index.html"
 #from = "/images/*"
 #to = "/build/dokka/html/images/:splat"
 #status = 200
-  force = true
+#  force = true
 #
 #[[redirects]]
 #from = "/scripts/*"
