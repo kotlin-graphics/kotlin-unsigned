@@ -7,7 +7,7 @@ plugins {
     java
     kotlin("jvm") version "1.4.0"
     `maven-publish` // Jitpack
-    id("org.jetbrains.dokka") version "1.4.0-dev-62"
+    id("org.jetbrains.dokka") version "1.4.0"
 }
 
 val group = "com.github.kotlin_graphics"
@@ -18,7 +18,6 @@ repositories {
     mavenCentral()
     jcenter()
     maven("https://jitpack.io")
-    maven("https://maven.pkg.jetbrains.space/kotlin/p/dokka/dev")
 }
 
 dependencies {
@@ -38,16 +37,11 @@ java.modularity.inferModulePath.set(true)
 tasks {
 
     dokkaHtml {
-        dokkaSourceSets {
-            configureEach {
-                sourceLink {
-                    // Unix based directory relative path to the root of the project (where you execute gradle respectively).
-                    localDirectory.set(file("src/main/kotlin"))
-                    // URL showing where the source code can be accessed through the web browser
-                    remoteUrl.set(URL("https://github.com/kotlin-graphics/kotlin-unsigned/tree/master/src/main/kotlin"))
-                    // Suffix which is used to append the line number to the URL. Use #L for GitHub
-                    remoteLineSuffix.set("#L")
-                }
+        dokkaSourceSets.configureEach {
+            sourceLink {
+                localDirectory.set(file("src/main/kotlin"))
+                remoteUrl.set(URL("https://github.com/kotlin-graphics/kotlin-unsigned/tree/master/src/main/kotlin"))
+                remoteLineSuffix.set("#L")
             }
         }
     }
@@ -60,10 +54,8 @@ tasks {
         sourceCompatibility = "11"
     }
 
-    compileJava {
-        // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
-        options.compilerArgs = listOf("--patch-module", "$moduleName=${sourceSets.main.get().output.asPath}")
-    }
+    // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
+    compileJava.get().options.compilerArgs = listOf("--patch-module", "$moduleName=${sourceSets.main.get().output.asPath}")
 
     withType<Test> { useJUnitPlatform() }
 }
