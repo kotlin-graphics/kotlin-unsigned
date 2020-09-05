@@ -16,7 +16,6 @@ val kotestVersion = "4.2.0"
 repositories {
     mavenCentral()
     jcenter()
-    maven("https://jitpack.io")
 }
 
 dependencies {
