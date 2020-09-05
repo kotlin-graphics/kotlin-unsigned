@@ -28,20 +28,6 @@ dependencies {
 
 tasks {
 
-    val netlifyBadge by registering {
-        doLast {
-            val index = dokkaHtml.get().outputDirectory.get().resolve("kotlin-unsigned" + File.separatorChar + "index.html")
-            val text = index.readText()
-            val ofs = text.lastIndexOf("</span>") + 7
-            val badge = """                       
-              <a href="https://www.netlify.com">
-                <img src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" alt="Deploys by Netlify" style="vertical-align:middle;margin:10px 10px" />
-              </a>
-            """.trimIndent()
-            index.writeText(text.replaceRange(ofs, ofs, badge))
-        }
-    }
-
     dokkaHtml {
         dokkaSourceSets.configureEach {
             sourceLink {
@@ -50,7 +36,6 @@ tasks {
                 remoteLineSuffix.set("#L")
             }
         }
-        finalizedBy(netlifyBadge)
     }
 
     withType<KotlinCompile>().all {
