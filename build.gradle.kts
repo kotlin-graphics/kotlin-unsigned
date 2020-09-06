@@ -61,7 +61,7 @@ val dokkaHtmlJar by tasks.register<Jar>("dokkaHtmlJar") {
 }
 
 val sourceJar = task("sourceJar", Jar::class) {
-    dependsOn(tasks["classes"])
+    dependsOn(tasks.classes)
     archiveClassifier.set("sources")
     from(sourceSets.main.get().allSource)
 }
