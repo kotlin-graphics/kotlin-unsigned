@@ -4,14 +4,14 @@ import java.net.URL
 
 plugins {
     java
-    kotlin("jvm") version "1.4.0"
+    kotlin("jvm") version "1.4.10"
     `maven-publish` // Jitpack
-    id("org.jetbrains.dokka") version "1.4.0"
+    id("org.jetbrains.dokka") version "1.4.10"
 }
 
 val group = "com.github.kotlin_graphics"
 val moduleName = "$group.kotlin_unsigned"
-val kotestVersion = "4.2.0"
+val kotestVersion = "4.2.5"
 
 repositories {
     mavenCentral()
