@@ -19,7 +19,6 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib"))
     implementation(kotlin("stdlib-jdk8"))
 
     testImplementation("io.kotest:kotest-runner-junit5-jvm:$kotestVersion")
