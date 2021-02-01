@@ -95,7 +95,4 @@ publishing.publications.register("mavenJava", MavenPublication::class) {
 
 configurations.all { attributes.attribute(TARGET_JVM_VERSION_ATTRIBUTE, 11) }
 
-java {
-    //    withJavadocJar()
-    withSourcesJar()
-}
+java.withSourcesJar()
