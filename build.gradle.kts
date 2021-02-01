@@ -68,8 +68,6 @@ tasks {
     }
 
     withType<Test> { useJUnitPlatform() }
-
-    javadoc { dependsOn(dokkaJavadoc) }
 }
 
 val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
