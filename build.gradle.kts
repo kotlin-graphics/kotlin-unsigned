@@ -68,6 +68,14 @@ tasks {
     }
 
     withType<Test> { useJUnitPlatform() }
+
+    javadoc { dependsOn(dokkaJavadoc) }
+}
+
+val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
+    dependsOn(tasks.dokkaJavadoc)
+    from(tasks.dokkaJavadoc.get().outputDirectory.get())
+    archiveClassifier.set("javadoc")
 }
 
 val dokkaHtmlJar by tasks.register<Jar>("dokkaHtmlJar") {
@@ -77,6 +85,7 @@ val dokkaHtmlJar by tasks.register<Jar>("dokkaHtmlJar") {
 }
 
 artifacts {
+    archives(dokkaJavadocJar)
     archives(dokkaHtmlJar)
 }
 
@@ -86,11 +95,7 @@ publishing.publications.register("mavenJava", MavenPublication::class) {
 
 configurations.all { attributes.attribute(TARGET_JVM_VERSION_ATTRIBUTE, 11) }
 
-subprojects {
-    apply<JavaPlugin>() // or: apply(plugin = "java")
-
-    configure<JavaPluginExtension> {
-        withSourcesJar()
-        withJavadocJar()
-    }
+java {
+//    withJavadocJar()
+    withSourcesJar()
 }
