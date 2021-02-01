@@ -4,14 +4,14 @@ import java.net.URL
 
 plugins {
     java
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.4.21"
     `maven-publish` // Jitpack
-    id("org.jetbrains.dokka") version "1.4.10"
+    id("org.jetbrains.dokka") version "1.4.20"
 }
 
 val group = "com.github.kotlin_graphics"
 val moduleName = "$group.kotlin_unsigned"
-val kotestVersion = "4.2.5"
+val kotestVersion = "4.3.2"
 
 repositories {
     mavenCentral()
@@ -46,6 +46,8 @@ tasks {
     }
 
     withType<Test> { useJUnitPlatform() }
+
+    javadoc { dependsOn(dokkaJavadoc) }
 }
 
 val dokkaJavadocJar by tasks.register<Jar>("dokkaJavadocJar") {
@@ -60,23 +62,15 @@ val dokkaHtmlJar by tasks.register<Jar>("dokkaHtmlJar") {
     archiveClassifier.set("html-doc")
 }
 
-val sourceJar = task("sourceJar", Jar::class) {
-    dependsOn(tasks.classes)
-    archiveClassifier.set("sources")
-    from(sourceSets.main.get().allSource)
-}
-
 artifacts {
     archives(dokkaJavadocJar)
     archives(dokkaHtmlJar)
-    archives(sourceJar)
 }
 
 publishing.publications.register("mavenJava", MavenPublication::class) {
     from(components["java"])
-    artifact(sourceJar)
 }
 
-configurations.all {
-    attributes.attribute(TARGET_JVM_VERSION_ATTRIBUTE, 8)
-}
+configurations.all { attributes.attribute(TARGET_JVM_VERSION_ATTRIBUTE, 8) }
+
+java.withSourcesJar()
