@@ -5,8 +5,10 @@
 [![Release](https://jitpack.io/v/kotlin-graphics/kotlin-unsigned.svg)](https://jitpack.io/#kotlin-graphics/kotlin-unsigned) 
 ![Size](https://github-size-badge.herokuapp.com/kotlin-graphics/kotlin-unsigned.svg)
 [![Github All Releases](https://img.shields.io/github/downloads/kotlin-graphics/kotlin-unsigned/total.svg)]()
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md) 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/c75db044-f985-47a3-84a1-73ad33401596/deploy-status)](https://app.netlify.com/sites/unsigned/deploys)
+
+[comment]: <> ([![Contributor Covenant]&#40;https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg&#41;]&#40;code_of_conduct.md&#41; )
+
+[comment]: <> ([![Netlify Status]&#40;https://api.netlify.com/api/v1/badges/c75db044-f985-47a3-84a1-73ad33401596/deploy-status&#41;]&#40;https://app.netlify.com/sites/unsigned/deploys&#41;)
 
 [<img src="https://unsigned.netlify.app/build/dokka/html/images/docs_logo.svg">](https://unsigned.netlify.app)
 
