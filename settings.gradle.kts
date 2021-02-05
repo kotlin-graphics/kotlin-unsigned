@@ -1,8 +1,15 @@
 rootProject.name = "kotlin-unsigned"
 
-//pluginManagement {
-//    repositories {
-//        gradlePluginPortal()
-//        maven("https://maven.pkg.jetbrains.space/kotlin/p/dokka/dev")
-//    }
-//}
+pluginManagement {
+
+    resolutionStrategy {
+        eachPlugin {
+            if(requested.id.id == "docs")
+                useModule("com.github.elect86:docs:9c008a8b")//.also { println("found") }
+        }
+    }
+    repositories {
+        gradlePluginPortal()
+        maven("https://jitpack.io")
+    }
+}

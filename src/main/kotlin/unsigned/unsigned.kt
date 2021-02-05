@@ -18,4 +18,4 @@ fun Char.toUint() = Uint(toInt())
 fun Char.toUlong() = Ulong(toLong())
 fun Char.toUshort() = Ushort(toShort())
 
-val version = "3.2.7"
+val version = "3.2.8"
