@@ -10,7 +10,7 @@
 
 [comment]: <> ([![Netlify Status]&#40;https://api.netlify.com/api/v1/badges/c75db044-f985-47a3-84a1-73ad33401596/deploy-status&#41;]&#40;https://app.netlify.com/sites/unsigned/deploys&#41;)
 
-[<img src="https://unsigned.netlify.app/build/dokka/html/images/docs_logo.svg">](https://unsigned.netlify.app)
+[<img src="https://unsigned.netlify.app/images/docs_logo.svg">](https://unsigned.netlify.app)
 
 Unsigned operators and boxed types (`Ubyte`, `Uint`, `Ulong` and `Ushort`) for unsigned support.
 
