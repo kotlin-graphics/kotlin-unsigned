@@ -1,6 +1,5 @@
-module com.github.kotlin_graphics.kotlin_unsigned {
+module com.github.kotlin.graphics.unsigned {
 
-//    requires kotlin.stdlib;
     requires kotlin.stdlib.jdk8;
 
     exports unsigned;
