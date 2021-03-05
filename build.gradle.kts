@@ -1,6 +1,6 @@
 
 plugins {
-    val build = "0.4.5"
+    val build = "0.4.6"
     id("kx.kotlin.11") version build
     id("kx.dokka") version build
     java
