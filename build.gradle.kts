@@ -8,14 +8,14 @@ plugins {
 }
 
 group = "com.github.kotlin.graphics"
-version = "3.2.9"
+version = "3.3.0"
 
 repositories {
     maven("https://repo.repsy.io/mvn/elect/kx")
 }
 
 publishing {
-    publications.create<MavenPublication>("mavenJava") {
+    publications.create<MavenPublication>("maven") {
         from(components["java"])
     }
 }
