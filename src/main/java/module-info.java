@@ -1,4 +1,4 @@
-module com.github.kotlin.graphics.unsigned {
+module kotlin.graphics.unsigned {
 
     requires kotlin.stdlib.jdk8;
 
