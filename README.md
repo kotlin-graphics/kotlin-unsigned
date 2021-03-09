@@ -46,6 +46,24 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 
 [Maven, Sbt, Leiningen](https://jitpack.io/#kotlin-graphics/kotlin-unsigned/v2.1)
 
+### Build-logic and platform dependencies
+
+The build logic has been extracted in dedicated [plugins](https://github.com/elect86/build-logic), as well as the versioning in specific platform [plugins](https://github.com/elect86/platforms).
+
+In order to import kool you need then to add the repository where these plugins are getting published for the time being.
+
+In Gradle KTS you can do that by adding the following to your `settings.gradle.kts`:
+
+```kotlin
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven("https://repo.repsy.io/mvn/elect/kx")
+    }
+}
+```
+
+
 ### Contributions:
 
 Don't hesitate to contribute to the project by submitting [issues](https://github.com/kotlin-graphics/kotlin-unsigned/issues) or [pull requests](https://github.com/kotlin-graphics/kotlin-unsigned/pulls) for bugs and features. Any feedback is welcome at [elect86@gmail.com](mailto://elect86@gmail.com).
