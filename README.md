@@ -50,7 +50,7 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 
 The build logic has been extracted in dedicated [plugins](https://github.com/elect86/build-logic), as well as the versioning in specific platform [plugins](https://github.com/elect86/platforms).
 
-In order to import kool you need then to add the repository where these plugins are getting published for the time being.
+In order to import unsigned you need then to add the repository where these plugins are getting published for the time being.
 
 In Gradle KTS you can do that by adding the following to your `settings.gradle.kts`:
 
