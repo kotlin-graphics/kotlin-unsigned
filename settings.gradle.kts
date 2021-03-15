@@ -3,6 +3,6 @@ rootProject.name = "unsigned"
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        maven("https://repo.repsy.io/mvn/elect/kx")
+        maven("https://raw.githubusercontent.com/elect86/mary/master")
     }
 }

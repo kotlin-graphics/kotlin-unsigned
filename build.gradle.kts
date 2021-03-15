@@ -1,10 +1,9 @@
 
 plugins {
-    val build = "0.6.4"
+    val build = "0.7.0+26"
     id("kx.kotlin.11") version build
     id("kx.dokka") version build
-    id("kx.jitpack") version build
-    java
+    id("kx.publish") version "0.1.0"
 }
 
-version = "3.3.1"
+version = "3.2.9+15"
