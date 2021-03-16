@@ -1,4 +1,3 @@
-
 plugins {
     val build = "0.7.0+27"
     id("kx.kotlin.11") version build
@@ -6,16 +5,10 @@ plugins {
     id("kx.publish") version "0.1.5"
 }
 
-version = "3.2.9+19"
+version = "3.2.9+20"
 
 publishing {
-//     default in java-library
-        publications.create<MavenPublication>("maven") {
-            from(components["java"])
-        }
-//    repositories {
-//        maven {
-//            url = uri("$rootDir/../mary")
-//        }
-//    }
+    publications.create<MavenPublication>("maven") {
+        from(components["java"])
+    }
 }
