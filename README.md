@@ -46,19 +46,19 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 
 [Maven, Sbt, Leiningen](https://jitpack.io/#kotlin-graphics/kotlin-unsigned/v2.1)
 
-### Build-logic and platform dependencies
+### Build-logic and snapshots
 
-The build logic has been extracted in dedicated [plugins](https://github.com/elect86/build-logic), as well as the versioning in specific platform [plugins](https://github.com/elect86/platforms).
+The build logic has been extracted into dedicated conventional [plugins and platforms](https://github.com/kotlin-graphics/build-logic).
 
-In order to import unsigned you need then to add the repository where these plugins are getting published for the time being.
+This logic and developing snapshots are published in a [custom repository](https://github.com/kotlin-graphics/mary) to speed up development process.
 
-In Gradle KTS you can do that by adding the following to your `settings.gradle.kts`:
+In Gradle KTS you can include it by adding the following to your `settings.gradle.kts`:
 
 ```kotlin
 pluginManagement {
     repositories {
         gradlePluginPortal()
-        maven("https://repo.repsy.io/mvn/elect/kx")
+        maven("https://raw.githubusercontent.com/kotlin-graphics/mary/master")
     }
 }
 ```

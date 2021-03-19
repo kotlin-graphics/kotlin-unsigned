@@ -1,14 +1,9 @@
+
 plugins {
-    val build = "0.7.0+27"
+    val build = "0.7.0+34"
     id("kx.kotlin.11") version build
-    id("kx.dokka") version build
-    id("kx.publish") version "0.1.5"
+    id("kx.dokka+01") version build
+    id("kx.publish") version build
 }
 
 version = "3.2.9+20"
-
-publishing {
-    publications.create<MavenPublication>("maven") {
-        from(components["java"])
-    }
-}
