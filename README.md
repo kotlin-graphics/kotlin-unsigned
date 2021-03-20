@@ -46,11 +46,11 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 
 [Maven, Sbt, Leiningen](https://jitpack.io/#kotlin-graphics/kotlin-unsigned/v2.1)
 
-### Build-logic and snapshots
+### Build-logic
 
-The build logic has been extracted into dedicated conventional [plugins and platforms](https://github.com/kotlin-graphics/build-logic).
-
-This logic and developing snapshots are published in a [custom repository](https://github.com/kotlin-graphics/mary) to speed up development process.
+The build logic has been extracted into dedicated conventional [plugins and platforms](https://github.com/kotlin-graphics/build-logic), 
+published in a [custom repository](https://github.com/kotlin-graphics/mary) to speed up development process 
+(Maven Central is a pain to setup and Nexus is quite slow).
 
 In Gradle KTS you can include it by adding the following to your `settings.gradle.kts`:
 
@@ -63,6 +63,20 @@ pluginManagement {
 }
 ```
 
+### Publishing
+
+Same for the snapshots of this project, they are published on the same repository, if you want to use it, just add to 
+your `build.gradle.kts`
+
+```kotlin
+repositories {
+    maven("https://raw.githubusercontent.com/kotlin-graphics/mary/master")
+}
+```
+
+Releases, which are less frequent, would be instead published on [scijava](https://maven.scijava.org/).
+
+Every build is, nonetheless, still on Jitpack, which although is quite cool and comfortable, its design has some severe criticality.
 
 ### Contributions:
 

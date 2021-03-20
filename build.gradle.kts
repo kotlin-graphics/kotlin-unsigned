@@ -6,4 +6,4 @@ plugins {
     id("kx.publish") version build
 }
 
-version = "3.2.9+21"
+version = "3.2.9+22"
