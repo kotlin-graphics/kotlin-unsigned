@@ -25,58 +25,9 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 - all the utypes implement all the function, including `shl` and `shr` for `Ubyte` and `Ushort`
 - if you add an `Ushort` to another `Ushort` you get an `Ushort` (and not an `Uint`)
 
-### How to get it:
+### How to retrieve it:
 
-[Gradle](https://jitpack.io/#kotlin-graphics/kotlin-unsigned/v2.1)
-
-- Add it in your root build.gradle at the end of repositories:
-
-      allprojects {
-          repositories {
-              ...
-              maven { url 'https://jitpack.io' } // should be the last entry
-          }
-      }
-
-- Add the dependency
-
-      dependencies {
-          compile 'com.github.kotlin-graphics:kotlin-unsigned:v2.1'
-      }
-
-[Maven, Sbt, Leiningen](https://jitpack.io/#kotlin-graphics/kotlin-unsigned/v2.1)
-
-### Build-logic
-
-The build logic has been extracted into dedicated conventional [plugins and platforms](https://github.com/kotlin-graphics/build-logic), 
-published in a [custom repository](https://github.com/kotlin-graphics/mary) to speed up development process 
-(Maven Central is a pain to setup and Nexus is quite slow).
-
-In Gradle KTS you can include it by adding the following to your `settings.gradle.kts`:
-
-```kotlin
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        maven("https://raw.githubusercontent.com/kotlin-graphics/mary/master")
-    }
-}
-```
-
-### Publishing
-
-Same for the snapshots of this project, they are published on the same repository, if you want to use it, just add to 
-your `build.gradle.kts`
-
-```kotlin
-repositories {
-    maven("https://raw.githubusercontent.com/kotlin-graphics/mary/master")
-}
-```
-
-Releases, which are less frequent, would be instead published on [scijava](https://maven.scijava.org/).
-
-Every build is, nonetheless, still on Jitpack, which although is quite cool and comfortable, its design has some severe criticality.
+You can find all the instructions by [mary](https://github.com/kotlin-graphics/mary)
 
 ### Contributions:
 
