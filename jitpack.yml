@@ -3,4 +3,4 @@ jdk:
 
 install:
   - echo "Running a custom install command"
-  - ./gradlew clean assemble -x dokkaHtml -x dokkaHtmlJar -x javadoc -x dokkaJavadocJar publishToMavenLocal -Pversion=1234567890
+  - ./gradlew clean assemble -x dokkaHtml -x dokkaHtmlJar -x javadoc -x dokkaJavadocJar publishToMavenLocal -xtest
