@@ -10,26 +10,26 @@ plugins {
 
 version = "3.2.9"
 
-val gitDescribe: String
-    get() = ByteArrayOutputStream().also { exec { commandLine("git", "describe", "--tags"); standardOutput = it; } }.toString().trim()
-
-val gitDistance: Int
-    get() = gitDescribe.substringBeforeLast("-g").substringAfterLast('-').toInt()
-
-val gitTag: String
-    get() = gitDescribe.substringBeforeLast('-').substringBeforeLast('-')
-
-val lastRelease: String
-    get() = if (gitTag[0] == 'v') gitTag.drop(1) else gitTag
-
-println("$lastRelease+$gitDistance")
-
-println(System.getProperty("VERSION"))
+//val gitDescribe: String
+//    get() = ByteArrayOutputStream().also { exec { commandLine("git", "describe", "--tags"); standardOutput = it; } }.toString().trim()
+//
+//val gitDistance: Int
+//    get() = gitDescribe.substringBeforeLast("-g").substringAfterLast('-').toInt()
+//
+//val gitTag: String
+//    get() = gitDescribe.substringBeforeLast('-').substringBeforeLast('-')
+//
+//val lastRelease: String
+//    get() = if (gitTag[0] == 'v') gitTag.drop(1) else gitTag
+//
+//println("$lastRelease+$gitDistance")
+//
+//println(System.getProperty("VERSION"))
 
 publishing {
     publications {
         create<MavenPublication>("main") {
-            artifactId = "$lastRelease-$gitDistance"
+//            artifactId = "$lastRelease-$gitDistance"
             from(components["java"])
         }
     }
