@@ -28,14 +28,18 @@ jobs:
   #        run: |
   #          rm -f ~/.gradle/caches/modules-2/modules-2.lock
   #          rm -f ~/.gradle/caches/modules-2/gc.properties
+      - name: Show Working directory content
+        run: ls
+      - name: Remove wrong mary
+        run: rm -rf ./mary
+      - name: Show Working directory content
+        run: ls
       - uses: actions/checkout@master
         with:
           repository: kotlin-graphics/mary
-          path: ./mary
-      - name: Show Working directory path
-        run: pwd
+          path: ../mary
       - name: Show Working directory content
-        run: ls
+        run: ls ..
 
   windows:
     name: 'Windows'
