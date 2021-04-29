@@ -29,7 +29,7 @@ println(System.getProperty("VERSION"))
 publishing {
     publications {
         create<MavenPublication>("main") {
-            artifactId = "$gitDescribe+$gitDistance"
+            artifactId = "$lastRelease+$gitDistance"
             from(components["java"])
         }
     }
