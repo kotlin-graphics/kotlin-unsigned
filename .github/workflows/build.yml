@@ -28,20 +28,20 @@ jobs:
   #        run: |
   #          rm -f ~/.gradle/caches/modules-2/modules-2.lock
   #          rm -f ~/.gradle/caches/modules-2/gc.properties
-      - name: Show Working directory content
-        run: ls
-      - uses: actions/checkout@master
-        with:
-          repository: kotlin-graphics/mary
-          path: ./mary
+#       - name: Show Working directory content
+#         run: ls
+#       - uses: actions/checkout@master
+#         with:
+#           repository: kotlin-graphics/mary
+#           path: ./mary
       - name: Show ../.. directory content
         run: ls ../..
-      - name: move mary up
-        run: mv ./mary ../..
-      - name: Show Working directory content
-        run: ls
-      - name: Show ../.. directory content
-        run: ls ../..
+#       - name: move mary up
+#         run: mv ./mary ../..
+#       - name: Show Working directory content
+#         run: ls
+#       - name: Show ../.. directory content
+#         run: ls ../..
 
   windows:
     name: 'Windows'
