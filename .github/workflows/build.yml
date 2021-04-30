@@ -34,8 +34,14 @@ jobs:
         with:
           repository: kotlin-graphics/mary
           path: ./mary
+      - name: Show ../.. directory content
+        run: ls ../..
+      - name: move mary up
+        run: mv ./mary ../..
       - name: Show Working directory content
         run: ls
+      - name: Show ../.. directory content
+        run: ls ../..
 
   windows:
     name: 'Windows'
