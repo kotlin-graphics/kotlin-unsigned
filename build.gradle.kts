@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.4.31"
+    kotlin("jvm") version "1.5.10"
     //    val build = "0.6.4"
     //    id("kx.kotlin.11") version build
     //    id("kx.dokka") version build
@@ -27,7 +27,11 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:4.4.1")
 }
 
-val jdk8 = sourceSets["main"] // default is fine
+//val jdk8 = sourceSets["main"] // default is fine
+
+val jdk8 = sourceSets.create("jdk8") {
+    java.srcDir("src/main/java")
+}
 
 val jdk11 = sourceSets.create("jpms") {
     java.srcDir("src/main/java")
@@ -35,43 +39,39 @@ val jdk11 = sourceSets.create("jpms") {
 
 java.registerFeature("jdk8") {
     usingSourceSet(jdk8)
-    capability(project.group.toString(), project.name, project.version.toString())
+    //    capability(project.group.toString(), project.name, project.version.toString())
+    capability("group", "name", "0.1")
 }
 
-jdk8 configureCompileVersion 8
-jdk11 configureCompileVersion 11
+//jdk8 configureCompileVersion 8
+//jdk11 configureCompileVersion 11
 
-infix fun SourceSet.configureCompileVersion(jdkVersion: Int) {
-    //    println("sourceset: ${this@configureCompileVersion.compileJavaTaskName}")
-    //    println("sourceset: ${this@configureCompileVersion.compileKotlinTaskName}")
-    //        tasks.withType<KotlinJvmCompile> {
-    //            println(this.name)
-    //        }
-    //    tasks.withType<JavaCompile> { println(this.name) }
-    //    tasks.withType<KotlinJvmCompile> { println(this.name) }
-    //    tasks.named<KotlinJvmCompile>("compileKotlin") {
-    //        println(kotlinOptions.jdkHome)
-    //    }
-    //    tasks.forEach { println("[${it.name}]:${it.javaClass}") }
-    //    tasks.named<KotlinJvmCompile>(compileKotlinTaskName) {
-    //        val compiler = javaToolchains.compilerFor {
-    //            languageVersion.set(JavaLanguageVersion.of(javaVersion))
-    //        }.get()
-    //        kotlinOptions.jdkHome = compiler.metadata.installationPath.asFile.absolutePath
-    //    }
+configureCompileVersion(jdk8, 8)
+configureCompileVersion(jdk11, 11)
+
+fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
     tasks {
-        named<KotlinCompile>(compileKotlinTaskName) {
+        named<KotlinCompile>(set.compileKotlinTaskName) {
             val compiler = project.javaToolchains.compilerFor {
                 languageVersion.set(JavaLanguageVersion.of(jdkVersion))
             }.get()
-            kotlinOptions.jdkHome = compiler.metadata.installationPath.asFile.absolutePath
+            kotlinOptions {
+//                jvmTarget = if(jdkVersion == 8) "1.8" else jdkVersion.toString()
+//                println(jvmTarget)
+                jdkHome = compiler.metadata.installationPath.asFile.absolutePath
+//                println(jdkHome)
+            }
             source = sourceSets.main.get().kotlin
         }
-        named<JavaCompile>(compileJavaTaskName) {
+        named<JavaCompile>(set.compileJavaTaskName) {
             javaCompiler.set(project.javaToolchains.compilerFor {
                 languageVersion.set(JavaLanguageVersion.of(jdkVersion))
             })
-            source = sourceSets.main.get().java + java
+//            println(javaCompiler.get().executablePath)
+//            sourceCompatibility = "11"
+//            targetCompatibility = sourceCompatibility
+//            println("$sourceCompatibility, $targetCompatibility")
+            source = sourceSets.main.get().java + set.java
         }
     }
 }
