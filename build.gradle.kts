@@ -7,7 +7,6 @@ plugins {
     //    id("kx.kotlin.11") version build
     //    id("kx.dokka") version build
     //    id("kx.jitpack") version build
-    java
     `java-library`
     `maven-publish`
 }
@@ -42,9 +41,6 @@ java.registerFeature("jdk8") {
     //    capability(project.group.toString(), project.name, project.version.toString())
     capability("group", "name", "0.1")
 }
-
-//jdk8 configureCompileVersion 8
-//jdk11 configureCompileVersion 11
 
 configureCompileVersion(jdk8, 8)
 configureCompileVersion(jdk11, 11)
