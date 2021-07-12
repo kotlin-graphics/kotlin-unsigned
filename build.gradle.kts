@@ -52,8 +52,7 @@ fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
                 languageVersion.set(JavaLanguageVersion.of(jdkVersion))
             }.get()
             kotlinOptions {
-//                jvmTarget = if(jdkVersion == 8) "1.8" else jdkVersion.toString()
-//                println(jvmTarget)
+                jvmTarget = if(jdkVersion == 8) "1.8" else jdkVersion.toString()
                 jdkHome = compiler.metadata.installationPath.asFile.absolutePath
 //                println(jdkHome)
             }
