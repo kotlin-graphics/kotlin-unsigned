@@ -30,10 +30,12 @@ dependencies {
 
 val jdk8 = sourceSets.create("jdk8") {
     java.srcDir("src/main/java")
+    kotlin.srcDir("src/main/kotlin")
 }
 
 val jdk11 = sourceSets.create("jpms") {
-    java.srcDir("src/main/java")
+    java.srcDirs("src/main/java", "src/jpms/java")
+    kotlin.srcDir("src/main/kotlin")
 }
 
 java.registerFeature("jdk8") {
@@ -46,26 +48,21 @@ configureCompileVersion(jdk8, 8)
 configureCompileVersion(jdk11, 11)
 
 fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
+    val compiler = project.javaToolchains.compilerFor {
+        languageVersion.set(JavaLanguageVersion.of(jdkVersion))
+    }.get()
     tasks {
         named<KotlinCompile>(set.compileKotlinTaskName) {
-            val compiler = project.javaToolchains.compilerFor {
-                languageVersion.set(JavaLanguageVersion.of(jdkVersion))
-            }.get()
             kotlinOptions {
                 jvmTarget = if(jdkVersion == 8) "1.8" else jdkVersion.toString()
                 jdkHome = compiler.metadata.installationPath.asFile.absolutePath
-//                println(jdkHome)
+                println(jvmTarget)
+                println(jdkHome)
             }
             source = sourceSets.main.get().kotlin
         }
         named<JavaCompile>(set.compileJavaTaskName) {
-            javaCompiler.set(project.javaToolchains.compilerFor {
-                languageVersion.set(JavaLanguageVersion.of(jdkVersion))
-            })
-//            println(javaCompiler.get().executablePath)
-//            sourceCompatibility = "11"
-//            targetCompatibility = sourceCompatibility
-//            println("$sourceCompatibility, $targetCompatibility")
+            javaCompiler.set(compiler)
             source = sourceSets.main.get().java + set.java
         }
     }
