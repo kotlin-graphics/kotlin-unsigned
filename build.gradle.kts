@@ -26,17 +26,44 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:4.4.1")
 }
 
-//val jdk8 = sourceSets["main"] // default is fine
+val jdk8 = sourceSets["main"] // default is fine
 
-val jdk8 = sourceSets.create("jdk8") {
-    java.srcDir("src/main/java")
-    kotlin.srcDir("src/main/kotlin")
-}
+//val jdk8 = sourceSets.create("mai") {
+//    java.srcDir("src/main/java")
+//    kotlin.srcDir("src/main/kotlin")
+//}
 
+//configurations.create("mai") {
+//    isCanBeResolved = false
+//    isCanBeConsumed = true
+//    extendsFrom(configurations.findByName("runtimeElements"))
+//    attributes {
+//        attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
+//    }
+//}
+
+//val jdk11 = sourceSets["main"]
 val jdk11 = sourceSets.create("jpms") {
-    java.srcDirs("src/main/java", "src/jpms/java")
-    kotlin.srcDir("src/main/kotlin")
+    println(java.srcDirs)
+    println(kotlin.srcDirs)
+    java.srcDir(jdk8.java)
+    println()
+    println(java.srcDirs)
+    println(kotlin.srcDirs)
+//    kotlin.srcDir("src/main/kotlin")
+//    println()
+//    println(java.srcDirs)
+//    println(kotlin.srcDirs)
 }
+
+//configurations.create("jpms") {
+//    isCanBeResolved = false
+//    isCanBeConsumed = true
+//    extendsFrom(configurations.findByName("runtimeElements"))
+//    attributes {
+//        attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 11)
+//    }
+//}
 
 java.registerFeature("jdk8") {
     usingSourceSet(jdk8)
@@ -56,14 +83,12 @@ fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
             kotlinOptions {
                 jvmTarget = if(jdkVersion == 8) "1.8" else jdkVersion.toString()
                 jdkHome = compiler.metadata.installationPath.asFile.absolutePath
-                println(jvmTarget)
-                println(jdkHome)
             }
             source = sourceSets.main.get().kotlin
         }
         named<JavaCompile>(set.compileJavaTaskName) {
             javaCompiler.set(compiler)
-            source = sourceSets.main.get().java + set.java
+            source = sourceSets.main.get().allJava + set.allJava
         }
     }
 }
