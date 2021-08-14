@@ -26,44 +26,26 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:4.4.1")
 }
 
-val jdk8 = sourceSets["main"] // default is fine
 
-//val jdk8 = sourceSets.create("mai") {
-//    java.srcDir("src/main/java")
-//    kotlin.srcDir("src/main/kotlin")
-//}
-
-//configurations.create("mai") {
-//    isCanBeResolved = false
-//    isCanBeConsumed = true
-//    extendsFrom(configurations.findByName("runtimeElements"))
-//    attributes {
-//        attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 8)
-//    }
-//}
-
-//val jdk11 = sourceSets["main"]
-val jdk11 = sourceSets.create("jpms") {
-    println(java.srcDirs)
-    println(kotlin.srcDirs)
-    java.srcDir(jdk8.java)
-    println()
-    println(java.srcDirs)
-    println(kotlin.srcDirs)
-//    kotlin.srcDir("src/main/kotlin")
-//    println()
-//    println(java.srcDirs)
-//    println(kotlin.srcDirs)
+val jdk8 = sourceSets.create("jdk8") {
+    java.srcDir("src/main/java")
+    kotlin.srcDir("src/main/java")
 }
 
-//configurations.create("jpms") {
-//    isCanBeResolved = false
-//    isCanBeConsumed = true
-//    extendsFrom(configurations.findByName("runtimeElements"))
-//    attributes {
-//        attribute(TargetJvmVersion.TARGET_JVM_VERSION_ATTRIBUTE, 11)
-//    }
-//}
+val jdk11 = sourceSets["main"].apply {
+    //val jdk11 = sourceSets.create("jpms") {
+    //    println(java.srcDirs)
+    //    println(kotlin.srcDirs)
+    java.srcDir("src/jpms/java")
+    //    println()
+    //    println(java.srcDirs)
+    //    println(kotlin.srcDirs)
+}
+
+println(jdk11.java.srcDirs)
+println(jdk11.kotlin.srcDirs)
+println(jdk8.java.srcDirs)
+println(jdk8.kotlin.srcDirs)
 
 java.registerFeature("jdk8") {
     usingSourceSet(jdk8)
@@ -81,12 +63,13 @@ fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
     tasks {
         named<KotlinCompile>(set.compileKotlinTaskName) {
             kotlinOptions {
-                jvmTarget = if(jdkVersion == 8) "1.8" else jdkVersion.toString()
+                jvmTarget = if (jdkVersion == 8) "1.8" else jdkVersion.toString()
                 jdkHome = compiler.metadata.installationPath.asFile.absolutePath
             }
             source = sourceSets.main.get().kotlin
         }
         named<JavaCompile>(set.compileJavaTaskName) {
+            modularity.inferModulePath.set(jdkVersion >= 9)
             javaCompiler.set(compiler)
             source = sourceSets.main.get().allJava + set.allJava
         }
