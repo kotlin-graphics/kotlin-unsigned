@@ -33,19 +33,13 @@ val jdk8 = sourceSets.create("jdk8") {
 }
 
 val jdk11 = sourceSets["main"].apply {
-    //val jdk11 = sourceSets.create("jpms") {
-    //    println(java.srcDirs)
-    //    println(kotlin.srcDirs)
     java.srcDir("src/jpms/java")
-    //    println()
-    //    println(java.srcDirs)
-    //    println(kotlin.srcDirs)
 }
 
-println(jdk11.java.srcDirs)
-println(jdk11.kotlin.srcDirs)
-println(jdk8.java.srcDirs)
-println(jdk8.kotlin.srcDirs)
+//println(jdk11.java.srcDirs)
+//println(jdk11.kotlin.srcDirs)
+//println(jdk8.java.srcDirs)
+//println(jdk8.kotlin.srcDirs)
 
 java.registerFeature("jdk8") {
     usingSourceSet(jdk8)
@@ -69,7 +63,7 @@ fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
             source = sourceSets.main.get().kotlin
         }
         named<JavaCompile>(set.compileJavaTaskName) {
-            modularity.inferModulePath.set(jdkVersion >= 9)
+//            modularity.inferModulePath.set(jdkVersion >= 9)
             javaCompiler.set(compiler)
             source = sourceSets.main.get().allJava + set.allJava
         }
@@ -86,7 +80,7 @@ val moduleName = "$group.$name"
 
 tasks.compileJava {
     // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
-    options.compilerArgs = listOf("--patch-module", "org.module.kotlin=${sourceSets.main.get().output.asPath}")
+    options.compilerArgs = listOf("--patch-module", "org.module.kotlin=${jdk11.output.asPath}")
 }
 
 publishing {
