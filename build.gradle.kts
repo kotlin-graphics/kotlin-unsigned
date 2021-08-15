@@ -63,9 +63,11 @@ fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
             source = sourceSets.main.get().kotlin
         }
         named<JavaCompile>(set.compileJavaTaskName) {
-//            modularity.inferModulePath.set(jdkVersion >= 9)
+            //            modularity.inferModulePath.set(jdkVersion >= 9)
             javaCompiler.set(compiler)
             source = sourceSets.main.get().allJava + set.allJava
+            if (jdkVersion >= 9)
+                options.compilerArgs = listOf("--patch-module", "org.module.kotlin=${set.output.asPath}")
         }
     }
 }
@@ -78,10 +80,10 @@ val SourceSet.kotlin: SourceDirectorySet
 
 val moduleName = "$group.$name"
 
-tasks.compileJava {
-    // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
-    options.compilerArgs = listOf("--patch-module", "org.module.kotlin=${jdk11.output.asPath}")
-}
+//tasks.compileJava {
+//    // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
+//    options.compilerArgs = listOf("--patch-module", "org.module.kotlin=${jdk11.output.asPath}")
+//}
 
 publishing {
     publications {
