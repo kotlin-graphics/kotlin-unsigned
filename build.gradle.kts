@@ -29,7 +29,7 @@ dependencies {
 
 val jdk8 = sourceSets.create("jdk8") {
     java.srcDir("src/main/java")
-    kotlin.srcDir("src/main/java")
+    kotlin.srcDir("src/main/kotlin")
 }
 
 val jdk11 = sourceSets["main"].apply {
@@ -63,11 +63,11 @@ fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
             source = sourceSets.main.get().kotlin
         }
         named<JavaCompile>(set.compileJavaTaskName) {
-            //            modularity.inferModulePath.set(jdkVersion >= 9)
+            modularity.inferModulePath.set(jdkVersion >= 9)
             javaCompiler.set(compiler)
             source = sourceSets.main.get().allJava + set.allJava
             if (jdkVersion >= 9)
-                options.compilerArgs = listOf("--patch-module", "org.module.kotlin=${set.output.asPath}")
+                options.compilerArgs = listOf("--patch-module", "kotlin.graphics.unsigned=${set.output.asPath}")
         }
     }
 }
