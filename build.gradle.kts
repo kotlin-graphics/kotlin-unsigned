@@ -54,15 +54,18 @@ fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
     val compiler = project.javaToolchains.compilerFor {
         languageVersion.set(JavaLanguageVersion.of(jdkVersion))
     }.get()
+    val target = if (jdkVersion == 8) "1.8" else jdkVersion.toString()
     tasks {
         named<KotlinCompile>(set.compileKotlinTaskName) {
             kotlinOptions {
-                jvmTarget = if (jdkVersion == 8) "1.8" else jdkVersion.toString()
+                jvmTarget = target
                 jdkHome = compiler.metadata.installationPath.asFile.absolutePath
             }
             source = sourceSets.main.get().kotlin
         }
         named<JavaCompile>(set.compileJavaTaskName) {
+            targetCompatibility = target
+            sourceCompatibility = target
             modularity.inferModulePath.set(jdkVersion >= 9)
             javaCompiler.set(compiler)
             source = sourceSets.main.get().allJava + set.allJava
@@ -79,11 +82,6 @@ val SourceSet.kotlin: SourceDirectorySet
     get() = withConvention(KotlinSourceSet::class) { kotlin }
 
 val moduleName = "$group.$name"
-
-//tasks.compileJava {
-//    // this is needed because we have a separate compile step in this example with the 'module-info.java' is in 'main/java' and the Kotlin code is in 'main/kotlin'
-//    options.compilerArgs = listOf("--patch-module", "org.module.kotlin=${jdk11.output.asPath}")
-//}
 
 publishing {
     publications {
