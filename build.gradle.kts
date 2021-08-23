@@ -50,6 +50,9 @@ java.registerFeature("jdk8") {
 configureCompileVersion(jdk8, 8)
 configureCompileVersion(jdk11, 11)
 
+val moduleName = "$group.$name"
+println(moduleName)
+
 fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
     val compiler = project.javaToolchains.compilerFor {
         languageVersion.set(JavaLanguageVersion.of(jdkVersion))
@@ -70,7 +73,7 @@ fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
             javaCompiler.set(compiler)
             source = sourceSets.main.get().allJava + set.allJava
             if (jdkVersion >= 9)
-                options.compilerArgs = listOf("--patch-module", "kotlin.graphics.unsigned=${set.output.asPath}")
+                options.compilerArgs = listOf("--patch-module", "$moduleName=${set.output.asPath}")
         }
     }
 }
@@ -80,8 +83,6 @@ val SourceSet.compileKotlinTaskName: String
 
 val SourceSet.kotlin: SourceDirectorySet
     get() = withConvention(KotlinSourceSet::class) { kotlin }
-
-val moduleName = "$group.$name"
 
 publishing {
     publications {
