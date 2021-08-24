@@ -4,12 +4,44 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/../build-logic" name="build-logic">
+                <projects>
+                  <project path="$PROJECT_DIR$/../build-logic" />
+                  <project path="$PROJECT_DIR$/../build-logic/11" />
+                  <project path="$PROJECT_DIR$/../build-logic/8" />
+                  <project path="$PROJECT_DIR$/../build-logic/commons" />
+                  <project path="$PROJECT_DIR$/../build-logic/docs" />
+                  <project path="$PROJECT_DIR$/../build-logic/kx" />
+                  <project path="$PROJECT_DIR$/../build-logic/lwjgl" />
+                </projects>
+              </build>
+              <build path="$PROJECT_DIR$/../magik" name="magik">
+                <projects>
+                  <project path="$PROJECT_DIR$/../magik" />
+                  <project path="$PROJECT_DIR$/../magik/plugin" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleHome" value="$USER_HOME$/.gradle/wrapper/dists/gradle-7.0-milestone-1-all/1mxcarbtzx809qy5j35if8v52/gradle-7.0-milestone-1" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$/../build-logic" />
+            <option value="$PROJECT_DIR$/../build-logic/11" />
+            <option value="$PROJECT_DIR$/../build-logic/8" />
+            <option value="$PROJECT_DIR$/../build-logic/commons" />
+            <option value="$PROJECT_DIR$/../build-logic/docs" />
+            <option value="$PROJECT_DIR$/../build-logic/kx" />
+            <option value="$PROJECT_DIR$/../build-logic/lwjgl" />
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/../magik" />
+            <option value="$PROJECT_DIR$/../magik/plugin" />
           </set>
         </option>
       </GradleProjectSettings>
