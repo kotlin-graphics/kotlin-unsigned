@@ -1,9 +1,24 @@
 
+version = "3.3.0"
+
 plugins {
     val build = "0.7.0+79"
-    id("kx.kotlin.11") version build
+    id("kx.kotlin") version build
     //    id("kx.dokka") version build
-    id("kx.publish") version build
+    //    id("kx.publish") version build
+    `maven-publish`
 }
 
-version = "3.3.0"
+
+publishing {
+    publications.create<MavenPublication>("maven") {
+        from(components["java"])
+        suppressPomMetadataWarningsFor("runtimeElements")
+    }
+    repositories {
+        maven {
+            name = "repo"
+            url = uri("$rootDir/repo")
+        }
+    }
+}

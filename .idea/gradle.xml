@@ -10,8 +10,6 @@
               <build path="$PROJECT_DIR$/../build-logic" name="build-logic">
                 <projects>
                   <project path="$PROJECT_DIR$/../build-logic" />
-                  <project path="$PROJECT_DIR$/../build-logic/11" />
-                  <project path="$PROJECT_DIR$/../build-logic/8" />
                   <project path="$PROJECT_DIR$/../build-logic/commons" />
                 </projects>
               </build>
@@ -30,8 +28,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/../build-logic" />
-            <option value="$PROJECT_DIR$/../build-logic/11" />
-            <option value="$PROJECT_DIR$/../build-logic/8" />
             <option value="$PROJECT_DIR$/../build-logic/commons" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/../magik" />
