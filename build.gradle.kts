@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.10"
+    kotlin("jvm") version "1.5.30"
     //    val build = "0.6.4"
     //    id("kx.kotlin.11") version build
     //    id("kx.dokka") version build
@@ -26,20 +26,26 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:4.4.1")
 }
 
+val jdk11 = sourceSets.main.get()
 
 val jdk8 = sourceSets.create("jdk8") {
-    java.srcDir("src/main/java")
-    kotlin.srcDir("src/main/kotlin")
-}
-
-val jdk11 = sourceSets["main"].apply {
-    java.srcDir("src/jpms/java")
+    java.setSrcDirs(emptySet<File>())
+    kotlin.setSrcDirs(emptySet<File>())
+    java.setSrcDirs(jdk11.java.srcDirs)
+    kotlin.setSrcDirs(jdk11.kotlin.srcDirs)
+    java.setExcludes(listOf("module-info.java"))
+    kotlin.setExcludes(listOf("module-info.java"))
 }
 
 //println(jdk11.java.srcDirs)
+//println(jdk11.java.files)
 //println(jdk11.kotlin.srcDirs)
+//println(jdk11.kotlin.files)
+//println()
 //println(jdk8.java.srcDirs)
+//println(jdk8.java.files)
 //println(jdk8.kotlin.srcDirs)
+//println(jdk8.kotlin.files)
 
 java.registerFeature("jdk8") {
     usingSourceSet(jdk8)
@@ -51,27 +57,30 @@ configureCompileVersion(jdk8, 8)
 configureCompileVersion(jdk11, 11)
 
 val moduleName = "$group.$name"
-println(moduleName)
 
 fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
     val compiler = project.javaToolchains.compilerFor {
         languageVersion.set(JavaLanguageVersion.of(jdkVersion))
     }.get()
     val target = if (jdkVersion == 8) "1.8" else jdkVersion.toString()
+    kotlin {
+        jvmToolchain {
+            (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(jdkVersion))
+        }
+    }
     tasks {
         named<KotlinCompile>(set.compileKotlinTaskName) {
-            kotlinOptions {
-                jvmTarget = target
-                jdkHome = compiler.metadata.installationPath.asFile.absolutePath
-            }
+            kotlinOptions.jvmTarget = target
             source = sourceSets.main.get().kotlin
         }
         named<JavaCompile>(set.compileJavaTaskName) {
+            println("configureCompileVersion $set $jdkVersion")
             targetCompatibility = target
             sourceCompatibility = target
             modularity.inferModulePath.set(jdkVersion >= 9)
             javaCompiler.set(compiler)
-            source = sourceSets.main.get().allJava + set.allJava
+            source = set.allJava
+            //            println(source.files)
             if (jdkVersion >= 9)
                 options.compilerArgs = listOf("--patch-module", "$moduleName=${set.output.asPath}")
         }
@@ -82,7 +91,7 @@ val SourceSet.compileKotlinTaskName: String
     get() = getCompileTaskName("kotlin")
 
 val SourceSet.kotlin: SourceDirectorySet
-    get() = withConvention(KotlinSourceSet::class) { kotlin }
+        get() = withConvention(KotlinSourceSet::class) { kotlin }
 
 publishing {
     publications {
