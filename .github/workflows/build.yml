@@ -21,7 +21,7 @@ jobs:
       - uses: burrunan/gradle-cache-action@v1
         name: Build
         with:
-          arguments: assemble -x dokkaHtml -x dokkaHtmlJar -x javadoc -x dokkaJavadocJar
+          arguments: assemble #-x dokkaHtml -x dokkaHtmlJar -x javadoc -x dokkaJavadocJar
   #      - name: Cleanup Gradle Cache
   #        # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
   #        # Restoring these files from a GitHub Actions cache might cause problems for future builds.
@@ -59,7 +59,7 @@ jobs:
       - uses: burrunan/gradle-cache-action@v1
         name: Build
         with:
-          arguments: assemble -x dokkaHtml -x dokkaHtmlJar -x javadoc -x dokkaJavadocJar
+          arguments: assemble #-x dokkaHtml -x dokkaHtmlJar -x javadoc -x dokkaJavadocJar
   #      - name: Cleanup Gradle Cache
   #        # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
   #        # Restoring these files from a GitHub Actions cache might cause problems for future builds.
@@ -85,7 +85,7 @@ jobs:
       - uses: burrunan/gradle-cache-action@v1
         name: Build
         with:
-          arguments: assemble -x dokkaHtml -x dokkaHtmlJar -x javadoc -x dokkaJavadocJar
+          arguments: assemble #-x dokkaHtml -x dokkaHtmlJar -x javadoc -x dokkaJavadocJar
 #      - name: Cleanup Gradle Cache
 #        # Remove some files from the Gradle cache, so they aren't cached by GitHub Actions.
 #        # Restoring these files from a GitHub Actions cache might cause problems for future builds.
