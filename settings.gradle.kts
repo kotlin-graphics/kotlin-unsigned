@@ -8,6 +8,9 @@ pluginManagement {
     }
 }
 
+gradle.rootProject {
+    version = "3.3.1"
+}
 
 includeBuild("../build-logic")
 includeBuild("../magik")
