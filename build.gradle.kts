@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinCommonProjectExtension
+import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -91,7 +93,7 @@ val SourceSet.compileKotlinTaskName: String
     get() = getCompileTaskName("kotlin")
 
 val SourceSet.kotlin: SourceDirectorySet
-        get() = withConvention(KotlinSourceSet::class) { kotlin }
+        get() = project.extensions.getByType<KotlinJvmProjectExtension>().sourceSets.getByName(name).kotlin
 
 publishing {
     publications {
