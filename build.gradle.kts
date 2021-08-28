@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.5.30"
+    kotlin("jvm") version "1.5.21"
     //    val build = "0.6.4"
     //    id("kx.kotlin.11") version build
     //    id("kx.dokka") version build
@@ -39,15 +39,15 @@ val jdk8 = sourceSets.create("jdk8") {
     kotlin.setExcludes(listOf("module-info.java"))
 }
 
-//println(jdk11.java.srcDirs)
-//println(jdk11.java.files)
-//println(jdk11.kotlin.srcDirs)
-//println(jdk11.kotlin.files)
-//println()
-//println(jdk8.java.srcDirs)
-//println(jdk8.java.files)
-//println(jdk8.kotlin.srcDirs)
-//println(jdk8.kotlin.files)
+println(jdk11.java.srcDirs)
+println(jdk11.java.files)
+println(jdk11.kotlin.srcDirs)
+println(jdk11.kotlin.files)
+println()
+println(jdk8.java.srcDirs)
+println(jdk8.java.files)
+println(jdk8.kotlin.srcDirs)
+println(jdk8.kotlin.files)
 
 java.registerFeature("jdk8") {
     usingSourceSet(jdk8)
@@ -65,14 +65,17 @@ fun configureCompileVersion(set: SourceSet, jdkVersion: Int) {
         languageVersion.set(JavaLanguageVersion.of(jdkVersion))
     }.get()
     val target = if (jdkVersion == 8) "1.8" else jdkVersion.toString()
-    kotlin {
-        jvmToolchain {
-            (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(jdkVersion))
-        }
-    }
+//    kotlin {
+//        jvmToolchain {
+//            (this as JavaToolchainSpec).languageVersion.set(JavaLanguageVersion.of(jdkVersion))
+//        }
+//    }
     tasks {
         named<KotlinCompile>(set.compileKotlinTaskName) {
-            kotlinOptions.jvmTarget = target
+            kotlinOptions {
+                jdkHome = compiler.metadata.installationPath.toString()
+                jvmTarget = target
+            }
             source = sourceSets.main.get().kotlin
         }
         named<JavaCompile>(set.compileJavaTaskName) {
