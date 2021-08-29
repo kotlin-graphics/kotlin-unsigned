@@ -9,7 +9,7 @@ pluginManagement {
 }
 
 gradle.rootProject {
-    version = "3.3.1"
+    version = "3.3.1+1"
 }
 
 //includeBuild("../build-logic")

@@ -38,7 +38,7 @@ data class Ulong(var v: Long = 0) : Number(), Comparable<Ulong> {
     override fun toDouble() = toBigInt().toDouble()
     override fun toFloat() = toBigInt().toFloat()
 
-    override fun toChar() = v.toChar()
+    override fun toChar() = v.toInt().toChar()
 
     operator fun inc() = Ulong(v + 1)
     operator fun dec() = Ulong(v - 1)

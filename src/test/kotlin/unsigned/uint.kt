@@ -23,9 +23,9 @@ class `Uint test` : StringSpec() {
             a.toBigInt() shouldBe BigInteger.valueOf(0xffff_ffff)
             a.toDouble() shouldBe 0xffff_ffff.toDouble()
             a.toFloat() shouldBe 0xffff_ffff.toFloat()
-            a.toLong() shouldBe 0xffff_ffff.toLong()
+            a.toLong() shouldBe 0xffff_ffff
             a.toInt() shouldBe 0xffff_ffff.toInt()
-            a.toChar() shouldBe 0xffff_ffff.toChar()
+            a.toChar() shouldBe 0xffff_ffff.toInt().toChar()
             a.toShort() shouldBe 0xffff_ffff.s
             a.toByte() shouldBe 0xffff_ffff.b
 

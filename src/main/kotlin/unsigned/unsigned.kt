@@ -13,7 +13,7 @@ fun Number.toUshort() = Ushort(toShort())
 
 // TODO char?
 
-fun Char.toUbyte() = Ubyte(toByte())
-fun Char.toUint() = Uint(toInt())
-fun Char.toUlong() = Ulong(toLong())
-fun Char.toUshort() = Ushort(toShort())
+fun Char.toUbyte() = Ubyte(code.toByte())
+fun Char.toUint() = Uint(code)
+fun Char.toUlong() = Ulong(code.toLong())
+fun Char.toUshort() = Ushort(code.toShort())

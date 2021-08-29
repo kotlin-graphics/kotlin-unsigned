@@ -44,7 +44,7 @@ data class Ushort(var v: Short = 0) : Number(), Comparable<Ushort> {
     override fun toDouble() = toInt().toDouble()
     override fun toFloat() = toInt().toFloat()
 
-    override fun toChar() = v.toChar()
+    override fun toChar() = v.toInt().toChar()
 
     operator fun inc() = Ushort(v + 1)
     operator fun dec() = Ushort(v - 1)
