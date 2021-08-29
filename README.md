@@ -25,7 +25,15 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 - all the utypes implement all the function, including `shl` and `shr` for `Ubyte` and `Ushort`
 - if you add an `Ushort` to another `Ushort` you get an `Ushort` (and not an `Uint`)
 
-### How to retrieve it:
+### Install:
+
+First you need to [add mary](https://github.com/kotlin-graphics/mary#packages) to your repository, then:
+
+```kotlin
+dependencies {
+    implementation("kotlin-")
+}
+```
 
 You can find all the instructions by [mary](https://github.com/kotlin-graphics/mary)
 
