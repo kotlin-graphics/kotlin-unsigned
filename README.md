@@ -31,9 +31,11 @@ First you need to [add mary](https://github.com/kotlin-graphics/mary#packages) t
 
 ```kotlin
 dependencies {
-    implementation("kotlin-")
+    implementation("kotlin.graphics:unsigned:3.3.1")
 }
 ```
+
+
 
 You can find all the instructions by [mary](https://github.com/kotlin-graphics/mary)
 
