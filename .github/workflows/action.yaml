@@ -5,3 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - uses: actions/github-script@v4
+        with:
+         script: |
+           var fs = require('fs');
+           try {
+             fs.mkdirSync('./.github/conditional/tmp', {recursive: true});
+           } catch {
+           }
+           fs.writeFileSync('./.github/conditional/tmp/action.yml', 'name: Actions Demo');
+      - uses: ./.github/conditional/tmp
