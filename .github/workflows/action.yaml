@@ -1,0 +1,24 @@
+name: action
+
+on: [ push ]
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/github-script@v5
+      with:
+        github-token: none
+        script: |
+          var fs = require('fs');
+          try {
+            fs.mkdirSync('./.github/conditional/tmp', {recursive: true});
+          } catch {
+          }
+          fs.writeFileSync('./.github/conditional/tmp/action.yml', 'name: GitHub Actions Demo
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."');
+    - uses: ./.github/conditional/tmp
