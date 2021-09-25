@@ -1,26 +1,7 @@
-inputs:
-  if:
-    description: Your condition
-    default: true
-  step:
-    description: Your step to run if the condition is met
-runs:
-  using: composite
-  steps:
-    - uses: actions/github-script@v4
-      with:
-        github-token: none
-        script: |
-          var fs = require('fs');
-          try {
-            fs.mkdirSync('./.github/conditional/tmp', {recursive: true});
-          } catch {
-          }
-          if(${{fromJSON(inputs.if)}}) {
-            fs.writeFileSync('./.github/conditional/tmp/action.yml', 'runs:\n  using: composite\n  steps:\n  - ' + process.env['STEP'].replace(/\n/g, '\n    '));
-          } else {
-            fs.writeFileSync('./.github/conditional/tmp/action.yml', 'runs: {using: composite, steps: []}');
-          }
-      env:
-        STEP: ${{inputs.step}}
-    - uses: ./.github/conditional/tmp
+name: GitHub Actions Demo
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
