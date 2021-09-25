@@ -18,3 +18,4 @@ jobs:
       - run: "echo $HOME"
       - run: "ls .github/conditional/tmp"
       - run: "cat .github/conditional/tmp/action.yml"
+      - uses: ./.github/conditional/tmp
