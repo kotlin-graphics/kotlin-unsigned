@@ -1,11 +1,16 @@
-name: Test
-description: 'composite run action'
-
-runs:
-  using: "composite"
-  steps:
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
     steps:
-      - name: Echo
-        shell: bash
-        run: |
-          echo Heyyyyy
+      - uses: actions/github-script@v4
+        with:
+          github-token: none
+          script: |
+            var fs = require('fs');
+            try {
+              fs.mkdirSync('./.github/conditional/tmp', {recursive: true});
+            } catch {
+            }
+            fs.writeFileSync('./.github/conditional/tmp/action.yml', 'name: ciao');
+      - uses: ./.github/conditional/tmp
