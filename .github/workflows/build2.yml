@@ -3,9 +3,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v4
+      - uses: actions/github-script@v5
         with:
-          github-token: none
           script: |
             var fs = require('fs');
             try {
@@ -13,4 +12,7 @@ jobs:
             } catch {
             }
             fs.writeFileSync('./.github/conditional/tmp/action.yml', 'name: ciao');
-      - uses: ./.github/conditional/tmp
+      - run: "pwd"
+      - run: "ls"
+      - run: "echo $GITHUB_WORKSPACE"
+      - run: "echo $HOME"
