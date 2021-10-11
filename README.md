@@ -27,7 +27,18 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 
 ### Install:
 
-First you need to [add mary](https://github.com/kotlin-graphics/mary#packages) to your repository, then:
+With Gradle `kx.util` plugin, everything is nicely aligned and the boilerplate code is gone
+
+```kotlin
+plugins {
+    id("kx.util") version "0.7.3+51"
+}
+
+dependencies {
+    implementation(unsigned)
+}
+```
+
 
 ```kotlin
 dependencies {
@@ -35,6 +46,13 @@ dependencies {
 }
 ```
 
+Be sure to have [mary](https://github.com/kotlin-graphics/mary#packages) repository:
+
+```kotlin
+repositories {
+   maven("https://raw.githubusercontent.com/kotlin-graphics/mary/master")
+}
+```
 
 
 You can find all the instructions by [mary](https://github.com/kotlin-graphics/mary)
