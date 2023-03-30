@@ -4,19 +4,18 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinCompile
 
 plugins {
     kotlin("jvm") version embeddedKotlinVersion
-    id("elect86.magik") version "0.3.1"
+    id("elect86.magik") version "0.3.2"
     `maven-publish`
 }
 
 repositories { mavenCentral() }
 
 dependencies {
-    testImplementation("io.kotest:kotest-runner-junit5:5.4.1")
-    testImplementation("io.kotest:kotest-assertions-core:5.4.1")
+    testImplementation("io.kotest:kotest-runner-junit5:5.5.5")
+    testImplementation("io.kotest:kotest-assertions-core:5.5.5")
 }
 
 kotlin.jvmToolchain {
-    this as JavaToolchainSpec
     languageVersion.set(JavaLanguageVersion.of(8))
 }
 
@@ -42,4 +41,4 @@ publishing {
     }
 }
 
-java { withSourcesJar() }
+java.withSourcesJar()
