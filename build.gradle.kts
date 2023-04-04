@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version embeddedKotlinVersion
     id("elect86.magik") version "0.3.2"
     `maven-publish`
+//    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 repositories { mavenCentral() }
