@@ -40,23 +40,7 @@ dependencies {
 }
 ```
 
-
-```kotlin
-dependencies {
-    implementation("kotlin.graphics:unsigned:3.3.1")
-}
-```
-
-Be sure to have [mary](https://github.com/kotlin-graphics/mary#packages) repository:
-
-```kotlin
-repositories {
-   maven("https://raw.githubusercontent.com/kotlin-graphics/mary/master")
-}
-```
-
-
-You can find all the instructions by [mary](https://github.com/kotlin-graphics/mary)
+You can find more info by [mary](https://github.com/kotlin-graphics/mary)
 
 ### Contributions:
 
