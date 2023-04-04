@@ -15,9 +15,7 @@ dependencies {
     testImplementation("io.kotest:kotest-assertions-core:5.5.5")
 }
 
-kotlin.jvmToolchain {
-    languageVersion.set(JavaLanguageVersion.of(8))
-}
+kotlin.jvmToolchain { languageVersion.set(JavaLanguageVersion.of(8)) }
 
 tasks {
     withType<KotlinCompile<*>>().all {
@@ -34,11 +32,7 @@ publishing {
             suppressAllPomMetadataWarnings()
         }
     }
-    repositories {
-        github {
-            domain = "kotlin-graphics/mary"
-        }
-    }
+    repositories { github { domain = "kotlin-graphics/mary" } }
 }
 
 java.withSourcesJar()
