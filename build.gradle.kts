@@ -36,8 +36,6 @@ publishing {
     repositories { github { domain = "kotlin-graphics/mary" } }
 }
 
-java.withSourcesJar()
-
 
 java {
     withJavadocJar()
@@ -91,18 +89,19 @@ configure<PublishingExtension> {
     }
     repositories {
         maven {
+            name = "mavenCentral"
             credentials {
                 username = project.properties["NEXUS_USERNAME"].toString()
                 password = project.properties["NEXUS_PASSWORD"].toString()
             }
 
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
         }
     }
 }
 
 signing {
-    val rawKey = project.properties["SIGNING_KEY"]?.toString() ?: throw IllegalStateException("No key is set!")
+    val rawKey = project.properties["SIGNING_KEY"]?.toString() ?: return@signing
     val key = String(Base64.getDecoder().decode(rawKey)) // \n is not working in environment variables
     val password = project.properties["SIGNING_KEY_PASSWORD"]?.toString() ?: ""
     useInMemoryPgpKeys(key, password)

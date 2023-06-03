@@ -50,4 +50,4 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/v')
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: check
+          arguments: publishMavenCentralPublicationToMavenCentralRepository
