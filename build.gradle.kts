@@ -102,8 +102,9 @@ configure<PublishingExtension> {
 }
 
 signing {
-    val key = String(Base64.getDecoder().decode(project.properties["SIGNING_KEY"].toString())) // \n is not working in environment variables
-    val password = project.properties["SIGNING_KEY_PASSWORD"].toString()
+    val rawKey = project.properties["SIGNING_KEY"]?.toString() ?: throw IllegalStateException("No key is set!")
+    val key = String(Base64.getDecoder().decode(rawKey)) // \n is not working in environment variables
+    val password = project.properties["SIGNING_KEY_PASSWORD"]?.toString() ?: ""
     useInMemoryPgpKeys(key, password)
     sign(publishing.publications["mavenJava"])
 }
