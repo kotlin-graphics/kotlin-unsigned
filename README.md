@@ -29,6 +29,7 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 
 With Gradle `kx.util` plugin, everything is nicely aligned and the boilerplate code is gone
 
+#### mary
 ```kotlin
 repositories {
     maven("https://raw.githubusercontent.com/kotlin-graphics/mary/master")
@@ -37,6 +38,12 @@ repositories {
 }
 dependencies {
     implementation("kotlin.graphics:unsigned:3.3.32")
+}
+```
+#### maven central
+```kotlin
+dependencies {
+    implementation("io.github.kotlin-graphics:kotlin-unsigned:3.3.32")
 }
 ```
 
