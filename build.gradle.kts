@@ -47,7 +47,7 @@ java {
 
 configure<PublishingExtension> {
     publications {
-        create<MavenPublication>("mavenJava") {
+        create<MavenPublication>("mavenCentral") {
             groupId = "io.github.kotlin-graphics"
             artifactId = "kotlin-unsigned"
             from(components["java"])
@@ -106,5 +106,5 @@ signing {
     val key = String(Base64.getDecoder().decode(rawKey)) // \n is not working in environment variables
     val password = project.properties["SIGNING_KEY_PASSWORD"]?.toString() ?: ""
     useInMemoryPgpKeys(key, password)
-    sign(publishing.publications["mavenJava"])
+    sign(publishing.publications["mavenCentral"])
 }
