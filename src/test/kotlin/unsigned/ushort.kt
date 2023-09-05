@@ -20,8 +20,8 @@ class `Ushort test` : StringSpec() {
             a.toDouble() shouldBe 0xffff.toDouble()
             a.toFloat() shouldBe 0xffff.toFloat()
             a.toLong() shouldBe 0xffff.toLong()
-            a.toInt() shouldBe 0xffff.toInt()
-            a.toChar() shouldBe 0xffff.toChar()
+            a.toInt() shouldBe 0xffff
+            a.toInt().toChar() shouldBe 0xffff.toChar()
             a.toShort() shouldBe 0xffff.s
             a.toByte() shouldBe 0xffff.b
 

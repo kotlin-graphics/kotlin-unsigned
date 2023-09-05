@@ -20,8 +20,8 @@ class `Ubyte test` : StringSpec() {
             a.toDouble() shouldBe 0xff.toDouble()
             a.toFloat() shouldBe 0xff.toFloat()
             a.toLong() shouldBe 0xff.toLong()
-            a.toInt() shouldBe 0xff.toInt()
-            a.toChar() shouldBe 0xff.toChar()
+            a.toInt() shouldBe 0xff
+            a.toInt().toChar() shouldBe 0xff.toChar()
             a.toShort() shouldBe 0xff.s
             a.toByte() shouldBe 0xff.b
 

@@ -25,7 +25,7 @@ class `Uint test` : StringSpec() {
             a.toFloat() shouldBe 0xffff_ffff.toFloat()
             a.toLong() shouldBe 0xffff_ffff
             a.toInt() shouldBe 0xffff_ffff.toInt()
-            a.toChar() shouldBe 0xffff_ffff.toInt().toChar()
+            a.toInt().toChar() shouldBe 0xffff_ffff.toInt().toChar()
             a.toShort() shouldBe 0xffff_ffff.s
             a.toByte() shouldBe 0xffff_ffff.b
 

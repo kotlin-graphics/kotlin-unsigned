@@ -22,7 +22,7 @@ class `Ulong test` : StringSpec() {
             a.toFloat() shouldBe max.toUBigInt().toFloat()
             a.toLong() shouldBe max
             a.toInt() shouldBe max.toInt()
-            a.toChar() shouldBe max.toInt().toChar()
+            a.toInt().toChar() shouldBe max.toInt().toChar()
             a.toShort() shouldBe max.s
             a.toByte() shouldBe max.b
 

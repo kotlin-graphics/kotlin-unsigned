@@ -15,11 +15,11 @@ plugins {
 repositories { mavenCentral() }
 
 dependencies {
-    testImplementation("io.kotest:kotest-runner-junit5:5.6.2")
-    testImplementation("io.kotest:kotest-assertions-core:5.6.2")
+    testImplementation("io.kotest:kotest-runner-junit5:5.7.1")
+    testImplementation("io.kotest:kotest-assertions-core:5.7.1")
 }
 
-kotlin.jvmToolchain { languageVersion.set(JavaLanguageVersion.of(8)) }
+kotlin.jvmToolchain { languageVersion.set(JavaLanguageVersion.of(11)) }
 
 tasks {
     withType<KotlinCompile<*>>().all {
