@@ -40,6 +40,7 @@ data class Uint(var v: Int = 0) : Number(), Comparable<Uint> {
     override fun toDouble() = toLong().toDouble()
     override fun toFloat() = toLong().toFloat()
 
+    @Deprecated("Direct conversion to Char is deprecated. Use toInt().toChar() or Char constructor instead.\nIf you override toChar() function in your Number inheritor, it's recommended to gradually deprecate the overriding function and then remove it.\nSee https://youtrack.jetbrains.com/issue/KT-46465 for details about the migration", replaceWith = ReplaceWith("this.toInt().toChar()"))
     override fun toChar() = v.toChar()
 
     operator fun inc() = Uint(v + 1)

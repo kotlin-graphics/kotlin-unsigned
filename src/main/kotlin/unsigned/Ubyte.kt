@@ -39,6 +39,7 @@ class Ubyte(var v: Byte) : Number(), Comparable<Ubyte> {
     override fun toDouble() = toInt().toDouble()
     override fun toFloat() = toInt().toFloat()
 
+    @Deprecated("Direct conversion to Char is deprecated. Use toInt().toChar() or Char constructor instead.\nIf you override toChar() function in your Number inheritor, it's recommended to gradually deprecate the overriding function and then remove it.\nSee https://youtrack.jetbrains.com/issue/KT-46465 for details about the migration", replaceWith = ReplaceWith("this.toInt().toChar()"))
     override fun toChar() = toInt().toChar()
 
     fun toUbyte() = this

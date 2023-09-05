@@ -5,9 +5,10 @@ import java.util.*
 
 plugins {
     kotlin("jvm") version embeddedKotlinVersion
-    id("elect86.magik") version "0.3.2"
+    id("elect86.magik") version "0.3.3"
     `maven-publish`
     signing
+    `jvm-test-suite`
 //    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
@@ -24,6 +25,10 @@ tasks {
     withType<KotlinCompile<*>>().all {
         kotlinOptions { freeCompilerArgs += listOf("-opt-in=kotlin.RequiresOptIn") }
     }
+}
+
+testing.suites {
+    val test by getting(JvmTestSuite::class) { useJUnitJupiter() }
 }
 
 publishing {
