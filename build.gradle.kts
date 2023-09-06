@@ -33,7 +33,7 @@ testing.suites {
 
 publishing {
     publications {
-        createGithubPublication {
+        createGithubPublication("Github") {
             from(components["java"])
             suppressAllPomMetadataWarnings()
         }
