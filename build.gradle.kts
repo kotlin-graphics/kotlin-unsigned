@@ -22,25 +22,12 @@ dependencies {
 kotlin.jvmToolchain { languageVersion.set(JavaLanguageVersion.of(11)) }
 
 tasks {
-    withType<KotlinCompile<*>>().all {
-        kotlinOptions { freeCompilerArgs += listOf("-opt-in=kotlin.RequiresOptIn") }
-    }
+    withType<KotlinCompile<*>>().all { kotlinOptions { freeCompilerArgs += listOf("-opt-in=kotlin.RequiresOptIn") } }
 }
 
 testing.suites {
     val test by getting(JvmTestSuite::class) { useJUnitJupiter() }
 }
-
-publishing {
-    publications {
-        createGithubPublication("Github") {
-            from(components["java"])
-            suppressAllPomMetadataWarnings()
-        }
-    }
-    repositories { github { domain = "kotlin-graphics/mary" } }
-}
-
 
 java {
     withJavadocJar()
@@ -50,17 +37,17 @@ java {
 
 configure<PublishingExtension> {
     publications {
+        createGithubPublication("Github") {
+            from(components["java"])
+            suppressAllPomMetadataWarnings()
+        }
         create<MavenPublication>("mavenCentral") {
             groupId = "io.github.kotlin-graphics"
             artifactId = "kotlin-unsigned"
             from(components["java"])
             versionMapping {
-                usage("java-api") {
-                    fromResolutionOf("runtimeClasspath")
-                }
-                usage("java-runtime") {
-                    fromResolutionResult()
-                }
+                usage("java-api") { fromResolutionOf("runtimeClasspath") }
+                usage("java-runtime") { fromResolutionResult() }
             }
             pom {
                 name.set("kotlin-unsigned")
@@ -93,13 +80,13 @@ configure<PublishingExtension> {
         }
     }
     repositories {
+        github { domain = "kotlin-graphics/mary" }
         maven {
             name = "mavenCentral"
             credentials {
                 username = project.properties["NEXUS_USERNAME"].toString()
                 password = project.properties["NEXUS_PASSWORD"].toString()
             }
-
             url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
         }
     }
