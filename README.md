@@ -17,16 +17,15 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 
 ### Differences with kotlin stdlib: 
 
-- this project uses classes instead inline classes. To address this in critical scenarios where allocations may have a sensitive impact, primitive variable holding the utype value is a `var`, so you can re-use the same istance over and over again
-- utypes extend `Number` abstract class
+- this project uses classes instead inline classes. To address this in critical scenarios where allocations may have a sensitive impact, primitive variable holding the unsigned 
+type value is a `var`, so you can re-use the same instance over and over again
+- unsigned types extend `Number` abstract class
 - automatic conversions
 - it is possible to string format by calling the corresponding `format()` method, eg: `ubyte.format("%08x")`
-- all the utypes implement all the function, including `shl` and `shr` for `Ubyte` and `Ushort`
-- if you add an `Ushort` to another `Ushort` you get an `Ushort` (and not an `Uint`)
+- all the unsigned types implement all the function, including `shl` and `shr` for `Ubyte` and `Ushort`
+- there is no automatic padding to integer for unsigned bytes and shorts, so if you add an `Ushort` to another `Ushort` you get an `Ushort` (and not an `Uint`)
 
 ### Install:
-
-With Gradle `kx.util` plugin, everything is nicely aligned and the boilerplate code is gone
 
 #### mary
 ```kotlin

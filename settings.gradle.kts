@@ -10,7 +10,7 @@ pluginManagement {
 
 gradle.rootProject {
     group = "kotlin.graphics"
-    version = "3.3.33"
+    version = "3.4.0"
 }
 
 //includeBuild("../magik")
