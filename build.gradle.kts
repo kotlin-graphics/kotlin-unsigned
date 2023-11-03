@@ -67,47 +67,43 @@ testing.suites {
 //}
 
 
-configure<PublishingExtension> {
-    publications {
-        createGithubPublication {
-            from(components["java"])
-            suppressAllPomMetadataWarnings()
-        }
-        create<MavenPublication>("mavenCentral") {
-            groupId = "io.github.kotlin-graphics"
-            artifactId = "kotlin-unsigned"
-            from(components["java"])
-            versionMapping {
-                usage("java-api") { fromResolutionOf("runtimeClasspath") }
-                usage("java-runtime") { fromResolutionResult() }
-            }
-            pom {
-                name = "kotlin-unsigned"
-                description = "unsigned support for Kotlin via boxed types and unsigned operators"
-                url = "https://github.com/kotlin-graphics/kotlin-unsigned"
-                licenses { license { name = "MIT"; url = "https://choosealicense.com/licenses/mit/" } }
-                developers {
-                    developer { id = "elect86"; name = "Giuseppe Barbieri"; email = "elect86@gmail.com" }
-                    developer { id = "bixilon"; name = "Moritz Zwerger"; email = "bixilon@bixilon.de" }
-                }
-                scm {
-                    connection = "scm:git:https://github.com/kotlin-graphics/kotlin-unsigned.git"
-                    developerConnection = "scm:git:ssh://git@github.com:kotlin-graphics/kotlin-unsigned.git"
-                    url = "https://github.com/kotlin-graphics/kotlin-unsigned"
-                }
-            }
-        }
-    }
+publishing {
+//    publications {
+//        withType<MavenPublication> {
+//            groupId = "io.github.kotlin-graphics"
+//            artifactId = "kotlin-unsigned"
+////            from(components["java"])
+////            versionMapping {
+////                usage("java-api") { fromResolutionOf("runtimeClasspath") }
+////                usage("java-runtime") { fromResolutionResult() }
+////            }
+//            pom {
+//                name = "kotlin-unsigned"
+//                description = "unsigned support for Kotlin via boxed types and unsigned operators"
+//                url = "https://github.com/kotlin-graphics/kotlin-unsigned"
+//                licenses { license { name = "MIT"; url = "https://choosealicense.com/licenses/mit/" } }
+//                developers {
+//                    developer { id = "elect86"; name = "Giuseppe Barbieri"; email = "elect86@gmail.com" }
+//                    developer { id = "bixilon"; name = "Moritz Zwerger"; email = "bixilon@bixilon.de" }
+//                }
+//                scm {
+//                    connection = "scm:git:https://github.com/kotlin-graphics/kotlin-unsigned.git"
+//                    developerConnection = "scm:git:ssh://git@github.com:kotlin-graphics/kotlin-unsigned.git"
+//                    url = "https://github.com/kotlin-graphics/kotlin-unsigned"
+//                }
+//            }
+//        }
+//    }
     repositories {
         github { domain = "kotlin-graphics/mary" }
-        maven {
-            name = "mavenCentral"
-            credentials {
-                username = project.properties["NEXUS_USERNAME"].toString()
-                password = project.properties["NEXUS_PASSWORD"].toString()
-            }
-            url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
-        }
+//        maven {
+//            name = "mavenCentral"
+//            credentials {
+//                username = project.properties["NEXUS_USERNAME"].toString()
+//                password = project.properties["NEXUS_PASSWORD"].toString()
+//            }
+//            url = uri("https://s01.oss.sonatype.org/content/repositories/releases/")
+//        }
     }
 }
 
