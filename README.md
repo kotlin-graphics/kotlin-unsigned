@@ -25,6 +25,8 @@ type value is a `var`, so you can re-use the same instance over and over again
 - all the unsigned types implement all the function, including `shl` and `shr` for `Ubyte` and `Ushort`
 - there is no automatic padding to integer for unsigned bytes and shorts, so if you add an `Ushort` to another `Ushort` you get an `Ushort` (and not an `Uint`)
 
+<img src="venn.png" width="700">
+
 ### Install:
 
 #### mary

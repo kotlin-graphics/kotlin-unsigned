@@ -16,7 +16,7 @@ abstract class GenerateCode : DefaultTask() {
 
     init {
         group = "build"
-        description = "Generate uns code"
+        description = "Generate code"
     }
 
     @get:Inject
@@ -26,15 +26,12 @@ abstract class GenerateCode : DefaultTask() {
     abstract val files: FileSystemOperations
 
     @get:OutputDirectory
-    val targetDir: Directory = layout.projectDirectory.dir("src/genCommonMain/kotlin")
+    val targetDir: Directory = layout.projectDirectory.dir("src/commonMainGen/kotlin")
 
     @TaskAction
     fun generate() {
+        files.delete { delete(targetDir) }
         Generator.targetDir = targetDir.asFile
-
-        files.delete { delete(Generator.targetDir) }
-        //        val targetJvm = targetJvmDir.get().asFile
-        //        val targetNonJvm = targetNonJvmDir.get().asFile
         arrays()
         types()
         extensions()
@@ -57,8 +54,10 @@ fun generate(file: String, block: Generator.() -> Unit) {
             val list = experimentals.joinToString { "${it.pkg}.Experimental${it.name}::class" }
             builder.insert(0, "@file:OptIn($list)\n")
         }
-        if (disableNameShadowing) builder.insert(0, "@file:Suppress(\"NAME_SHADOWING\")\n")
-        if (nothingToInline) builder.insert(0, "@file:Suppress(\"NOTHING_TO_INLINE\")\n")
+        if (disableNameShadowing)
+            builder.insert(0, "@file:Suppress(\"NAME_SHADOWING\")\n")
+        if (nothingToInline)
+            builder.insert(0, "@file:Suppress(\"NOTHING_TO_INLINE\")\n")
         write(file)
     }
 }
