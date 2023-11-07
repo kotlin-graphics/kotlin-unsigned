@@ -26,7 +26,7 @@ abstract class GenerateCode : DefaultTask() {
     abstract val files: FileSystemOperations
 
     @get:OutputDirectory
-    val targetDir: Directory = layout.projectDirectory.dir("src/commonMainGen/kotlin")
+    val targetDir: Directory = layout.projectDirectory.dir("src/commonMain/kotlinGen")
 
     @TaskAction
     fun generate() {

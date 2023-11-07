@@ -1,4 +1,4 @@
-@file:OptIn(kotlin.experimental.ExperimentalTypeInference::class, kotlin.ExperimentalUnsignedTypes::class)
+@file:OptIn(kotlin.ExperimentalUnsignedTypes::class, kotlin.experimental.ExperimentalTypeInference::class)
 package uns
 
 import kotlin.jvm.JvmName
