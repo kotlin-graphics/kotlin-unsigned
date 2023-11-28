@@ -11,9 +11,9 @@
 
 [<img src="https://unsigned.netlify.app/images/docs_logo.svg">](https://unsigned.netlify.app)
 
-Unsigned operators and boxed types (`Ubyte`, `Uint`, `Ulong` and `Ushort`) for unsigned support.
+Unsigned operators and boxed types (`U8`, `U16`, `U32` and `U64`) for unsigned support.
 
-To have a quick idea what this library offers, take a look at the [tests](https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/src/test/kotlin/unsigned/test.kt)
+To have a quick idea what this library offers, take a look at the [tests]([https://github.com/kotlin-graphics/kotlin-unsigned/blob/master/src/test/kotlin/unsigned/test.kt](https://github.com/kotlin-graphics/kotlin-unsigned/tree/master/src/commonTest/kotlin/unsigned))
 
 ### Differences with kotlin stdlib: 
 
@@ -21,7 +21,7 @@ To have a quick idea what this library offers, take a look at the [tests](https:
 type value is a `var`, so you can re-use the same instance over and over again
 - unsigned types extend `Number` abstract class
 - automatic conversions
-- it is possible to string format by calling the corresponding `format()` method, eg: `ubyte.format("%08x")`
+- it is possible to get a string representation with a specific format by calling the corresponding `toString(format: String)` method, eg: `ubyte.format("%08x")`
 - all the unsigned types implement all the function, including `shl` and `shr` for `Ubyte` and `Ushort`
 - there is no automatic padding to integer for unsigned bytes and shorts, so if you add an `Ushort` to another `Ushort` you get an `Ushort` (and not an `Uint`)
 
